@@ -26,6 +26,7 @@
 		DBE89A702109A1970062B141 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBE89A712109A1BA0062B141 /* Game.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
 		DBE89A722109A1BA0062B141 /* Game.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
+		DBE89A742109A9040062B141 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -43,6 +44,7 @@
 		DB30838D20545C5800971FCF = {
 			isa = PBXGroup;
 			children = (
+				DBE89A742109A9040062B141 /* README.md */,
 				DB308471205514EC00971FCF /* partI */,
 				DB30839720545C5800971FCF /* Products */,
 				DB3083DE20545E3D00971FCF /* Frameworks */,
