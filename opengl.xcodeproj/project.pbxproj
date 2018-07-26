@@ -12,6 +12,7 @@
 		DB30847C205514EC00971FCF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB30847B205514EC00971FCF /* main.m */; };
 		DB84087F2055AC4100CD65C0 /* RBNSOpenGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = DB84087E2055AC4100CD65C0 /* RBNSOpenGLView.mm */; };
 		DBE89A732109A1BA0062B141 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBE89A712109A1BA0062B141 /* Game.cpp */; };
+		DBE89A76210A61B30062B141 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DBE89A75210A61B30062B141 /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,10 +24,10 @@
 		DB30847B205514EC00971FCF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		DB84087E2055AC4100CD65C0 /* RBNSOpenGLView.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = RBNSOpenGLView.mm; sourceTree = "<group>"; };
 		DB8408802055AC6A00CD65C0 /* RBNSOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBNSOpenGLView.h; sourceTree = "<group>"; };
-		DBE89A702109A1970062B141 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		DBE89A712109A1BA0062B141 /* Game.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
 		DBE89A722109A1BA0062B141 /* Game.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
 		DBE89A742109A9040062B141 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		DBE89A75210A61B30062B141 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -45,6 +46,7 @@
 			isa = PBXGroup;
 			children = (
 				DBE89A742109A9040062B141 /* README.md */,
+				DBE89A6F2109A17E0062B141 /* boilerplate */,
 				DB308471205514EC00971FCF /* partI */,
 				DB30839720545C5800971FCF /* Products */,
 				DB3083DE20545E3D00971FCF /* Frameworks */,
@@ -71,7 +73,7 @@
 		DB308471205514EC00971FCF /* partI */ = {
 			isa = PBXGroup;
 			children = (
-				DBE89A6F2109A17E0062B141 /* boilerplate */,
+				DBE89A75210A61B30062B141 /* Info.plist */,
 				DBE89A722109A1BA0062B141 /* Game.hpp */,
 				DBE89A712109A1BA0062B141 /* Game.cpp */,
 			);
@@ -81,14 +83,13 @@
 		DBE89A6F2109A17E0062B141 /* boilerplate */ = {
 			isa = PBXGroup;
 			children = (
-				DBE89A702109A1970062B141 /* Info.plist */,
 				DB8408802055AC6A00CD65C0 /* RBNSOpenGLView.h */,
 				DB84087E2055AC4100CD65C0 /* RBNSOpenGLView.mm */,
 				DB308472205514EC00971FCF /* AppDelegate.h */,
 				DB308473205514EC00971FCF /* AppDelegate.mm */,
 				DB30847B205514EC00971FCF /* main.m */,
 			);
-			name = boilerplate;
+			path = boilerplate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -149,6 +150,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DBE89A76210A61B30062B141 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

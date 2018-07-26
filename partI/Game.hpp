@@ -15,6 +15,10 @@
 
 class Game
 {
+private:
+    GLuint vertexBuffer;
+    GLuint vertexArrayID;
+
 public:
     Game();
 
