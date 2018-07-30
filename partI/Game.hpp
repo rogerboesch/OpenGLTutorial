@@ -22,8 +22,8 @@ private:
 public:
     Game();
 
-    void onInit();
-    void onUpdate();
-    void onRender();
+    void OnInit(int width, int height);
+    void OnUpdate();
+    void OnRender();
 };
 

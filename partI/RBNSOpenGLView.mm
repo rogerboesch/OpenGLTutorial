@@ -34,7 +34,6 @@ extern Game* gGame;
 - (BOOL)resignFirstResponder {
     return YES;
 }
-
 // -----------------------------------------------------------------------------
 
 - (void)keyDown:(NSEvent *)event {
@@ -51,14 +50,11 @@ extern Game* gGame;
 #pragma mark - Render loop
 
 - (void)renderLoop {
-    glClearColor(0, 0, 0, 0);
-    glClear(GL_COLOR_BUFFER_BIT);
-
     // Update game
-    gGame->onUpdate();
+    gGame->OnUpdate();
 
     // Render game
-    gGame->onRender();
+    gGame->OnRender();
     
     // Flush all to context
     CGLContextObj ctx = 0;
@@ -83,7 +79,10 @@ extern Game* gGame;
     [[self openGLContext] makeCurrentContext];
     
     // Initialising stuff
-    gGame->onInit();
+    int width = [self bounds].size.width;
+    int height = [self bounds].size.height;
+
+    gGame->OnInit(width, height);
     
     [self performSelector:@selector(renderLoop) withObject:nil afterDelay:1.0/kFRAMES_PER_SECOND];
 

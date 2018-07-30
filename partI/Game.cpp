@@ -24,7 +24,7 @@ Game::Game() {}
 // -----------------------------------------------------------------------------
 #pragma mark - Render loop
 
-void Game::onInit() {
+void Game::OnInit(int width, int height) {
     glGenVertexArrays(1, &vertexArrayID);
     glBindVertexArray(vertexArrayID);
 
@@ -33,9 +33,13 @@ void Game::onInit() {
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
     glBufferData(GL_ARRAY_BUFFER, sizeof(gVertexBufferData), gVertexBufferData, GL_STATIC_DRAW);
 }
-void Game::onUpdate() {}
 
-void Game::onRender() {
+void Game::OnUpdate() {}
+
+void Game::OnRender() {
+    glClearColor(0, 0, 0, 0);
+    glClear(GL_COLOR_BUFFER_BIT);
+
     glEnableVertexAttribArray(0);
     glBindBuffer(GL_ARRAY_BUFFER, vertexBuffer);
     glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);

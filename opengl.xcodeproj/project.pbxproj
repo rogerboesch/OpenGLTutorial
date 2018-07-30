@@ -8,26 +8,54 @@
 
 /* Begin PBXBuildFile section */
 		DB0F6C83205520A4001AEA75 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB0F6C82205520A4001AEA75 /* AVFoundation.framework */; };
-		DB308474205514EC00971FCF /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = DB308473205514EC00971FCF /* AppDelegate.mm */; };
-		DB30847C205514EC00971FCF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB30847B205514EC00971FCF /* main.m */; };
-		DB84087F2055AC4100CD65C0 /* RBNSOpenGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = DB84087E2055AC4100CD65C0 /* RBNSOpenGLView.mm */; };
+		DB2CC12E210F1B4C00AADDCF /* RBVector2.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB2CC12C210F1B4C00AADDCF /* RBVector2.cpp */; };
+		DB2CC131210F1DEE00AADDCF /* GameObject.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB2CC12F210F1DEE00AADDCF /* GameObject.cpp */; };
+		DB2CC134210F211C00AADDCF /* RBRenderHelper.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB2CC132210F211C00AADDCF /* RBRenderHelper.cpp */; };
+		DB2CC137210F383100AADDCF /* Pong.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB2CC135210F383100AADDCF /* Pong.cpp */; };
+		DB2CC146210F6D2800AADDCF /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2CC145210F6D2800AADDCF /* OpenGL.framework */; };
+		DB2CC14C210F6D7600AADDCF /* RBNSOpenGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = DB2CC147210F6D7500AADDCF /* RBNSOpenGLView.mm */; };
+		DB2CC14D210F6D7600AADDCF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB2CC148210F6D7500AADDCF /* main.m */; };
+		DB2CC14E210F6D7600AADDCF /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = DB2CC14A210F6D7600AADDCF /* AppDelegate.mm */; };
+		DB2CC150210F6E0800AADDCF /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DB2CC145210F6D2800AADDCF /* OpenGL.framework */; };
+		DB2CC157210F6E8400AADDCF /* RBNSOpenGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = DB2CC153210F6E8400AADDCF /* RBNSOpenGLView.mm */; };
+		DB2CC158210F6E8400AADDCF /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = DB2CC154210F6E8400AADDCF /* AppDelegate.mm */; };
+		DB2CC159210F6E8400AADDCF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB2CC155210F6E8400AADDCF /* main.m */; };
 		DBE89A732109A1BA0062B141 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBE89A712109A1BA0062B141 /* Game.cpp */; };
 		DBE89A76210A61B30062B141 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DBE89A75210A61B30062B141 /* Info.plist */; };
+		DBE89A91210A62790062B141 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBE89A8F210A62790062B141 /* Game.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		DB0F6C82205520A4001AEA75 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/AVFoundation.framework; sourceTree = DEVELOPER_DIR; };
+		DB2CC12C210F1B4C00AADDCF /* RBVector2.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RBVector2.cpp; sourceTree = "<group>"; };
+		DB2CC12D210F1B4C00AADDCF /* RBVector2.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RBVector2.hpp; sourceTree = "<group>"; };
+		DB2CC12F210F1DEE00AADDCF /* GameObject.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = GameObject.cpp; sourceTree = "<group>"; };
+		DB2CC130210F1DEE00AADDCF /* GameObject.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = GameObject.hpp; sourceTree = "<group>"; };
+		DB2CC132210F211C00AADDCF /* RBRenderHelper.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RBRenderHelper.cpp; sourceTree = "<group>"; };
+		DB2CC133210F211C00AADDCF /* RBRenderHelper.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RBRenderHelper.hpp; sourceTree = "<group>"; };
+		DB2CC135210F383100AADDCF /* Pong.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Pong.cpp; sourceTree = "<group>"; };
+		DB2CC136210F383100AADDCF /* Pong.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Pong.hpp; sourceTree = "<group>"; };
+		DB2CC145210F6D2800AADDCF /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.13.sdk/System/Library/Frameworks/OpenGL.framework; sourceTree = DEVELOPER_DIR; };
+		DB2CC147210F6D7500AADDCF /* RBNSOpenGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RBNSOpenGLView.mm; sourceTree = "<group>"; };
+		DB2CC148210F6D7500AADDCF /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DB2CC149210F6D7500AADDCF /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		DB2CC14A210F6D7600AADDCF /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
+		DB2CC14B210F6D7600AADDCF /* RBNSOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBNSOpenGLView.h; sourceTree = "<group>"; };
+		DB2CC152210F6E8400AADDCF /* AppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		DB2CC153210F6E8400AADDCF /* RBNSOpenGLView.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = RBNSOpenGLView.mm; sourceTree = "<group>"; };
+		DB2CC154210F6E8400AADDCF /* AppDelegate.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
+		DB2CC155210F6E8400AADDCF /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		DB2CC156210F6E8400AADDCF /* RBNSOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBNSOpenGLView.h; sourceTree = "<group>"; };
 		DB3083DF20545E3D00971FCF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		DB308470205514EC00971FCF /* partI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = partI.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		DB308472205514EC00971FCF /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		DB308473205514EC00971FCF /* AppDelegate.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = AppDelegate.mm; sourceTree = "<group>"; };
-		DB30847B205514EC00971FCF /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
-		DB84087E2055AC4100CD65C0 /* RBNSOpenGLView.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = RBNSOpenGLView.mm; sourceTree = "<group>"; };
-		DB8408802055AC6A00CD65C0 /* RBNSOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBNSOpenGLView.h; sourceTree = "<group>"; };
 		DBE89A712109A1BA0062B141 /* Game.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
 		DBE89A722109A1BA0062B141 /* Game.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
 		DBE89A742109A9040062B141 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		DBE89A75210A61B30062B141 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DBE89A7B210A620E0062B141 /* partII.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = partII.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DBE89A85210A62100062B141 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		DBE89A8F210A62790062B141 /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
+		DBE89A90210A62790062B141 /* Game.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -35,19 +63,52 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB2CC146210F6D2800AADDCF /* OpenGL.framework in Frameworks */,
 				DB0F6C83205520A4001AEA75 /* AVFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DBE89A78210A620E0062B141 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB2CC150210F6E0800AADDCF /* OpenGL.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		DB2CC14F210F6DCC00AADDCF /* boilerplate */ = {
+			isa = PBXGroup;
+			children = (
+				DB2CC14B210F6D7600AADDCF /* RBNSOpenGLView.h */,
+				DB2CC147210F6D7500AADDCF /* RBNSOpenGLView.mm */,
+				DB2CC149210F6D7500AADDCF /* AppDelegate.h */,
+				DB2CC14A210F6D7600AADDCF /* AppDelegate.mm */,
+				DB2CC148210F6D7500AADDCF /* main.m */,
+			);
+			name = boilerplate;
+			sourceTree = "<group>";
+		};
+		DB2CC151210F6E7200AADDCF /* boilerplate */ = {
+			isa = PBXGroup;
+			children = (
+				DB2CC156210F6E8400AADDCF /* RBNSOpenGLView.h */,
+				DB2CC153210F6E8400AADDCF /* RBNSOpenGLView.mm */,
+				DB2CC152210F6E8400AADDCF /* AppDelegate.h */,
+				DB2CC154210F6E8400AADDCF /* AppDelegate.mm */,
+				DB2CC155210F6E8400AADDCF /* main.m */,
+			);
+			name = boilerplate;
+			sourceTree = "<group>";
+		};
 		DB30838D20545C5800971FCF = {
 			isa = PBXGroup;
 			children = (
 				DBE89A742109A9040062B141 /* README.md */,
-				DBE89A6F2109A17E0062B141 /* boilerplate */,
 				DB308471205514EC00971FCF /* partI */,
+				DBE89A7C210A620E0062B141 /* partII */,
 				DB30839720545C5800971FCF /* Products */,
 				DB3083DE20545E3D00971FCF /* Frameworks */,
 			);
@@ -57,6 +118,7 @@
 			isa = PBXGroup;
 			children = (
 				DB308470205514EC00971FCF /* partI.app */,
+				DBE89A7B210A620E0062B141 /* partII.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -64,6 +126,7 @@
 		DB3083DE20545E3D00971FCF /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				DB2CC145210F6D2800AADDCF /* OpenGL.framework */,
 				DB0F6C82205520A4001AEA75 /* AVFoundation.framework */,
 				DB3083DF20545E3D00971FCF /* AVFoundation.framework */,
 			);
@@ -73,23 +136,39 @@
 		DB308471205514EC00971FCF /* partI */ = {
 			isa = PBXGroup;
 			children = (
-				DBE89A75210A61B30062B141 /* Info.plist */,
+				DB2CC14F210F6DCC00AADDCF /* boilerplate */,
 				DBE89A722109A1BA0062B141 /* Game.hpp */,
 				DBE89A712109A1BA0062B141 /* Game.cpp */,
+				DBE89A75210A61B30062B141 /* Info.plist */,
 			);
 			path = partI;
 			sourceTree = "<group>";
 		};
-		DBE89A6F2109A17E0062B141 /* boilerplate */ = {
+		DB909729210F6F1800968AC6 /* base */ = {
 			isa = PBXGroup;
 			children = (
-				DB8408802055AC6A00CD65C0 /* RBNSOpenGLView.h */,
-				DB84087E2055AC4100CD65C0 /* RBNSOpenGLView.mm */,
-				DB308472205514EC00971FCF /* AppDelegate.h */,
-				DB308473205514EC00971FCF /* AppDelegate.mm */,
-				DB30847B205514EC00971FCF /* main.m */,
+				DB2CC12D210F1B4C00AADDCF /* RBVector2.hpp */,
+				DB2CC12C210F1B4C00AADDCF /* RBVector2.cpp */,
+				DB2CC133210F211C00AADDCF /* RBRenderHelper.hpp */,
+				DB2CC132210F211C00AADDCF /* RBRenderHelper.cpp */,
 			);
-			path = boilerplate;
+			name = base;
+			sourceTree = "<group>";
+		};
+		DBE89A7C210A620E0062B141 /* partII */ = {
+			isa = PBXGroup;
+			children = (
+				DB2CC151210F6E7200AADDCF /* boilerplate */,
+				DB909729210F6F1800968AC6 /* base */,
+				DB2CC130210F1DEE00AADDCF /* GameObject.hpp */,
+				DB2CC12F210F1DEE00AADDCF /* GameObject.cpp */,
+				DBE89A90210A62790062B141 /* Game.hpp */,
+				DBE89A8F210A62790062B141 /* Game.cpp */,
+				DB2CC136210F383100AADDCF /* Pong.hpp */,
+				DB2CC135210F383100AADDCF /* Pong.cpp */,
+				DBE89A85210A62100062B141 /* Info.plist */,
+			);
+			path = partII;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -112,6 +191,23 @@
 			productReference = DB308470205514EC00971FCF /* partI.app */;
 			productType = "com.apple.product-type.application";
 		};
+		DBE89A7A210A620E0062B141 /* partII */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = DBE89A89210A62100062B141 /* Build configuration list for PBXNativeTarget "partII" */;
+			buildPhases = (
+				DBE89A77210A620E0062B141 /* Sources */,
+				DBE89A78210A620E0062B141 /* Frameworks */,
+				DBE89A79210A620E0062B141 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = partII;
+			productName = partII;
+			productReference = DBE89A7B210A620E0062B141 /* partII.app */;
+			productType = "com.apple.product-type.application";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -123,6 +219,10 @@
 				TargetAttributes = {
 					DB30846F205514EC00971FCF = {
 						CreatedOnToolsVersion = 9.2;
+						ProvisioningStyle = Automatic;
+					};
+					DBE89A7A210A620E0062B141 = {
+						CreatedOnToolsVersion = 9.3;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -141,6 +241,7 @@
 			projectRoot = "";
 			targets = (
 				DB30846F205514EC00971FCF /* partI */,
+				DBE89A7A210A620E0062B141 /* partII */,
 			);
 		};
 /* End PBXProject section */
@@ -154,6 +255,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		DBE89A79210A620E0062B141 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -161,10 +269,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				DB30847C205514EC00971FCF /* main.m in Sources */,
-				DB308474205514EC00971FCF /* AppDelegate.mm in Sources */,
-				DB84087F2055AC4100CD65C0 /* RBNSOpenGLView.mm in Sources */,
+				DB2CC14C210F6D7600AADDCF /* RBNSOpenGLView.mm in Sources */,
+				DB2CC14D210F6D7600AADDCF /* main.m in Sources */,
+				DB2CC14E210F6D7600AADDCF /* AppDelegate.mm in Sources */,
 				DBE89A732109A1BA0062B141 /* Game.cpp in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		DBE89A77210A620E0062B141 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DB2CC12E210F1B4C00AADDCF /* RBVector2.cpp in Sources */,
+				DB2CC131210F1DEE00AADDCF /* GameObject.cpp in Sources */,
+				DB2CC157210F6E8400AADDCF /* RBNSOpenGLView.mm in Sources */,
+				DB2CC158210F6E8400AADDCF /* AppDelegate.mm in Sources */,
+				DB2CC134210F211C00AADDCF /* RBRenderHelper.cpp in Sources */,
+				DB2CC137210F383100AADDCF /* Pong.cpp in Sources */,
+				DB2CC159210F6E8400AADDCF /* main.m in Sources */,
+				DBE89A91210A62790062B141 /* Game.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -317,6 +440,54 @@
 			};
 			name = Release;
 		};
+		DBE89A8A210A62100062B141 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = F46T393V5A;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = partII/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rogerboesch.partII;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		DBE89A8B210A62100062B141 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CODE_SIGN_ENTITLEMENTS = "";
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = F46T393V5A;
+				INFOPLIST_FILE = partII/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.13;
+				PRODUCT_BUNDLE_IDENTIFIER = com.rogerboesch.partII;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -334,6 +505,15 @@
 			buildConfigurations = (
 				DB30847F205514EC00971FCF /* Debug */,
 				DB308480205514EC00971FCF /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		DBE89A89210A62100062B141 /* Build configuration list for PBXNativeTarget "partII" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				DBE89A8A210A62100062B141 /* Debug */,
+				DBE89A8B210A62100062B141 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
