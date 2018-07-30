@@ -60,7 +60,7 @@ void Pong::Update(float delay) {
         RBVector2 speed  =_ball->GetSpeed();
         speed.x *= -1.1;
         
-        float diff = (_ball->GetCenter().y - _paddle1->GetCenter().y);
+        float diff = (_ball->GetCenter().y - _paddle1->GetCenter().y)*2;
         speed.y = speed.y + diff;
 
         _ball->SetSpeed(speed);
@@ -69,7 +69,7 @@ void Pong::Update(float delay) {
         RBVector2 speed  =_ball->GetSpeed();
         speed.x *= -1.1;
 
-        float diff = (_ball->GetCenter().y - _paddle2->GetCenter().y);
+        float diff = (_ball->GetCenter().y - _paddle2->GetCenter().y)*2;
         speed.y = speed.y + diff;
 
         _ball->SetSpeed(speed);
@@ -93,10 +93,15 @@ void Pong::Update(float delay) {
 }
 
 void Pong::Render() {
+    glClearColor(0, 0, 0, 0);
+    glClear(GL_COLOR_BUFFER_BIT);
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    
     RBVector2 size = GetGamesSize();
 
     RBColor white(1);
-    RBColor ltGray(0.2);
+    RBColor ltGray(1,1,1,0.2);
 
     // Draw center
     RBDrawRect(size.width/2-2, 0, 4, size.height, ltGray);

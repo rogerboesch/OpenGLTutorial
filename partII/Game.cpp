@@ -50,9 +50,6 @@ void Game::OnUpdate(float delay) {
 }
 
 void Game::OnRender() {
-    glClearColor(0, 0, 0, 0);
-    glClear(GL_COLOR_BUFFER_BIT);
-
     Render();
     
     for (auto i: *_gameObjects) {
