@@ -8,6 +8,7 @@
 #pragma once
 
 #include "RBVector2.hpp"
+#include "RBColor.hpp"
 
 class GameObject {
 public:
@@ -30,9 +31,13 @@ public:
     
     RBVector2 GetSize() { return _size; }
     RBVector2 GetCenter() { RBVector2 center(_position.x+_size.width/2, _position.y+_size.height/2); return center; }
-    
+
+    void SetColor(float r, float g, float b, float a) { _color.r = r; _color.g = g; _color.b = b; _color.a = a; }
+    RBColor GetColor() { return _color; }
+
 private:
     RBVector2 _position;
     RBVector2 _size;
     RBVector2 _speed;
+    RBColor _color;
 };

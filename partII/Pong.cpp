@@ -95,12 +95,18 @@ void Pong::Update(float delay) {
 void Pong::Render() {
     RBVector2 size = GetGamesSize();
 
-    // Draw HUD
-    RBDrawNumber(size.width/2-40, size.height-80, _score1);
-    RBDrawNumber(size.width/2+10, size.height-80, _score2);
+    RBColor white(1);
+    RBColor ltGray(0.2);
 
-    RBDrawRect(size.width/2-2, size.height-45, 5, 5);
-    RBDrawRect(size.width/2-2, size.height-65, 5, 5);
+    // Draw center
+    RBDrawRect(size.width/2-2, 0, 4, size.height, ltGray);
+
+    // Draw HUD
+    RBDrawNumber(20, size.height-80, _score1, white);
+    RBDrawNumber(70, size.height-80, _score2, white);
+
+    RBDrawRect(60, size.height-45, 5, 5, white);
+    RBDrawRect(60, size.height-65, 5, 5, white);
 }
 
 

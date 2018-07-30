@@ -12,7 +12,8 @@
 #import <OpenGL/gl3.h>
 
 #include "RBVector2.hpp"
+#include "RBColor.hpp"
 
-void RBDrawRect(RBVector2 position, RBVector2 size);
-void RBDrawRect(float x, float y, float width, float height);
-void RBDrawNumber(float x , float y , int n);
+void RBDrawRect(RBVector2 position, RBVector2 size, RBColor color);
+void RBDrawRect(float x, float y, float width, float height, RBColor color);
+void RBDrawNumber(float x , float y , int n, RBColor color);

@@ -10,10 +10,6 @@
 #include <cstring>
 #include <assert.h>
 
-class RBVector4f;
-class RBMatrix2x2f;
-class RBMatrix4x4f;
-
 class RBVector2 {
 public:
     union {

@@ -20,6 +20,7 @@
 		DB2CC157210F6E8400AADDCF /* RBNSOpenGLView.mm in Sources */ = {isa = PBXBuildFile; fileRef = DB2CC153210F6E8400AADDCF /* RBNSOpenGLView.mm */; };
 		DB2CC158210F6E8400AADDCF /* AppDelegate.mm in Sources */ = {isa = PBXBuildFile; fileRef = DB2CC154210F6E8400AADDCF /* AppDelegate.mm */; };
 		DB2CC159210F6E8400AADDCF /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = DB2CC155210F6E8400AADDCF /* main.m */; };
+		DB90972C210F8D7B00968AC6 /* RBColor.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DB90972A210F8D7B00968AC6 /* RBColor.cpp */; };
 		DBE89A732109A1BA0062B141 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBE89A712109A1BA0062B141 /* Game.cpp */; };
 		DBE89A76210A61B30062B141 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = DBE89A75210A61B30062B141 /* Info.plist */; };
 		DBE89A91210A62790062B141 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = DBE89A8F210A62790062B141 /* Game.cpp */; };
@@ -48,6 +49,8 @@
 		DB2CC156210F6E8400AADDCF /* RBNSOpenGLView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RBNSOpenGLView.h; sourceTree = "<group>"; };
 		DB3083DF20545E3D00971FCF /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		DB308470205514EC00971FCF /* partI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = partI.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		DB90972A210F8D7B00968AC6 /* RBColor.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = RBColor.cpp; sourceTree = "<group>"; };
+		DB90972B210F8D7B00968AC6 /* RBColor.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = RBColor.hpp; sourceTree = "<group>"; };
 		DBE89A712109A1BA0062B141 /* Game.cpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
 		DBE89A722109A1BA0062B141 /* Game.hpp */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
 		DBE89A742109A9040062B141 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -147,6 +150,8 @@
 		DB909729210F6F1800968AC6 /* base */ = {
 			isa = PBXGroup;
 			children = (
+				DB90972B210F8D7B00968AC6 /* RBColor.hpp */,
+				DB90972A210F8D7B00968AC6 /* RBColor.cpp */,
 				DB2CC12D210F1B4C00AADDCF /* RBVector2.hpp */,
 				DB2CC12C210F1B4C00AADDCF /* RBVector2.cpp */,
 				DB2CC133210F211C00AADDCF /* RBRenderHelper.hpp */,
@@ -282,6 +287,7 @@
 			files = (
 				DB2CC12E210F1B4C00AADDCF /* RBVector2.cpp in Sources */,
 				DB2CC131210F1DEE00AADDCF /* GameObject.cpp in Sources */,
+				DB90972C210F8D7B00968AC6 /* RBColor.cpp in Sources */,
 				DB2CC157210F6E8400AADDCF /* RBNSOpenGLView.mm in Sources */,
 				DB2CC158210F6E8400AADDCF /* AppDelegate.mm in Sources */,
 				DB2CC134210F211C00AADDCF /* RBRenderHelper.cpp in Sources */,

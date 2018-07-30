@@ -11,12 +11,12 @@
 // -----------------------------------------------------------------------------
 #pragma mark - Render (colored) rectangles
 
-void RBDrawRect(RBVector2 position, RBVector2 size) {
-    RBDrawRect(position.x, position.y, size.width, size.height);
+void RBDrawRect(RBVector2 position, RBVector2 size, RBColor color) {
+    RBDrawRect(position.x, position.y, size.width, size.height, color);
 }
 
-void RBDrawRect(float x, float y, float width, float height) {
-    glColor3f(1.0, 1.0, 1.0);
+void RBDrawRect(float x, float y, float width, float height, RBColor color) {
+    glColor4f(color.r, color.g, color.b, color.a);
 
     glBegin(GL_QUADS);
     
@@ -31,7 +31,7 @@ void RBDrawRect(float x, float y, float width, float height) {
 // -----------------------------------------------------------------------------
 #pragma mark - Render numbers
 
-void RBDrawSegments(int s0, int s1, int s2, int s3, int s4, int s5, int s6, float x, float y) {
+void RBDrawSegments(int s0, int s1, int s2, int s3, int s4, int s5, int s6, float x, float y, RBColor color) {
     //  -     0
     // | |   1 2
     //  -     3
@@ -39,74 +39,74 @@ void RBDrawSegments(int s0, int s1, int s2, int s3, int s4, int s5, int s6, floa
     //  -     6
     
     if (s0) {
-        RBDrawRect(x + 5, y + 50, 20, 5);
+        RBDrawRect(x + 5, y + 50, 20, 5, color);
     }
 
     if (s1) {
-        RBDrawRect(x, y + 30 , 5, 20);
+        RBDrawRect(x, y + 30 , 5, 20, color);
     }
 
     if (s2) {
-        RBDrawRect(x + 25, y + 30, 5, 20);
+        RBDrawRect(x + 25, y + 30, 5, 20, color);
     }
 
     if (s3) {
-        RBDrawRect(x + 5, y + 25, 20, 5);
+        RBDrawRect(x + 5, y + 25, 20, 5, color);
     }
 
     if (s4) {
-        RBDrawRect(x, y + 5, 5, 20);
+        RBDrawRect(x, y + 5, 5, 20, color);
     }
 
     if (s5) {
-        RBDrawRect(x + 25, y + 5 ,5 , 20);
+        RBDrawRect(x + 25, y + 5 ,5 , 20, color);
     }
 
     if (s6) {
-        RBDrawRect(x + 5, y, 20, 5);
+        RBDrawRect(x + 5, y, 20, 5, color);
     }
 }
 
-void RBDrawNumber(float x , float y , int n) {
+void RBDrawNumber(float x , float y , int n, RBColor color) {
     switch(n) {
         case 0:
-            RBDrawSegments(1,1,1,0,1,1,1, x, y);
+            RBDrawSegments(1,1,1,0,1,1,1, x, y, color);
             break;
 
         case 1:
-            RBDrawSegments(0,0,1,0,0,1,0, x, y);
+            RBDrawSegments(0,0,1,0,0,1,0, x, y, color);
             break;
         
         case 2:
-            RBDrawSegments(1,0,1,1,1,0,1, x, y);
+            RBDrawSegments(1,0,1,1,1,0,1, x, y, color);
             break;
         
         case 3:
-            RBDrawSegments(1,0,1,1,0,1,1, x, y);
+            RBDrawSegments(1,0,1,1,0,1,1, x, y, color);
             break;
         
         case 4:
-            RBDrawSegments(0,1,1,1,0,1,0, x, y);
+            RBDrawSegments(0,1,1,1,0,1,0, x, y, color);
             break;
         
         case 5:
-            RBDrawSegments(1,1,0,1,0,1,1, x, y);
+            RBDrawSegments(1,1,0,1,0,1,1, x, y, color);
             break;
         
         case 6:
-            RBDrawSegments(1,1,0,1,1,1,1, x, y);
+            RBDrawSegments(1,1,0,1,1,1,1, x, y, color);
             break;
         
         case 7:
-            RBDrawSegments(1,0,1,0,0,1,0, x, y);
+            RBDrawSegments(1,0,1,0,0,1,0, x, y, color);
             break;
         
         case 8:
-            RBDrawSegments(1,1,1,1,1,1,1, x, y);
+            RBDrawSegments(1,1,1,1,1,1,1, x, y, color);
             break;
         
         case 9:
-            RBDrawSegments(1,1,1,1,0,1,1, x, y);
+            RBDrawSegments(1,1,1,1,0,1,1, x, y, color);
             break;
     }
 }
