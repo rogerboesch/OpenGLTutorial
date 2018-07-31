@@ -11,7 +11,7 @@
 #include "stdio.h"
 
 #define kBALL_SPEED 200.0f
-#define kBALL_SPEED_MAX 600.0f
+#define kBALL_SPEED_MAX 500.0f
 #define kPADDLE_SPEED 400.0f
 
 // Always define the global gGame in the derived game class
