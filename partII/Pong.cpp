@@ -28,11 +28,11 @@ void Pong::CreateContent() {
     _ball->SetColor(1, 1, 1, 1);
     AddGameObject(_ball);
     
-    _paddle1 = new GameObject(-10, size.height/2-50, 20, 100);
+    _paddle1 = new GameObject(-10, size.height/2-40, 20, 80);
     _paddle1->SetColor(1, 1, 1, 1);
     AddGameObject(_paddle1);
 
-    _paddle2 = new GameObject(size.width-10, size.height/2-50, 20, 100);
+    _paddle2 = new GameObject(size.width-10, size.height/2-40, 20, 80);
     _paddle2->SetColor(1, 1, 1, 1);
     AddGameObject(_paddle2);
 }
@@ -117,11 +117,8 @@ void Pong::Render() {
     RBDrawRect(size.width/2-2, 0, 4, size.height, ltGray);
 
     // Draw HUD
-    RBDrawNumber(20, size.height-80, _score1, white);
-    RBDrawNumber(70, size.height-80, _score2, white);
-
-    RBDrawRect(60, size.height-45, 5, 5, white);
-    RBDrawRect(60, size.height-65, 5, 5, white);
+    RBDrawNumber(size.width/2-160, size.height-80, _score1, white);
+    RBDrawNumber(size.width/2+130, size.height-80, _score2, white);
 }
 
 
