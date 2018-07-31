@@ -20,6 +20,7 @@ private:
     
 private:
     void Reset(int direction);
+    void LimitBallSpeed();
 
 protected:
     virtual void CreateContent();

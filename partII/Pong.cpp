@@ -11,6 +11,7 @@
 #include "stdio.h"
 
 #define kBALL_SPEED 200.0f
+#define kBALL_SPEED_MAX 600.0f
 #define kPADDLE_SPEED 400.0f
 
 // Always define the global gGame in the derived game class
@@ -19,14 +20,20 @@ Game* gGame = new Pong();
 void Pong::CreateContent() {
     RBVector2 size = GetGamesSize();
     
+    _score1 = 0;
+    _score2 = 0;
+
     _ball = new GameObject(size.width/2-5, size.height/2-5, 10, 10);
     _ball->SetSpeed(kBALL_SPEED, 0);
+    _ball->SetColor(1, 1, 1, 1);
     AddGameObject(_ball);
     
-    _paddle1 = new GameObject(0, size.height/2-50, 10, 100);
+    _paddle1 = new GameObject(-10, size.height/2-50, 20, 100);
+    _paddle1->SetColor(1, 1, 1, 1);
     AddGameObject(_paddle1);
 
-    _paddle2 = new GameObject(size.width-10, size.height/2-50, 10, 100);
+    _paddle2 = new GameObject(size.width-10, size.height/2-50, 20, 100);
+    _paddle2->SetColor(1, 1, 1, 1);
     AddGameObject(_paddle2);
 }
 
@@ -80,6 +87,9 @@ void Pong::Update(float delay) {
         speed.y *= -1.1;
         _ball->SetSpeed(speed);
     }
+
+    // Limit ball speed
+    LimitBallSpeed();
     
     // Check Ball
     if (_ball->GetPosition().x <= 0) {
@@ -125,4 +135,26 @@ void Pong::Reset(int direction) {
         _score1 = 0;
         _score2 = 0;
     }
+}
+
+void Pong::LimitBallSpeed() {
+    RBVector2 speed = _ball->GetSpeed();
+
+    if (speed.x > kBALL_SPEED_MAX) {
+        speed.x = kBALL_SPEED_MAX;
+    }
+    else if (speed.x < -kBALL_SPEED_MAX) {
+        speed.x = -kBALL_SPEED_MAX;
+    }
+
+    if (speed.y > kBALL_SPEED_MAX) {
+        speed.y = kBALL_SPEED_MAX;
+    }
+    else if (speed.y < -kBALL_SPEED_MAX) {
+        speed.y = -kBALL_SPEED_MAX;
+    }
+    
+    _ball->SetSpeed(speed);
+    
+    printf("%f,%f\n", _ball->GetSpeed().x, _ball->GetSpeed().y);
 }

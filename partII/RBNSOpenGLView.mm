@@ -101,6 +101,10 @@ uint32_t getTimeMS() {
 
 - (void)renderLoop {
     uint32_t time = getTimeMS();
+    if (lastTime == 0) {
+        lastTime = time;
+    }
+    
     float delay = (time-lastTime) / 1000.0;
     
     lastTime = getTimeMS();

@@ -14,8 +14,8 @@
 bool GameObject::Collide(GameObject* object) {
     return object->GetPosition().x + object->GetSize().width > _position.x &&
            object->GetPosition().y + object->GetSize().height > _position.y &&
-           _position.x + _size.x > object->GetPosition().x &&
-           _position.y + _size.height > object->GetPosition().height;
+    _position.x + _size.x > object->GetPosition().x &&
+    _position.y + _size.height > object->GetPosition().height;
 }
 
 // -----------------------------------------------------------------------------
@@ -30,7 +30,6 @@ GameObject::GameObject() {
 GameObject::GameObject(RBVector2 position, RBVector2 size) {
     _position = position;
     _size = size;
-    _color = RBColor(1);
 }
 
 GameObject::GameObject(float x, float y, float width, float height) {
@@ -38,7 +37,6 @@ GameObject::GameObject(float x, float y, float width, float height) {
     _position.y = y;
     _size.width = width;
     _size.height = height;
-    _color = RBColor(1);
 }
 
 // -----------------------------------------------------------------------------
