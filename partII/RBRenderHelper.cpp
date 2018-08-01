@@ -7,6 +7,7 @@
 //
 
 #include "RBRenderHelper.hpp"
+#include <ctype.h>
 
 // -----------------------------------------------------------------------------
 #pragma mark - Render (colored) rectangles
@@ -29,7 +30,13 @@ void RBDrawRect(float x, float y, float width, float height, RBColor color) {
 }
 
 // -----------------------------------------------------------------------------
-#pragma mark - Render numbers
+#pragma mark - Render characters
+    
+//  -     0
+// | |   1 2
+//  -     3
+// | |   4 5
+//  -     6
 
 void RBDrawSegments(int s0, int s1, int s2, int s3, int s4, int s5, int s6, float x, float y, RBColor color) {
     //  -     0
@@ -67,7 +74,7 @@ void RBDrawSegments(int s0, int s1, int s2, int s3, int s4, int s5, int s6, floa
     }
 }
 
-void RBDrawNumber(float x , float y , int n, RBColor color) {
+void RBDrawNumber(float x ,float y ,int n, RBColor color) {
     switch(n) {
         case 0:
             RBDrawSegments(1,1,1,0,1,1,1, x, y, color);
@@ -108,6 +115,110 @@ void RBDrawNumber(float x , float y , int n, RBColor color) {
         case 9:
             RBDrawSegments(1,1,1,1,0,1,1, x, y, color);
             break;
+    }
+}
+
+void RBDrawCharacter(float x ,float y ,char c, RBColor color) {
+    c = toupper(c);
+    
+    switch (c) {
+        case 'A':
+            RBDrawSegments(1,1,1,1,1,1,0, x, y, color);
+            break;
+        case 'B':
+            RBDrawSegments(0,1,0,1,1,1,1, x, y, color);
+            break;
+        case 'C':
+            RBDrawSegments(1,1,0,0,1,0,1, x, y, color);
+            break;
+        case 'D':
+            RBDrawSegments(0,0,1,1,1,1,1, x, y, color);
+            break;
+        case 'E':
+            RBDrawSegments(1,1,0,1,1,0,1, x, y, color);
+            break;
+        case 'F':
+            RBDrawSegments(1,1,0,1,1,0,0, x, y, color);
+            break;
+        case 'G':
+            // Not possible
+            break;
+        case 'H':
+            RBDrawSegments(0,1,1,1,1,1,0, x, y, color);
+            break;
+        case 'I':
+            RBDrawSegments(0,0,1,0,0,1,0, x, y, color);
+            break;
+        case 'J':
+            RBDrawSegments(0,0,1,0,0,1,1, x, y, color);
+            break;
+        case 'K':
+            // Not possible
+            break;
+        case 'L':
+            RBDrawSegments(0,1,0,0,1,0,1, x, y, color);
+            break;
+        case 'M':
+            // Not possible
+            break;
+        case 'N':
+            RBDrawSegments(0,0,0,1,1,1,0, x, y, color);
+            break;
+        case 'O':
+            RBDrawSegments(0,0,0,1,1,1,1, x, y, color);
+            break;
+        case 'P':
+            RBDrawSegments(1,1,1,1,1,0,0, x, y, color);
+            break;
+        case 'Q':
+            // Not possible
+            break;
+        case 'R':
+            RBDrawSegments(0,0,0,1,1,0,0, x, y, color);
+            break;
+        case 'S':
+            RBDrawSegments(1,1,0,1,0,1,1, x, y, color);
+            break;
+        case 'T':
+            // Not possible
+            break;
+        case 'U':
+            RBDrawSegments(0,1,1,0,1,1,1, x, y, color);
+            break;
+        case 'V':
+            // Not possible
+            break;
+        case 'W':
+            // Not possible
+            break;
+        case 'X':
+            // Not possible
+            break;
+        case 'Y':
+            RBDrawSegments(0,1,1,1,0,1,1, x, y, color);
+            break;
+        case 'Z':
+            RBDrawSegments(1,0,1,1,1,0,1, x, y, color);
+            break;
+    }
+}
+
+// -----------------------------------------------------------------------------
+#pragma mark - Render string
+
+void RBDrawString(float x , float y , std::string str, RBColor color) {
+    for (unsigned i=0; i<str.length(); ++i) {
+        char ch = str.at(i);
+        int num = (int)ch;
+        
+        if (num >= 30 && num <= 39) {
+            RBDrawNumber(x, y, num, color);
+        }
+        else {
+            RBDrawCharacter(x, y, ch, color);
+        }
+        
+        x += 40;
     }
 }
 
