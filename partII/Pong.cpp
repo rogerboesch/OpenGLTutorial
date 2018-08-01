@@ -10,12 +10,18 @@
 #include "RBRenderHelper.hpp"
 #include "stdio.h"
 
-#define kBALL_SPEED 200.0f
-#define kBALL_SPEED_MAX 500.0f
-#define kPADDLE_SPEED 400.0f
+#define kBALL_SIZE 8.0f
+#define kBALL_SPEED 300.0f
+#define kBALL_SPEED_MAX 300.0f
+
+#define kPADDLE_HEIGHT 50.0f
+#define kPADDLE_SPEED 600.0f
 
 // Always define the global gGame in the derived game class
 Game* gGame = new Pong();
+
+// -----------------------------------------------------------------------------
+#pragma mark - Render loop
 
 void Pong::CreateContent() {
     RBVector2 size = GetGamesSize();
@@ -23,16 +29,16 @@ void Pong::CreateContent() {
     _score1 = 0;
     _score2 = 0;
 
-    _ball = new GameObject(size.width/2-5, size.height/2-5, 10, 10);
+    _ball = new GameObject(size.width/2-kBALL_SIZE/2, size.height/2-kBALL_SIZE/2, kBALL_SIZE, kBALL_SIZE);
     _ball->SetSpeed(kBALL_SPEED, 0);
     _ball->SetColor(1, 1, 1, 1);
     AddGameObject(_ball);
     
-    _paddle1 = new GameObject(-10, size.height/2-40, 20, 80);
+    _paddle1 = new GameObject(30, size.height/2-kPADDLE_HEIGHT/2, 10, kPADDLE_HEIGHT);
     _paddle1->SetColor(1, 1, 1, 1);
     AddGameObject(_paddle1);
 
-    _paddle2 = new GameObject(size.width-10, size.height/2-40, 20, 80);
+    _paddle2 = new GameObject(size.width-40, size.height/2-kPADDLE_HEIGHT/2, 10, kPADDLE_HEIGHT);
     _paddle2->SetColor(1, 1, 1, 1);
     AddGameObject(_paddle2);
 }
@@ -121,6 +127,8 @@ void Pong::Render() {
     RBDrawNumber(size.width/2+130, size.height-80, _score2, white);
 }
 
+// -----------------------------------------------------------------------------
+#pragma mark - Helper methods
 
 void Pong::Reset(int direction) {
     RBVector2 size = GetGamesSize();
@@ -152,6 +160,4 @@ void Pong::LimitBallSpeed() {
     }
     
     _ball->SetSpeed(speed);
-    
-    printf("%f,%f\n", _ball->GetSpeed().x, _ball->GetSpeed().y);
 }
