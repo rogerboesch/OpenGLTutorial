@@ -1,34 +1,20 @@
 //
 //  RBRenderHelper.cpp
-//  partII
 //
 //  Created by Roger Boesch on 30.07.18.
 //  Copyright © 2018 Roger Boesch. All rights reserved.
 //
 
 #include "RBRenderHelper.hpp"
-#include <ctype.h>
 
-#import <OpenGL/gl.h>
+#include <ctype.h>
+#import <OpenGLES/ES1/glext.h>
 
 // -----------------------------------------------------------------------------
 #pragma mark - Render (colored) rectangles
 
 void RBDrawRect(RBVector2 position, RBVector2 size, RBColor color) {
     RBDrawRect(position.x, position.y, size.width, size.height, color);
-}
-
-void RBDrawRect(float x, float y, float width, float height, RBColor color) {
-    glColor4f(color.r, color.g, color.b, color.a);
-
-    glBegin(GL_QUADS);
-    
-    glVertex2f(x, y);                     // Bottom left
-    glVertex2f(x + width, y);             // Bottom right
-    glVertex2f(x + width, y + height);    // Top right
-    glVertex2f(x, y + height);            // Top left
-    
-    glEnd();
 }
 
 // -----------------------------------------------------------------------------
@@ -224,17 +210,35 @@ void RBDrawString(float x , float y , std::string str, RBColor color) {
     }
 }
 
-
 // -----------------------------------------------------------------------------
 #pragma mark - OpenGL Helper method
 
-void RBEnable2D(RBVector2 size) {
-    glViewport(0, 0, size.width, size.height);
+void RBDrawRect(float x, float y, float width, float height, RBColor color) {
+    GLfloat vertices[] = {
+        x,       y+height, 0.0f, // Upper left
+        x+width, y+height, 0.0f, // Upper right
+        x,       y,        0.0f, // Lower left
+        x+width, y,        0.0f, // Lower right
+    };
+    
+    glEnableClientState(GL_VERTEX_ARRAY);
+    glColor4f(color.r, color.g, color.b, 1.0);
+    glVertexPointer(3, GL_FLOAT, 0, vertices);
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+}
+
+void RBEnable2D(float width, float height) {
+    glViewport(0, 0, width, height);
+    
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
-    glOrtho(0.0f, size.width, 0.0f, size.height, 0.0f, 1.0f);
+    glOrthof(0.0f, width, 0.0f, height, 0.0f, 1.0f);
     glMatrixMode (GL_MODELVIEW);
     glLoadIdentity();
+}
+
+void RBEnable2D(RBVector2 size) {
+    RBEnable2D(size.width, size.height);
 }
 
 void RBEnableBlending() {

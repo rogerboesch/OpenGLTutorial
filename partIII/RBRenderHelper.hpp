@@ -18,5 +18,6 @@ void RBDrawCharacter(float x , float y , char c, RBColor color);
 void RBDrawString(float x , float y , std::string str, RBColor color);
 
 void RBEnable2D(RBVector2 size);
+void RBEnable2D(float width, float height);
 void RBEnableBlending();
 void RBClearScreen(RBColor color);

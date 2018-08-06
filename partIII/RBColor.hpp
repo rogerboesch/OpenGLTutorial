@@ -29,3 +29,4 @@ public:
 extern RBColor RBColorBlack;
 extern RBColor RBColorWhite;
 extern RBColor RBColorGrayLight;
+extern RBColor RBColorRed;

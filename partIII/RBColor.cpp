@@ -9,4 +9,6 @@
 
 RBColor RBColorBlack(0,0,0,1);
 RBColor RBColorWhite(1,1,1,1);
-RBColor RBColorGrayLight(1,1,1,0.2);
+RBColor RBColorGrayLight(0.8,0.8,0.8,1.0);
+
+RBColor RBColorRed(1,0,0,1);
