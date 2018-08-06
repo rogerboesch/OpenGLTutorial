@@ -4,7 +4,7 @@
 
 This repository contains the source code for the OpenGL Tutorial on my [Blog](http://www.rogerboesch.com/)
 
-Part I: [OpenGL: Is Apple killing its?!](http://www.rogerboesch.com/posts/opengl-on-macos.html)
+Part I: [OpenGL: Is Apple killing it?!](http://www.rogerboesch.com/posts/opengl-on-macos.html)
 
 
 ![Screenshot Part 1](http://www.rogerboesch.com/images/opengl-on-macos-I-1.png  )
