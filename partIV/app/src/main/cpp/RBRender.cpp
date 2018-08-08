@@ -1,5 +1,6 @@
 //
 //  RBRender.cpp
+//  Android, OpenGL ES 2 (Shader based)
 //
 //  Created by Roger Boesch on 26.07.18.
 //  Copyright © 2018 Roger Boesch. All rights reserved.
@@ -14,12 +15,18 @@ extern Game *gGame;
 
 GLuint gProgram;
 GLuint gPosition;
+GLuint gWidth;
+GLuint gHeight;
+
 
 auto gVertexShader =
     "attribute vec4 vPosition;\n"
+    "uniform float fWidth;\n"
+    "uniform float fHeight;\n"
+
     "void main() {\n"
-    "  mat4 projectionMatrix = mat4(2.0/1776.0, 0.0, 0.0, -1.0,\n"
-    "                              0.0, 2.0/1080.0, 0.0, -1.0,\n"
+    "  mat4 projectionMatrix = mat4(2.0/fWidth, 0.0, 0.0, -1.0,\n"
+    "                              0.0, 2.0/fHeight, 0.0, -1.0,\n"
     "                              0.0, 0.0, -1.0, 0.0,\n"
     "                              0.0, 0.0, 0.0, 1.0);\n"
 
@@ -114,6 +121,9 @@ bool setupGraphics(int w, int h) {
     }
 
     gPosition = glGetAttribLocation(gProgram, "vPosition");
+    gWidth = glGetUniformLocation(gProgram, "fWidth");
+    gHeight = glGetUniformLocation(gProgram, "fHeight");
+
     glViewport(0, 0, w, h);
 
     gGame->OnInit((float)w, (float)h);
@@ -123,6 +133,12 @@ bool setupGraphics(int w, int h) {
 
 void renderFrame() {
     glUseProgram(gProgram);
+
+    RBVector2 size = gGame->GetGamesSize();
+
+    // Set width and height
+    glUniform1f(gWidth, size.width);
+    glUniform1f(gHeight, size.height);
 
     gGame->OnUpdate(1.0/60.0);
     gGame->OnRender();
