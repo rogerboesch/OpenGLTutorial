@@ -144,9 +144,49 @@ void renderFrame() {
     gGame->OnRender();
 }
 
+void userInput(int tag, int down, int x, int y) {
+    RBVector2 size = gGame->GetGamesSize();
+
+    if (tag == 1) {
+        // Left
+        if (down == 1) {
+            if (y <= size.height/2) {
+                // Top
+                gGame->OnKey(keyW, true);
+            }
+            else {
+                // Bottom
+                gGame->OnKey(keyS, true);
+            }
+        }
+        else {
+            gGame->OnKey(keyW, false);
+            gGame->OnKey(keyS, false);
+        }
+    }
+    else if (tag == 2) {
+        // Right
+        if (down == 1) {
+            if (y <= size.height/2) {
+                // Top
+                gGame->OnKey(keyUp, true);
+            }
+            else {
+                // Bottom
+                gGame->OnKey(keyDown, true);
+            }
+        }
+        else {
+            gGame->OnKey(keyUp, false);
+            gGame->OnKey(keyDown, false);
+        }
+    }
+}
+
 extern "C" {
     JNIEXPORT void JNICALL Java_com_android_gl2jni_GL2JNILib_init(JNIEnv * env, jobject obj, jint width, jint height);
     JNIEXPORT void JNICALL Java_com_android_gl2jni_GL2JNILib_step(JNIEnv * env, jobject obj);
+    JNIEXPORT void JNICALL Java_com_android_gl2jni_GL2JNILib_touch(JNIEnv * env, jobject obj, jint tag, jint down, jint x, jint y);
 };
 
 JNIEXPORT void JNICALL Java_com_android_gl2jni_GL2JNILib_init(JNIEnv * env, jobject obj,  jint width, jint height) {
@@ -155,4 +195,8 @@ JNIEXPORT void JNICALL Java_com_android_gl2jni_GL2JNILib_init(JNIEnv * env, jobj
 
 JNIEXPORT void JNICALL Java_com_android_gl2jni_GL2JNILib_step(JNIEnv * env, jobject obj) {
     renderFrame();
+}
+
+JNIEXPORT void JNICALL Java_com_android_gl2jni_GL2JNILib_touch(JNIEnv * env, jobject obj, jint tag, jint down, jint x, jint y) {
+    userInput(tag, down, x, y);
 }

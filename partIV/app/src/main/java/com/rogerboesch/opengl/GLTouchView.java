@@ -16,19 +16,17 @@ import android.util.AttributeSet;
 import android.view.MotionEvent;
 import android.view.View;
 
-public class TouchView extends View {
+import com.android.gl2jni.GL2JNILib;
 
+public class GLTouchView extends View {
+    public int tag;
     private float mX;
     private float mY;
 
-    private Path path = new Path();
-
-
-    public TouchView(Context context) {
+    public GLTouchView(Context context) {
         super(context);
     }
-
-    public TouchView(Context context, AttributeSet attrs) {
+    public GLTouchView(Context context, AttributeSet attrs) {
         super(context, attrs);
     }
 
@@ -44,10 +42,12 @@ public class TouchView extends View {
 
         switch (event.getAction()){
             case MotionEvent.ACTION_DOWN:
+                GL2JNILib.touch(tag, 1, (int)mX, (int)mY);
                 break;
             case MotionEvent.ACTION_MOVE:
                 break;
             case MotionEvent.ACTION_UP:
+                GL2JNILib.touch(tag, 0, (int)mX, (int)mY);
                 break;
             default:
                 return false;

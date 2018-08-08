@@ -30,4 +30,12 @@ public class GL2JNILib {
      */
      public static native void init(int width, int height);
      public static native void step();
+
+    /**
+     * @param tag ID of touch view (useful when have multiple)
+     * @param down 1 if pressed, 0 if released
+     * @param x x position of touch
+     * @param y y position of touch
+     */
+    public static native void touch(int tag, int down, int x, int y);
 }
