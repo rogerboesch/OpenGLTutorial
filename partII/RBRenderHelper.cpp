@@ -233,7 +233,7 @@ void RBEnable2D(RBVector2 size) {
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glOrtho(0.0f, size.width, 0.0f, size.height, 0.0f, 1.0f);
-    glMatrixMode (GL_MODELVIEW);
+    glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
 }
 

@@ -24,37 +24,37 @@ public class GLActivity extends Activity {
 
     private static final int TRANSPARENT = Color.argb(0,1,1,1);
 
-    @Override protected void onCreate(Bundle icicle) {
-        super.onCreate(icicle);
+        @Override protected void onCreate(Bundle icicle) {
+            super.onCreate(icicle);
 
-        setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
+            setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
 
-        DisplayMetrics dm = new DisplayMetrics();
-        this.getWindow().getWindowManager().getDefaultDisplay().getMetrics(dm);
-        int width = dm.widthPixels;
-        int height = dm.heightPixels;
+            DisplayMetrics dm = new DisplayMetrics();
+            this.getWindow().getWindowManager().getDefaultDisplay().getMetrics(dm);
+            int width = dm.widthPixels;
+            int height = dm.heightPixels;
 
-        RelativeLayout layout = new RelativeLayout(this);
-        layout.setLayoutParams(new RelativeLayout.LayoutParams(width, height));
-        setContentView(layout);
+            RelativeLayout layout = new RelativeLayout(this);
+            layout.setLayoutParams(new RelativeLayout.LayoutParams(width, height));
+            setContentView(layout);
 
-        mView = new GL2JNIView(getApplication());
-        mView.setLayoutParams(new RelativeLayout.LayoutParams(width, height));
-        layout.addView(mView);
+            mView = new GL2JNIView(getApplication());
+            mView.setLayoutParams(new RelativeLayout.LayoutParams(width, height));
+            layout.addView(mView);
 
-        mLeftView = new GLTouchView(this);
-        mLeftView.tag = 1;
-        mLeftView.setLayoutParams(new RelativeLayout.LayoutParams(width/2, height));
-        mLeftView.setBackgroundColor(GLActivity.TRANSPARENT);
-        layout.addView(mLeftView);
+            mLeftView = new GLTouchView(this);
+            mLeftView.tag = 1;
+            mLeftView.setLayoutParams(new RelativeLayout.LayoutParams(width/2, height));
+            mLeftView.setBackgroundColor(GLActivity.TRANSPARENT);
+            layout.addView(mLeftView);
 
-        RelativeLayout.LayoutParams rightLayoutParams = new RelativeLayout.LayoutParams(width/2, height);
-        rightLayoutParams.leftMargin = width/2;
-        mRightView = new GLTouchView(this);
-        mRightView.tag = 2;
-        mRightView.setLayoutParams(rightLayoutParams);
-        mRightView.setBackgroundColor(GLActivity.TRANSPARENT);
-        layout.addView(mRightView);
+            RelativeLayout.LayoutParams rightLayoutParams = new RelativeLayout.LayoutParams(width/2, height);
+            rightLayoutParams.leftMargin = width/2;
+            mRightView = new GLTouchView(this);
+            mRightView.tag = 2;
+            mRightView.setLayoutParams(rightLayoutParams);
+            mRightView.setBackgroundColor(GLActivity.TRANSPARENT);
+            layout.addView(mRightView);
     }
 
     @Override protected void onPause() {

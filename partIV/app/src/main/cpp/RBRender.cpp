@@ -113,7 +113,7 @@ GLuint createProgram(const char* pVertexSource, const char* pFragmentSource) {
     return program;
 }
 
-bool setupGraphics(int w, int h) {
+bool setupGL(int w, int h) {
     gProgram = createProgram(gVertexShader, gFragmentShader);
 
     if (!gProgram) {
@@ -124,8 +124,6 @@ bool setupGraphics(int w, int h) {
     gWidth = glGetUniformLocation(gProgram, "fWidth");
     gHeight = glGetUniformLocation(gProgram, "fHeight");
 
-    glViewport(0, 0, w, h);
-
     gGame->OnInit((float)w, (float)h);
 
     return true;
@@ -134,9 +132,8 @@ bool setupGraphics(int w, int h) {
 void renderFrame() {
     glUseProgram(gProgram);
 
-    RBVector2 size = gGame->GetGamesSize();
-
     // Set width and height
+    RBVector2 size = gGame->GetGamesSize();
     glUniform1f(gWidth, size.width);
     glUniform1f(gHeight, size.height);
 
@@ -190,7 +187,7 @@ extern "C" {
 };
 
 JNIEXPORT void JNICALL Java_com_android_gl2jni_GL2JNILib_init(JNIEnv * env, jobject obj,  jint width, jint height) {
-    setupGraphics(width, height);
+    setupGL(width, height);
 }
 
 JNIEXPORT void JNICALL Java_com_android_gl2jni_GL2JNILib_step(JNIEnv * env, jobject obj) {
