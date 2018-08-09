@@ -20,7 +20,6 @@ This repository contains the source code for the OpenGL Tutorial on my [Blog](ht
 
 Part I: [OpenGL: Is Apple killing it?!](http://www.rogerboesch.com/posts/opengl-on-macos.html)
 
-
 ![Screenshot Part 1](http://www.rogerboesch.com/images/opengl-on-macos-I-1.png  )
 
 
@@ -31,11 +30,9 @@ Part II: [OpenGL: The first little game on macOS!](http://www.rogerboesch.com/po
 
 Part III: [OpenGL: From macOS to iOS](http://www.rogerboesch.com/posts/opengl-game-ios.html)
 
-
-![Screenshot Part 3](http://www.rogerboesch.com/images/opengl-pong-ios.gif)
+[![Video Tutorial Part 3](https://img.youtube.com/vi/b7bBmABdUE8/0.jpg)](https://www.youtube.com/watch?v=b7bBmABdUE8)
 
 
 Part IV: [OpenGL: Porting to Android](http://www.rogerboesch.com/posts/opengl-game-android.html)
 
-
-![Screenshot Part 4](http://www.rogerboesch.com/images/opengl-pong-android.gif)
+[![Video Tutorial Part 4](https://img.youtube.com/vi/0Mj-r7JjpeE/0.jpg)](https://www.youtube.com/watch?v=0Mj-r7JjpeE)
