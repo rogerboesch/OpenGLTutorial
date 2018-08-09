@@ -24,10 +24,9 @@ Part I: [OpenGL: Is Apple killing it?!](http://www.rogerboesch.com/posts/opengl-
 ![Screenshot Part 1](http://www.rogerboesch.com/images/opengl-on-macos-I-1.png  )
 
 
-Part II: [OpenGL: The first little game](http://www.rogerboesch.com/posts/opengl-game.html)
+Part II: [OpenGL: The first little game on macOS!](http://www.rogerboesch.com/posts/opengl-game.html)
 
-
-![Screenshot Part 2](http://www.rogerboesch.com/images/opengl-pong.gif)
+![Video Tutorial Part 2](https://img.youtube.com/vi/ijuXTnqpZrA/0.jpg)](https://www.youtube.com/watch?v=ijuXTnqpZrA)
 
 
 Part III: [OpenGL: From macOS to iOS](http://www.rogerboesch.com/posts/opengl-game-ios.html)
