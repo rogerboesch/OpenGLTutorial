@@ -18,9 +18,11 @@ how to implement it to become platform independent.
 ### Source Code
 This repository contains the source code for the OpenGL Tutorial on my [Blog](http://www.rogerboesch.com/)
 
+
 Part I: [OpenGL: Is Apple killing it?!](http://www.rogerboesch.com/posts/opengl-on-macos.html)
 
 ![Screenshot Part 1](http://www.rogerboesch.com/images/opengl-on-macos-triangle.png  )
+
 
 
 Part II: [OpenGL: The first little game on macOS!](http://www.rogerboesch.com/posts/opengl-game.html)
@@ -28,9 +30,11 @@ Part II: [OpenGL: The first little game on macOS!](http://www.rogerboesch.com/po
 [![Video Tutorial Part 2](https://img.youtube.com/vi/ijuXTnqpZrA/0.jpg)](https://www.youtube.com/watch?v=ijuXTnqpZrA)
 
 
+
 Part III: [OpenGL: From macOS to iOS](http://www.rogerboesch.com/posts/opengl-game-ios.html)
 
 [![Video Tutorial Part 3](https://img.youtube.com/vi/b7bBmABdUE8/0.jpg)](https://www.youtube.com/watch?v=b7bBmABdUE8)
+
 
 
 Part IV: [OpenGL: Porting to Android](http://www.rogerboesch.com/posts/opengl-game-android.html)
