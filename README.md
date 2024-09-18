@@ -24,6 +24,10 @@ This repository contains the source code for the OpenGL Tutorial now on [Medium]
 - [Part IV](https://rogerboesch.medium.com/the-opengl-tutorial-part-iv-b2e044a21eea)
 
 ![Screenshot Part 1](http://www.rogerboesch.com/images/opengl-on-macos-triangle.png  )
+
 [![Video Tutorial Part 2](https://img.youtube.com/vi/ijuXTnqpZrA/0.jpg)](https://www.youtube.com/watch?v=ijuXTnqpZrA)
+
 [![Video Tutorial Part 3](https://img.youtube.com/vi/b7bBmABdUE8/0.jpg)](https://www.youtube.com/watch?v=b7bBmABdUE8)
+
 [![Video Tutorial Part 4](https://img.youtube.com/vi/0Mj-r7JjpeE/0.jpg)](https://www.youtube.com/watch?v=0Mj-r7JjpeE)
+
