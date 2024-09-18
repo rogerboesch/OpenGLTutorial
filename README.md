@@ -16,7 +16,7 @@ how to implement it to become platform independent.
 
 
 ### Source Code
-This repository contains the source code for the OpenGL Tutorial now on [Medium](https://rogerboesch.medium.com/part-1-opengl-is-apple-killing-it-3508fda24a58)
+This repository contains the source code for the OpenGL Tutorial which is now on [Medium](https://rogerboesch.medium.com/part-1-opengl-is-apple-killing-it-3508fda24a58)
 
 - [Part I](https://rogerboesch.medium.com/part-1-opengl-is-apple-killing-it-3508fda24a58)
 - [Part II](https://rogerboesch.medium.com/the-opengl-tutorial-part-ii-28e89600565e)
