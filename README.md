@@ -16,27 +16,14 @@ how to implement it to become platform independent.
 
 
 ### Source Code
-This repository contains the source code for the OpenGL Tutorial on my [Blog](http://www.rogerboesch.com/)
+This repository contains the source code for the OpenGL Tutorial now on [Medium](https://rogerboesch.medium.com/part-1-opengl-is-apple-killing-it-3508fda24a58)
 
-
-Part I: [OpenGL: Is Apple killing it?!](http://www.rogerboesch.com/posts/opengl-on-macos.html)
+- [Part I](https://rogerboesch.medium.com/part-1-opengl-is-apple-killing-it-3508fda24a58)
+- [Part II](https://rogerboesch.medium.com/the-opengl-tutorial-part-ii-28e89600565e)
+- [Part III](https://rogerboesch.medium.com/the-opengl-tutorial-part-iii-47adb24ec32e)
+- [Part IV](https://rogerboesch.medium.com/the-opengl-tutorial-part-iv-b2e044a21eea)
 
 ![Screenshot Part 1](http://www.rogerboesch.com/images/opengl-on-macos-triangle.png  )
-
-
-
-Part II: [OpenGL: The first little game on macOS!](http://www.rogerboesch.com/posts/opengl-game.html)
-
 [![Video Tutorial Part 2](https://img.youtube.com/vi/ijuXTnqpZrA/0.jpg)](https://www.youtube.com/watch?v=ijuXTnqpZrA)
-
-
-
-Part III: [OpenGL: From macOS to iOS](http://www.rogerboesch.com/posts/opengl-game-ios.html)
-
 [![Video Tutorial Part 3](https://img.youtube.com/vi/b7bBmABdUE8/0.jpg)](https://www.youtube.com/watch?v=b7bBmABdUE8)
-
-
-
-Part IV: [OpenGL: Porting to Android](http://www.rogerboesch.com/posts/opengl-game-android.html)
-
 [![Video Tutorial Part 4](https://img.youtube.com/vi/0Mj-r7JjpeE/0.jpg)](https://www.youtube.com/watch?v=0Mj-r7JjpeE)
