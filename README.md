@@ -19,16 +19,16 @@ Article on Medium: [Part I - OpenGL Introduction](https://rogerboesch.medium.com
 
 Article on Medium: [Part II - Create a game](https://rogerboesch.medium.com/the-opengl-tutorial-part-ii-28e89600565e)
 
-[![Video Tutorial Part 2](https://img.youtube.com/vi/ijuXTnqpZrA/0.jpg)](https://www.youtube.com/watch?v=ijuXTnqpZrA)
+[![Video Part II](https://img.youtube.com/vi/ijuXTnqpZrA/0.jpg)](https://www.youtube.com/watch?v=ijuXTnqpZrA)
 
 Article on Medium: [Part III - iOS version](https://rogerboesch.medium.com/the-opengl-tutorial-part-iii-47adb24ec32e)
 
-[![Video Tutorial Part 3](https://img.youtube.com/vi/b7bBmABdUE8/0.jpg)](https://www.youtube.com/watch?v=b7bBmABdUE8)
+[![Video Part III](https://img.youtube.com/vi/b7bBmABdUE8/0.jpg)](https://www.youtube.com/watch?v=b7bBmABdUE8)
 
 Article on Medium: [Part IV - Android version](https://rogerboesch.medium.com/the-opengl-tutorial-part-iv-b2e044a21eea)
 
-[![Video Tutorial Part 4](https://img.youtube.com/vi/0Mj-r7JjpeE/0.jpg)](https://www.youtube.com/watch?v=0Mj-r7JjpeE)
+[![Video Part IV](https://img.youtube.com/vi/0Mj-r7JjpeE/0.jpg)](https://www.youtube.com/watch?v=0Mj-r7JjpeE)
 
-Article on Medium: [Part V - Android Update using Gameativity and OpenGL ES 3](https://rogerboesch.medium.com/the-opengl-tutorial-part-iv-b2e044a21eea)
+Article on Medium: [Part IV - Update using GameAtivity and OpenGL ES 3 on Android](https://rogerboesch.medium.com/the-opengl-tutorial-part-iv-b2e044a21eea)
 
-![Screenshot](assets/partv.png)
+![Screenshot Part IV Update](assets/partv.png)
