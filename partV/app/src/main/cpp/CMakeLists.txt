@@ -22,7 +22,7 @@ add_library( # Sets the name of the library.
 
         # Provides a relative path to your source file(s).
 
-        # RBGame files
+        # Game files
         game/Pong.cpp
 
         # Base files
@@ -33,13 +33,10 @@ add_library( # Sets the name of the library.
         base/RBRenderHelper.cpp
         base/RBRender.cpp
 
-        # Old platform files
+        # Platform files
         platform/main.cpp
         platform/AndroidOut.cpp
-        platform/Renderer.cpp
-        platform/Shader.cpp
-        platform/TextureAsset.cpp
-        platform/Utility.cpp)
+        )
 
 # Searches for a specified prebuilt library and stores the path as a
 # variable. Because CMake includes system libraries in the search path by
