@@ -35,22 +35,22 @@ RBGame* gGame = new Pong();
 
 void Pong::CreateContent() {
     RBVector2 size = GetGamesSize();
-    
-    _score1 = 0;
-    _score2 = 0;
 
-    _ball = new RBGameObject(size.width/2-kBALL_SIZE/2, size.height/2-kBALL_SIZE/2, kBALL_SIZE, kBALL_SIZE);
-    _ball->SetSpeed(kBALL_SPEED, 0);
-    _ball->SetColor(RBColorBlack);
-    AddGameObject(_ball);
-    
-    _paddle1 = new RBGameObject(30, size.height/2-kPADDLE_HEIGHT/2, 10, kPADDLE_HEIGHT);
-    _paddle1->SetColor(RBColorBlack);
-    AddGameObject(_paddle1);
+    m_score1 = 0;
+    m_score2 = 0;
 
-    _paddle2 = new RBGameObject(size.width-40, size.height/2-kPADDLE_HEIGHT/2, 10, kPADDLE_HEIGHT);
-    _paddle2->SetColor(RBColorBlack);
-    AddGameObject(_paddle2);
+    m_ball = new RBGameObject(size.width/2-kBALL_SIZE/2, size.height/2-kBALL_SIZE/2, kBALL_SIZE, kBALL_SIZE);
+    m_ball->SetSpeed(kBALL_SPEED, 0);
+    m_ball->SetColor(RBColorBlack);
+    AddGameObject(m_ball);
+
+    m_paddle1 = new RBGameObject(30, size.height/2-kPADDLE_HEIGHT/2, 10, kPADDLE_HEIGHT);
+    m_paddle1->SetColor(RBColorBlack);
+    AddGameObject(m_paddle1);
+
+    m_paddle2 = new RBGameObject(size.width-40, size.height/2-kPADDLE_HEIGHT/2, 10, kPADDLE_HEIGHT);
+    m_paddle2->SetColor(RBColorBlack);
+    AddGameObject(m_paddle2);
 }
 
 void Pong::Update(float delay) {
@@ -58,62 +58,62 @@ void Pong::Update(float delay) {
 
     // Paddle 1 control
     if (KeyPressed(keyW)) {
-        _paddle1->SetSpeed(0, kPADDLE_SPEED);
+        m_paddle1->SetSpeed(0, kPADDLE_SPEED);
     }
     else if (KeyPressed(keyS)) {
-        _paddle1->SetSpeed(0, -kPADDLE_SPEED);
+        m_paddle1->SetSpeed(0, -kPADDLE_SPEED);
     }
     else {
-        _paddle1->SetSpeed(0, 0);
+        m_paddle1->SetSpeed(0, 0);
     }
 
     // Paddle 2 control
     if (KeyPressed(keyUp)) {
-        _paddle2->SetSpeed(0, kPADDLE_SPEED);
+        m_paddle2->SetSpeed(0, kPADDLE_SPEED);
     }
     else if (KeyPressed(keyDown)) {
-        _paddle2->SetSpeed(0, -kPADDLE_SPEED);
+        m_paddle2->SetSpeed(0, -kPADDLE_SPEED);
     }
     else {
-        _paddle2->SetSpeed(0, 0);
+        m_paddle2->SetSpeed(0, 0);
     }
 
     // Ball control
-    if (_paddle1->Collide(_ball)) {
-        RBVector2 speed  =_ball->GetSpeed();
+    if (m_paddle1->Collide(m_ball)) {
+        RBVector2 speed = m_ball->GetSpeed();
         speed.x *= -1.1;
         
-        float diff = (_ball->GetCenter().y - _paddle1->GetCenter().y)*2;
+        float diff = (m_ball->GetCenter().y - m_paddle1->GetCenter().y)*2;
         speed.y = speed.y + diff;
 
-        _ball->SetSpeed(speed);
+        m_ball->SetSpeed(speed);
     }
-    else if (_paddle2->Collide(_ball)) {
-        RBVector2 speed  =_ball->GetSpeed();
+    else if (m_paddle2->Collide(m_ball)) {
+        RBVector2 speed = m_ball->GetSpeed();
         speed.x *= -1.1;
 
-        float diff = (_ball->GetCenter().y - _paddle2->GetCenter().y)*2;
+        float diff = (m_ball->GetCenter().y - m_paddle2->GetCenter().y)*2;
         speed.y = speed.y + diff;
 
-        _ball->SetSpeed(speed);
+        m_ball->SetSpeed(speed);
     }
     
-    if (_ball->GetPosition().y <= 0 || _ball->GetPosition().y >= size.height-_ball->GetSize().height) {
-        RBVector2 speed  =_ball->GetSpeed();
+    if (m_ball->GetPosition().y <= 0 || m_ball->GetPosition().y >= size.height-m_ball->GetSize().height) {
+        RBVector2 speed = m_ball->GetSpeed();
         speed.y *= -1.1;
-        _ball->SetSpeed(speed);
+        m_ball->SetSpeed(speed);
     }
 
     // Limit ball speed
     LimitBallSpeed();
     
     // Check Ball
-    if (_ball->GetPosition().x <= 0) {
-        _score2++;
+    if (m_ball->GetPosition().x <= 0) {
+        m_score2++;
         Reset(1);
     }
-    else if (_ball->GetPosition().x >= size.width) {
-        _score1++;
+    else if (m_ball->GetPosition().x >= size.width) {
+        m_score1++;
         Reset(-1);
     }
 }
@@ -128,8 +128,8 @@ void Pong::Render() {
     RBDrawRect(size.width/2-2, 0, 4, size.height, RBColorGrayLight);
 
     // Draw HUD
-    RBDrawNumber(size.width/2-160, size.height-80, _score1, RBColorBlack);
-    RBDrawNumber(size.width/2+130, size.height-80, _score2, RBColorBlack);
+    RBDrawNumber(size.width/2-160, size.height-80, m_score1, RBColorBlack);
+    RBDrawNumber(size.width/2+130, size.height-80, m_score2, RBColorBlack);
 }
 
 // -----------------------------------------------------------------------------
@@ -138,17 +138,17 @@ void Pong::Render() {
 void Pong::Reset(int direction) {
     RBVector2 size = GetGamesSize();
 
-    _ball->SetPosition(size.width/2-5, size.height/2-5);
-    _ball->SetSpeed(kBALL_SPEED*direction, 0);
+    m_ball->SetPosition(size.width/2-5, size.height/2-5);
+    m_ball->SetSpeed(kBALL_SPEED*direction, 0);
     
-    if (_score1 > 9 || _score2 > 9) {
-        _score1 = 0;
-        _score2 = 0;
+    if (m_score1 > 9 || m_score2 > 9) {
+        m_score1 = 0;
+        m_score2 = 0;
     }
 }
 
 void Pong::LimitBallSpeed() {
-    RBVector2 speed = _ball->GetSpeed();
+    RBVector2 speed = m_ball->GetSpeed();
 
     if (speed.x > kBALL_SPEED_MAX) {
         speed.x = kBALL_SPEED_MAX;
@@ -163,6 +163,6 @@ void Pong::LimitBallSpeed() {
     else if (speed.y < -kBALL_SPEED_MAX) {
         speed.y = -kBALL_SPEED_MAX;
     }
-    
-    _ball->SetSpeed(speed);
+
+    m_ball->SetSpeed(speed);
 }

@@ -35,31 +35,32 @@ enum KeyType {
     keyD,
 };
 
-class RBGame
-{
-private:
-    RBVector2 _gameSize;
-    std::vector<RBGameObject*> *_gameObjects;
-    std::array<bool, 8> _keyState;
-    
+class RBGame {
 public:
     RBGame();
 
-    void OnInit(int width, int height);
+    void OnInit();
     void OnUpdate(float delay);
     void OnRender();
     void OnKey(KeyType key, bool pressed);
-   
+
+    virtual void CreateContent() {}
+
 public:
-    bool KeyPressed(KeyType key) { return _keyState[key]; }
-    RBVector2& GetGamesSize() { return _gameSize; }
-    
+    bool KeyPressed(KeyType key) { return m_keyState[key]; }
+    RBVector2& GetGamesSize() { return m_gameSize; }
+    void SetGameSize(int w, int h) { m_gameSize.width = w;m_gameSize.height = h; }
+
 public:
     void AddGameObject(RBGameObject *object);
 
 protected:
-    virtual void CreateContent() {}
     virtual void Update(float delay) {}
     virtual void Render() {}
+
+private:
+    RBVector2 m_gameSize;
+    std::vector<RBGameObject*> *m_gameObjects;
+    std::array<bool, 8> m_keyState;
 };
 

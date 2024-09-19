@@ -32,23 +32,23 @@ public:
     bool Collide(RBGameObject *object);
 
 public:
-    void SetSpeed(float x, float y) { _speed.x = x; _speed.y = y; }
-    void SetSpeed(RBVector2 speed) { _speed = speed; }
-    RBVector2 GetSpeed() { return _speed; }
+    void SetSpeed(float x, float y) { m_speed.x = x; m_speed.y = y; }
+    void SetSpeed(RBVector2 speed) { m_speed = speed; }
+    RBVector2 GetSpeed() { return m_speed; }
 
-    void SetPosition(float x, float y) { _position.x = x; _position.y = y; }
-    RBVector2 GetPosition() { return _position; }
+    void SetPosition(float x, float y) { m_position.x = x; m_position.y = y; }
+    RBVector2 GetPosition() { return m_position; }
     
-    RBVector2 GetSize() { return _size; }
-    RBVector2 GetCenter() { RBVector2 center(_position.x+_size.width/2, _position.y+_size.height/2); return center; }
+    RBVector2 GetSize() { return m_size; }
+    RBVector2 GetCenter() { RBVector2 center(m_position.x + m_size.width / 2, m_position.y + m_size.height / 2); return center; }
 
-    void SetColor(float r, float g, float b, float a) { _color.r = r; _color.g = g; _color.b = b; _color.a = a; }
-    void SetColor(RBColor color) { _color.r = color.r; _color.g = color.g; _color.b = color.b; _color.a = color.a; }
-    RBColor GetColor() { return _color; }
+    void SetColor(float r, float g, float b, float a) { m_color.r = r; m_color.g = g; m_color.b = b; m_color.a = a; }
+    void SetColor(RBColor color) { m_color.r = color.r; m_color.g = color.g; m_color.b = color.b; m_color.a = color.a; }
+    RBColor GetColor() { return m_color; }
 
 private:
-    RBVector2 _position;
-    RBVector2 _size;
-    RBVector2 _speed;
-    RBColor _color;
+    RBVector2 m_position;
+    RBVector2 m_size;
+    RBVector2 m_speed;
+    RBColor m_color;
 };

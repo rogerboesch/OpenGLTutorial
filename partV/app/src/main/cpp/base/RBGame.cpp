@@ -20,33 +20,28 @@
 #include <RBRenderHelper.hpp>
 
 void RBGame::AddGameObject(RBGameObject *object) {
-    _gameObjects->push_back(object);
+    m_gameObjects->push_back(object);
 }
 
 RBGame::RBGame() {
-    _gameObjects = new std::vector<RBGameObject*>();
+    m_gameObjects = new std::vector<RBGameObject*>();
 }
 
 void RBGame::OnKey(KeyType key, bool pressed) {
-    _keyState[key] = pressed;
+    m_keyState[key] = pressed;
 }
 
-void RBGame::OnInit(int width, int height) {
-    _gameSize.width = width;
-    _gameSize.height = height;
+void RBGame::OnInit() {
+    m_gameSize.width = 0;
+    m_gameSize.height = 0;
     
-    _keyState.fill(false);
-    
-    RBEnable2D(_gameSize);
-    
-    // Create content
-    CreateContent();
+    m_keyState.fill(false);
 }
 
 void RBGame::OnUpdate(float delay) {
     Update(delay);
     
-    for (auto i: *_gameObjects) {
+    for (auto i: *m_gameObjects) {
         i->Update(delay);
     }
 }
@@ -54,7 +49,7 @@ void RBGame::OnUpdate(float delay) {
 void RBGame::OnRender() {
     Render();
     
-    for (auto i: *_gameObjects) {
+    for (auto i: *m_gameObjects) {
         i->Render();
     }
 }

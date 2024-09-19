@@ -20,19 +20,21 @@
 
 class Pong : public RBGame {
 private:
-    RBGameObject* _ball;
-    RBGameObject* _paddle1;
-    RBGameObject* _paddle2;
+    RBGameObject* m_ball;
+    RBGameObject* m_paddle1;
+    RBGameObject* m_paddle2;
 
-    int _score1;
-    int _score2;
-    
+    int m_score1;
+    int m_score2;
+
+public:
+    virtual void CreateContent();
+
 private:
     void Reset(int direction);
     void LimitBallSpeed();
 
 protected:
-    virtual void CreateContent();
     virtual void Update(float delay);
     virtual void Render();
 };

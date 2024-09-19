@@ -19,35 +19,35 @@
 #include <RBRenderHelper.hpp>
 
 bool RBGameObject::Collide(RBGameObject* object) {
-    return object->GetPosition().x + object->GetSize().width > _position.x &&
-           object->GetPosition().y + object->GetSize().height > _position.y &&
-    _position.x + _size.x > object->GetPosition().x &&
-    _position.y + _size.height > object->GetPosition().height;
+    return object->GetPosition().x + object->GetSize().width > m_position.x &&
+           object->GetPosition().y + object->GetSize().height > m_position.y &&
+           m_position.x + m_size.x > object->GetPosition().x &&
+           m_position.y + m_size.height > object->GetPosition().height;
 }
 
 RBGameObject::RBGameObject() {
-    _speed.x = 0;
-    _speed.y = 0;
-    _color = RBColor(1);
+    m_speed.x = 0;
+    m_speed.y = 0;
+    m_color = RBColor(1);
 }
 
 RBGameObject::RBGameObject(RBVector2 position, RBVector2 size) {
-    _position = position;
-    _size = size;
+    m_position = position;
+    m_size = size;
 }
 
 RBGameObject::RBGameObject(float x, float y, float width, float height) {
-    _position.x = x;
-    _position.y = y;
-    _size.width = width;
-    _size.height = height;
+    m_position.x = x;
+    m_position.y = y;
+    m_size.width = width;
+    m_size.height = height;
 }
 
 void RBGameObject::Update(float delay) {
-    _position.x += _speed.x*delay;
-    _position.y += _speed.y*delay;
+    m_position.x += m_speed.x * delay;
+    m_position.y += m_speed.y * delay;
 }
 
 void RBGameObject::Render() {
-    RBDrawRect(_position, _size, _color);
+    RBDrawRect(m_position, m_size, m_color);
 }

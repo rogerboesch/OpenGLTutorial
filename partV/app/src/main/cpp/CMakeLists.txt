@@ -31,6 +31,7 @@ add_library( # Sets the name of the library.
         base/RBColor.cpp
         base/RBVector2.cpp
         base/RBRenderHelper.cpp
+        base/RBRender.cpp
 
         # Old platform files
         platform/main.cpp
