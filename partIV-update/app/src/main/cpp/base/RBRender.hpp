@@ -19,6 +19,8 @@
 #include <GLES3/gl3.h>
 #include <RBShader.hpp>
 
+#pragma once
+
 struct android_app;
 
 class RBRender {
