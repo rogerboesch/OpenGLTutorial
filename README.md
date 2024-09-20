@@ -25,7 +25,7 @@ This repository contains the source code for the OpenGL Tutorial which is now on
 - Article on Medium: [Part II - Create a game](https://rogerboesch.medium.com/the-opengl-tutorial-part-ii-28e89600565e)
 - Article on Medium: [Part I - OpenGL Introduction](https://rogerboesch.medium.com/part-1-opengl-is-apple-killing-it-3508fda24a58)
 
-![Screenshot Part IV Update](assets/partv.png)
+![Pong in Part IV Update](assets/pong.png)
 
 
 ### Videos
