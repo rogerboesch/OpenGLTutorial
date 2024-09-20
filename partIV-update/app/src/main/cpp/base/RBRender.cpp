@@ -14,6 +14,7 @@
 //
 //  Feel free to use the code in the way you want :)
 //
+
 #include <game-activity/native_app_glue/android_native_app_glue.h>
 #include <math.h>
 
@@ -75,7 +76,8 @@ RBRender::~RBRender() {
 // Game loop
 
 void RBRender::RenderFrame() {
-    glUseProgram(m_gl_program);
+    m_shader->Activate();
+
     glClearColor(CORNFLOWER_BLUE);
     glClear(GL_COLOR_BUFFER_BIT);
 
@@ -90,8 +92,7 @@ void RBRender::RenderFrame() {
 
         // Set width and height
         RBVector2 size = gGame->GetGamesSize();
-        glUniform1f(m_gl_width, size.width);
-        glUniform1f(m_gl_height, size.height);
+        m_shader->MapSize(size.width, size.height);
     }
 
     gGame->OnUpdate(1.0/60.0);
@@ -254,89 +255,9 @@ void RBRender::UpdateRenderArea() {
     }
 }
 
-GLuint RBRender::LoadShader(GLenum shaderType, const char* pSource) {
-    GLuint shader = glCreateShader(shaderType);
-
-    if (shader) {
-        glShaderSource(shader, 1, &pSource, NULL);
-        glCompileShader(shader);
-        GLint compiled = 0;
-        glGetShaderiv(shader, GL_COMPILE_STATUS, &compiled);
-
-        if (!compiled) {
-            GLint infoLen = 0;
-            glGetShaderiv(shader, GL_INFO_LOG_LENGTH, &infoLen);
-
-            if (infoLen) {
-                char* buf = (char*) malloc(infoLen);
-
-                if (buf) {
-                    glGetShaderInfoLog(shader, infoLen, NULL, buf);
-                    free(buf);
-                }
-
-                glDeleteShader(shader);
-                shader = 0;
-            }
-        }
-    }
-
-    return shader;
-}
-
-GLuint RBRender::CreateProgram(const char* pVertexSource, const char* pFragmentSource) {
-    GLuint vertexShader = LoadShader(GL_VERTEX_SHADER, pVertexSource);
-
-    if (!vertexShader) {
-        return 0;
-    }
-
-    GLuint pixelShader = LoadShader(GL_FRAGMENT_SHADER, pFragmentSource);
-
-    if (!pixelShader) {
-        return 0;
-    }
-
-    GLuint program = glCreateProgram();
-
-    if (program) {
-        glAttachShader(program, vertexShader);
-        glAttachShader(program, pixelShader);
-        glLinkProgram(program);
-        GLint linkStatus = GL_FALSE;
-        glGetProgramiv(program, GL_LINK_STATUS, &linkStatus);
-
-        if (linkStatus != GL_TRUE) {
-            GLint bufLength = 0;
-            glGetProgramiv(program, GL_INFO_LOG_LENGTH, &bufLength);
-
-            if (bufLength) {
-                char* buf = (char*) malloc(bufLength);
-
-                if (buf) {
-                    glGetProgramInfoLog(program, bufLength, NULL, buf);
-                    free(buf);
-                }
-            }
-
-            glDeleteProgram(program);
-            program = 0;
-        }
-    }
-
-    return program;
-}
-
 void RBRender::CreateShader() {
-    m_gl_program = CreateProgram(gVertexShader, gFragmentShader);
-
-    if (!m_gl_program) {
-        return;
-    }
-
-    m_gl_position = glGetAttribLocation(m_gl_program, "vPosition");
-    m_gl_width = glGetUniformLocation(m_gl_program, "fWidth");
-    m_gl_height = glGetUniformLocation(m_gl_program, "fHeight");
+    m_shader = new RBShader();
+    m_shader->Create(gVertexShader, gFragmentShader);
 }
 
 // Input handling

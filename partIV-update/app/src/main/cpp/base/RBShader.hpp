@@ -1,5 +1,5 @@
 //
-//  RBRender.hpp
+//  RBShader.hpp
 //
 //  The OpenGL Tutorial
 //  This code was written as part of a tutorial at https://medium.com/@rogerboesch/
@@ -17,36 +17,25 @@
 
 #include <EGL/egl.h>
 #include <GLES3/gl3.h>
-#include <RBShader.hpp>
 
-struct android_app;
+#pragma once
 
-class RBRender {
+class RBShader {
 public:
-    RBRender(android_app *app);
-    ~RBRender();
+    RBShader();
+    ~RBShader();
 
-public:
-    void RenderFrame();
-    void HandleInput();
-    void UserInput(int tag, int down, int x, int y);
+    bool Create(const char* pVertexSource, const char* pFragmentSource);
+    bool Activate();
+    void MapSize(int width, int height);
 
 private:
-    void InitOpenGL();
-    void ClearOpenGL();
-    void CreateShader();
-    void UpdateRenderArea();
-    GLuint LoadShader(GLenum shaderType, const char* pSource);
     GLuint CreateProgram(const char* pVertexSource, const char* pFragmentSource);
+    GLuint LoadShader(GLenum shaderType, const char* pSource);
 
 private:
-    android_app *m_app;
-    EGLDisplay m_display;
-    EGLSurface m_surface;
-    EGLContext m_context;
-    EGLint m_width;
-    EGLint m_height;
-    bool m_updateProjectionMatrix;
-
-    RBShader* m_shader = nullptr;
+    GLuint m_gl_program = -1;
+    GLuint m_gl_position = -1;
+    GLuint m_gl_width = -1;
+    GLuint m_gl_height = -1;
 };
