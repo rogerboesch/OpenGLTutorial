@@ -15,22 +15,23 @@ I hope you like the tutorial and it brings some light in the different OpenGL ve
 ### Source Code
 This repository contains the source code for the OpenGL Tutorial which is now on [Medium](https://rogerboesch.medium.com/part-1-opengl-is-apple-killing-it-3508fda24a58)
 
-Article on Medium: [Part I - OpenGL Introduction](https://rogerboesch.medium.com/part-1-opengl-is-apple-killing-it-3508fda24a58)
 
-Article on Medium: [Part II - Create a game](https://rogerboesch.medium.com/the-opengl-tutorial-part-ii-28e89600565e)
+**Article on Medium: Part V - Going 3D is coming soon**
 
-[![Video Part II](https://img.youtube.com/vi/ijuXTnqpZrA/0.jpg)](https://www.youtube.com/watch?v=ijuXTnqpZrA)
-
-Article on Medium: [Part III - iOS version](https://rogerboesch.medium.com/the-opengl-tutorial-part-iii-47adb24ec32e)
-
-[![Video Part III](https://img.youtube.com/vi/b7bBmABdUE8/0.jpg)](https://www.youtube.com/watch?v=b7bBmABdUE8)
+Article on Medium: [Part IV - Update using GameActivity and OpenGL ES 3 on Android](https://rogerboesch.medium.com/the-opengl-tutorial-part-iv-b2e044a21eea)
 
 Article on Medium: [Part IV - Android version](https://rogerboesch.medium.com/the-opengl-tutorial-part-iv-b2e044a21eea)
 
 [![Video Part IV](https://img.youtube.com/vi/0Mj-r7JjpeE/0.jpg)](https://www.youtube.com/watch?v=0Mj-r7JjpeE)
 
-Article on Medium: [Part IV - Update using GameAtivity and OpenGL ES 3 on Android](https://rogerboesch.medium.com/the-opengl-tutorial-part-iv-b2e044a21eea)
+Article on Medium: [Part III - iOS version](https://rogerboesch.medium.com/the-opengl-tutorial-part-iii-47adb24ec32e)
+
+[![Video Part III](https://img.youtube.com/vi/b7bBmABdUE8/0.jpg)](https://www.youtube.com/watch?v=b7bBmABdUE8)
+
+Article on Medium: [Part II - Create a game](https://rogerboesch.medium.com/the-opengl-tutorial-part-ii-28e89600565e)
+
+[![Video Part II](https://img.youtube.com/vi/ijuXTnqpZrA/0.jpg)](https://www.youtube.com/watch?v=ijuXTnqpZrA)
+
+Article on Medium: [Part I - OpenGL Introduction](https://rogerboesch.medium.com/part-1-opengl-is-apple-killing-it-3508fda24a58)
 
 ![Screenshot Part IV Update](assets/partv.png)
-
-Article on Medium: Part V - Going 3D is coming soon
