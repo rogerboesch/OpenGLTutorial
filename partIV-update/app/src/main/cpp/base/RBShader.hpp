@@ -25,7 +25,7 @@ public:
     RBShader();
     ~RBShader();
 
-    bool Create(const char* pVertexSource, const char* pFragmentSource);
+    bool Create();
     bool Activate();
     void MapSize(int width, int height);
 

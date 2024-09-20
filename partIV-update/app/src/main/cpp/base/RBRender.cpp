@@ -36,30 +36,9 @@ for (auto& extension: extensionList) {\
 aout << std::endl;\
 }
 
-#define CORNFLOWER_BLUE 100 / 255.f, 149 / 255.f, 237 / 255.f, 1
+#define BACKGROUND_COLOR 0.0f / 255.f, 0.0f / 255.f, 0.0f / 255.f, 1
 
 extern RBGame *gGame;
-
-auto gVertexShader =
-    "attribute vec4 vPosition;\n"
-    "uniform float fWidth;\n"
-    "uniform float fHeight;\n"
-
-    "void main() {\n"
-    "  mat4 projectionMatrix = mat4(2.0/fWidth, 0.0, 0.0, -1.0,\n"
-    "                              0.0, 2.0/fHeight, 0.0, -1.0,\n"
-    "                              0.0, 0.0, -1.0, 0.0,\n"
-    "                              0.0, 0.0, 0.0, 1.0);\n"
-
-    "  gl_Position = vPosition;\n"
-    "  gl_Position *= projectionMatrix;\n"
-    "}\n";
-
-auto gFragmentShader =
-    "precision mediump float;\n"
-    "void main() {\n"
-    "  gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);\n"
-    "}\n";
 
 RBRender::RBRender(android_app *app) {
     m_app = app;
@@ -78,7 +57,7 @@ RBRender::~RBRender() {
 void RBRender::RenderFrame() {
     m_shader->Activate();
 
-    glClearColor(CORNFLOWER_BLUE);
+    glClearColor(BACKGROUND_COLOR);
     glClear(GL_COLOR_BUFFER_BIT);
 
     // enable alpha globally for now, you probably don't want to do this in a game
@@ -257,7 +236,7 @@ void RBRender::UpdateRenderArea() {
 
 void RBRender::CreateShader() {
     m_shader = new RBShader();
-    m_shader->Create(gVertexShader, gFragmentShader);
+    m_shader->Create();
 }
 
 // Input handling

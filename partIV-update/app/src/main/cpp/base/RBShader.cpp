@@ -18,6 +18,28 @@
 #include <RBShader.hpp>
 #include <cstdlib>
 
+
+auto gVertexShader =
+        "attribute vec4 vPosition;\n"
+        "uniform float fWidth;\n"
+        "uniform float fHeight;\n"
+
+        "void main() {\n"
+        "  mat4 projectionMatrix = mat4(2.0/fWidth, 0.0, 0.0, -1.0,\n"
+        "                              0.0, 2.0/fHeight, 0.0, -1.0,\n"
+        "                              0.0, 0.0, -1.0, 0.0,\n"
+        "                              0.0, 0.0, 0.0, 1.0);\n"
+
+        "  gl_Position = vPosition;\n"
+        "  gl_Position *= projectionMatrix;\n"
+        "}\n";
+
+auto gFragmentShader =
+        "precision mediump float;\n"
+        "void main() {\n"
+        "  gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);\n"
+        "}\n";
+
 RBShader::RBShader() {
 }
 
@@ -97,8 +119,8 @@ GLuint RBShader::CreateProgram(const char* pVertexSource, const char* pFragmentS
     return program;
 }
 
-bool RBShader::Create(const char* pVertexSource, const char* pFragmentSource) {
-    m_gl_program = CreateProgram(pVertexSource, pFragmentSource);
+bool RBShader::Create() {
+    m_gl_program = CreateProgram(gVertexShader, gFragmentShader);
 
     if (!m_gl_program) {
         return false;
