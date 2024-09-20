@@ -16,6 +16,8 @@ I hope you like the tutorial and it brings some light in the different OpenGL ve
 This repository contains the source code for the OpenGL Tutorial which is now on [Medium](https://rogerboesch.medium.com/part-1-opengl-is-apple-killing-it-3508fda24a58)
 
 
+### Articles
+
 - **Article on Medium: Part V - Going 3D is coming soon**
 - Article on Medium: [Part IV - Update using GameActivity and OpenGL ES 3 on Android](https://rogerboesch.medium.com/the-opengl-tutorial-part-iv-b2e044a21eea)
 - Article on Medium: [Part IV - Android version](https://rogerboesch.medium.com/the-opengl-tutorial-part-iv-b2e044a21eea)
@@ -26,7 +28,7 @@ This repository contains the source code for the OpenGL Tutorial which is now on
 ![Screenshot Part IV Update](assets/partv.png)
 
 
-Videos:
+### Videos
 
 [![Video Part IV](https://img.youtube.com/vi/0Mj-r7JjpeE/0.jpg)](https://www.youtube.com/watch?v=0Mj-r7JjpeE)
 
