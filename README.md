@@ -32,3 +32,5 @@ Article on Medium: [Part IV - Android version](https://rogerboesch.medium.com/th
 Article on Medium: [Part IV - Update using GameAtivity and OpenGL ES 3 on Android](https://rogerboesch.medium.com/the-opengl-tutorial-part-iv-b2e044a21eea)
 
 ![Screenshot Part IV Update](assets/partv.png)
+
+Article on Medium: Part V - Going 3D is coming soon
