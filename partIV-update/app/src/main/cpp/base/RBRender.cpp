@@ -235,8 +235,7 @@ void RBRender::UpdateRenderArea() {
 }
 
 void RBRender::CreateShader() {
-    m_shader = new RBShader();
-    m_shader->Create();
+    m_shader = new RBShader2D();
 }
 
 // Input handling

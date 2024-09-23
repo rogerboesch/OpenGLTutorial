@@ -1,5 +1,5 @@
 //
-//  RBShader.hpp
+//  RBShader2D.hpp
 //
 //  The OpenGL Tutorial
 //  This code was written as part of a tutorial at https://medium.com/@rogerboesch/
@@ -15,28 +15,19 @@
 //  Feel free to use the code in the way you want :)
 //
 
-#include <EGL/egl.h>
-#include <GLES3/gl3.h>
+#include <RBShader.hpp>
 
 #pragma once
 
-class RBShader {
+class RBShader2D : public RBShader {
 public:
-    RBShader();
-    ~RBShader();
+    RBShader2D();
+    ~RBShader2D() {}
 
-    bool Create(const char* pVertexSource, const char* pFragmentSource);
-    bool Activate();
-
-protected:
-    GLint AssignAttribute(char* name);
-    GLint AssignUniform(char* name);
-    void MapUniform(GLint parameter, int value);
+    void MapSize(int width, int height);
 
 private:
-    GLuint CreateProgram(const char* pVertexSource, const char* pFragmentSource);
-    GLuint LoadShader(GLenum shaderType, const char* pSource);
-
-private:
-    GLuint m_gl_program = -1;
+    GLint m_gl_position;
+    GLint m_gl_width;
+    GLint m_gl_height;
 };

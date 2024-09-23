@@ -17,34 +17,9 @@
 
 #include <RBShader.hpp>
 #include <cstdlib>
+RBShader::RBShader() : m_gl_program(-1) {}
 
-
-auto gVertexShader =
-        "attribute vec4 vPosition;\n"
-        "uniform float fWidth;\n"
-        "uniform float fHeight;\n"
-
-        "void main() {\n"
-        "  mat4 projectionMatrix = mat4(2.0/fWidth, 0.0, 0.0, -1.0,\n"
-        "                              0.0, 2.0/fHeight, 0.0, -1.0,\n"
-        "                              0.0, 0.0, -1.0, 0.0,\n"
-        "                              0.0, 0.0, 0.0, 1.0);\n"
-
-        "  gl_Position = vPosition;\n"
-        "  gl_Position *= projectionMatrix;\n"
-        "}\n";
-
-auto gFragmentShader =
-        "precision mediump float;\n"
-        "void main() {\n"
-        "  gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);\n"
-        "}\n";
-
-RBShader::RBShader() {
-}
-
-RBShader::~RBShader() {
-}
+RBShader::~RBShader() {}
 
 GLuint RBShader::LoadShader(GLenum shaderType, const char* pSource) {
     GLuint shader = glCreateShader(shaderType);
@@ -119,16 +94,24 @@ GLuint RBShader::CreateProgram(const char* pVertexSource, const char* pFragmentS
     return program;
 }
 
-bool RBShader::Create() {
-    m_gl_program = CreateProgram(gVertexShader, gFragmentShader);
+GLint RBShader::AssignAttribute(char* name) {
+    return glGetAttribLocation(m_gl_program, name);
+}
+
+GLint RBShader::AssignUniform(char* name) {
+    return glGetUniformLocation(m_gl_program, name);
+}
+
+void RBShader::MapUniform(GLint parameter, int value) {
+    glUniform1f(parameter, value);
+}
+
+bool RBShader::Create(const char* pVertexSource, const char* pFragmentSource) {
+    m_gl_program = CreateProgram(pVertexSource, pFragmentSource);
 
     if (!m_gl_program) {
         return false;
     }
-
-    m_gl_position = glGetAttribLocation(m_gl_program, "vPosition");
-    m_gl_width = glGetUniformLocation(m_gl_program, "fWidth");
-    m_gl_height = glGetUniformLocation(m_gl_program, "fHeight");
 
     return true;
 }
@@ -141,9 +124,4 @@ bool RBShader::Activate() {
     glUseProgram(m_gl_program);
 
     return true;
-}
-
-void RBShader::MapSize(int width, int height) {
-    glUniform1f(m_gl_width, width);
-    glUniform1f(m_gl_height, height);
 }

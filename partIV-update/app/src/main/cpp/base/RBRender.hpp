@@ -17,7 +17,7 @@
 
 #include <EGL/egl.h>
 #include <GLES3/gl3.h>
-#include <RBShader.hpp>
+#include <RBShader2D.hpp>
 
 #pragma once
 
@@ -50,5 +50,5 @@ private:
     EGLint m_height;
     bool m_updateProjectionMatrix;
 
-    RBShader* m_shader = nullptr;
+    RBShader2D* m_shader = nullptr;
 };
