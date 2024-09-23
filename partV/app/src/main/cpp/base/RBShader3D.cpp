@@ -1,5 +1,5 @@
 //
-//  RBShader2D.cpp
+//  RBShader3D.cpp
 //
 //  The OpenGL Tutorial
 //  This code was written as part of a tutorial at https://medium.com/@rogerboesch/
@@ -15,30 +15,24 @@
 //  Feel free to use the code in the way you want :)
 //
 
-#include <RBShader2D.hpp>
+#include <RBShader3D.hpp>
 #include <cstdlib>
 
-auto gVertexShader2D =
-        "attribute vec4 vPosition;\n"
-        "uniform float fWidth;\n"
-        "uniform float fHeight;\n"
+auto gVertexShader3D =
+        "attribute vec3 coordinate;\n"
+        "uniform mat4 projection;\n"
+        "uniform vec4 color;\n"
 
-        "void main() {\n"
-        "  mat4 projectionMatrix = mat4(2.0/fWidth, 0.0, 0.0, -1.0,\n"
-        "                              0.0, 2.0/fHeight, 0.0, -1.0,\n"
-        "                              0.0, 0.0, -1.0, 0.0,\n"
-        "                              0.0, 0.0, 0.0, 1.0);\n"
-
-        "  gl_Position = vPosition;\n"
-        "  gl_Position *= projectionMatrix;\n"
+        "void main(void) {\n"
+        "  gl_Position =  projection * vec4(coordinate, 1);\n"
         "}\n";
 
-auto gFragmentShader2D =
+auto gFragmentShader3D =
         "precision mediump float;\n"
         "void main() {\n"
         "  gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);\n"
         "}\n";
 
-RBShader2D::RBShader2D()  {
-    Create(gVertexShader2D, gFragmentShader2D);
+RBShader3D::RBShader3D()  {
+    Create(gVertexShader3D, gFragmentShader3D);
 }

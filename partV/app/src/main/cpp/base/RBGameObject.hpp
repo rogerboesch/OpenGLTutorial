@@ -17,13 +17,13 @@
 
 #pragma once
 
-#include <RBVector2.hpp>
+#include <RBMath.hpp>
 #include <RBColor.hpp>
 
 class RBGameObject {
 public:
     RBGameObject();
-    RBGameObject(RBVector2 position, RBVector2 size);
+    RBGameObject(RBVec2D position, RBVec2D size);
     RBGameObject(float x, float y, float width, float height);
 
     virtual void Update(float delay);
@@ -33,22 +33,22 @@ public:
 
 public:
     void SetSpeed(float x, float y) { m_speed.x = x; m_speed.y = y; }
-    void SetSpeed(RBVector2 speed) { m_speed = speed; }
-    RBVector2 GetSpeed() { return m_speed; }
+    void SetSpeed(RBVec2D speed) { m_speed = speed; }
+    RBVec2D GetSpeed() { return m_speed; }
 
     void SetPosition(float x, float y) { m_position.x = x; m_position.y = y; }
-    RBVector2 GetPosition() { return m_position; }
-    
-    RBVector2 GetSize() { return m_size; }
-    RBVector2 GetCenter() { RBVector2 center(m_position.x + m_size.width / 2, m_position.y + m_size.height / 2); return center; }
+    RBVec2D GetPosition() { return m_position; }
+
+    RBVec2D GetSize() { return m_size; }
+    RBVec2D GetCenter() { return {m_position.x + m_size.w / 2, m_position.y + m_size.h / 2}; }
 
     void SetColor(float r, float g, float b, float a) { m_color.r = r; m_color.g = g; m_color.b = b; m_color.a = a; }
     void SetColor(RBColor color) { m_color.r = color.r; m_color.g = color.g; m_color.b = color.b; m_color.a = color.a; }
     RBColor GetColor() { return m_color; }
 
 private:
-    RBVector2 m_position;
-    RBVector2 m_size;
-    RBVector2 m_speed;
+    RBVec2D m_position;
+    RBVec2D m_size;
+    RBVec2D m_speed;
     RBColor m_color;
 };

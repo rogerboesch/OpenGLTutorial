@@ -17,7 +17,7 @@
 
 #include <RBShader.hpp>
 #include <cstdlib>
-RBShader::RBShader() : m_gl_program(-1) {}
+RBShader::RBShader() {}
 
 RBShader::~RBShader() {}
 
@@ -111,6 +111,10 @@ void RBShader::MapScreenSize(int width, int height) {
     MapUniform(m_gl_height, height);
 }
 
+void RBShader::MapProjectionMatrix(RBMat4x4 matrix) {
+    glUniformMatrix4fv(m_gl_projection, 1, GL_FALSE, (GLfloat*)&matrix.m[0]);
+}
+
 bool RBShader::Create(const char* pVertexSource, const char* pFragmentSource) {
     m_gl_program = CreateProgram(pVertexSource, pFragmentSource);
 
@@ -121,6 +125,7 @@ bool RBShader::Create(const char* pVertexSource, const char* pFragmentSource) {
     m_gl_position = AssignAttribute("vPosition");
     m_gl_width = AssignUniform("fWidth");
     m_gl_height = AssignUniform("fHeight");
+    m_gl_projection = AssignUniform("projection");
 
     return true;
 }

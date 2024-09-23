@@ -19,10 +19,10 @@
 #include <RBRenderHelper.hpp>
 
 bool RBGameObject::Collide(RBGameObject* object) {
-    return object->GetPosition().x + object->GetSize().width > m_position.x &&
-           object->GetPosition().y + object->GetSize().height > m_position.y &&
+    return object->GetPosition().x + object->GetSize().w > m_position.x &&
+           object->GetPosition().y + object->GetSize().h > m_position.y &&
            m_position.x + m_size.x > object->GetPosition().x &&
-           m_position.y + m_size.height > object->GetPosition().height;
+           m_position.y + m_size.h > object->GetPosition().h;
 }
 
 RBGameObject::RBGameObject() {
@@ -31,7 +31,7 @@ RBGameObject::RBGameObject() {
     m_color = RBColor(1);
 }
 
-RBGameObject::RBGameObject(RBVector2 position, RBVector2 size) {
+RBGameObject::RBGameObject(RBVec2D position, RBVec2D size) {
     m_position = position;
     m_size = size;
 }
@@ -39,8 +39,8 @@ RBGameObject::RBGameObject(RBVector2 position, RBVector2 size) {
 RBGameObject::RBGameObject(float x, float y, float width, float height) {
     m_position.x = x;
     m_position.y = y;
-    m_size.width = width;
-    m_size.height = height;
+    m_size.w = width;
+    m_size.h = height;
 }
 
 void RBGameObject::Update(float delay) {

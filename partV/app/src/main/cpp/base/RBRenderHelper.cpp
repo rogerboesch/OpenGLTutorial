@@ -30,8 +30,8 @@ GLuint gPosition;
 // -----------------------------------------------------------------------------
 #pragma mark - Render (colored) rectangles
 
-void RBDrawRect(RBVector2 position, RBVector2 size, RBColor color) {
-    RBDrawRect(position.x, position.y, size.width, size.height, color);
+void RBDrawRect(RBVec2D position, RBVec2D size, RBColor color) {
+    RBDrawRect(position.x, position.y, size.w, size.h, color);
 }
 
 // -----------------------------------------------------------------------------
@@ -247,8 +247,8 @@ void RBEnable2D(float width, float height) {
     glViewport(0, 0, width, height);
 }
 
-void RBEnable2D(RBVector2 size) {
-    RBEnable2D(size.width, size.height);
+void RBEnable2D(RBVec2D size) {
+    RBEnable2D(size.w, size.h);
 }
 
 void RBEnableBlending() {

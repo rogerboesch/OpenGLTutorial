@@ -70,9 +70,9 @@ void RBRender::RenderFrame() {
         m_updateProjectionMatrix = false;
 
         // Set width and height
-        RBVector2 size = gGame->GetGamesSize();
+        RBVec2D size = gGame->GetGamesSize();
 
-        m_shader->MapScreenSize(size.width, size.height);
+        m_shader->MapScreenSize(size.w, size.h);
     }
 
     gGame->OnUpdate(1.0/60.0);
@@ -82,12 +82,12 @@ void RBRender::RenderFrame() {
 }
 
 void RBRender::UserInput(int tag, int down, int x, int y) {
-    RBVector2 size = gGame->GetGamesSize();
+    RBVec2D size = gGame->GetGamesSize();
 
     if (tag == 1) {
         // Left
         if (down == 1) {
-            if (y <= size.height/2) {
+            if (y <= size.h/2) {
                 // Top
                 gGame->OnKey(keyW, true);
             }
@@ -104,7 +104,7 @@ void RBRender::UserInput(int tag, int down, int x, int y) {
     else if (tag == 2) {
         // Right
         if (down == 1) {
-            if (y <= size.height/2) {
+            if (y <= size.h/2) {
                 // Top
                 gGame->OnKey(keyUp, true);
             }

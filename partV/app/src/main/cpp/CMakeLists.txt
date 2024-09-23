@@ -23,17 +23,19 @@ add_library( # Sets the name of the library.
         # Provides a relative path to your source file(s).
 
         # Game files
-        game/Pong.cpp
+        # game/Pong.cpp
+        game/Cube.cpp
 
         # Base files
         base/RBGame.cpp
         base/RBGameObject.cpp
         base/RBColor.cpp
-        base/RBVector2.cpp
         base/RBRenderHelper.cpp
         base/RBRender.cpp
         base/RBShader.cpp
         base/RBShader2D.cpp
+        base/RBShader3D.cpp
+        base/RBMath.cpp
 
         # Platform files
         platform/main.cpp
