@@ -45,7 +45,7 @@ RBRender::RBRender(android_app *app) {
 
     InitOpenGL();
     CreateShader();
-    gGame->OnInit();
+    gGame->OnInit(this);
 }
 
 RBRender::~RBRender() {
@@ -236,10 +236,8 @@ void RBRender::UpdateRenderArea() {
 }
 
 void RBRender::CreateShader() {
-    auto test = new RBShader2D();
-    RBShader* test2 = new RBShader2D();
-
-    m_shader = new RBShader2D();
+    auto shader = gGame->CreateShader();
+    m_shader = shader;
 }
 
 // Input handling

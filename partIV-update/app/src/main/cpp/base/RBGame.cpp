@@ -31,7 +31,9 @@ void RBGame::OnKey(KeyType key, bool pressed) {
     m_keyState[key] = pressed;
 }
 
-void RBGame::OnInit() {
+void RBGame::OnInit(RBRender* render) {
+    m_render = render;
+
     m_gameSize.width = 0;
     m_gameSize.height = 0;
     

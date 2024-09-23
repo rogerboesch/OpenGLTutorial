@@ -42,11 +42,12 @@ class RBGame {
 public:
     RBGame();
 
-    void OnInit();
+    void OnInit(RBRender* render);
     void OnUpdate(float delay);
     void OnRender();
     void OnKey(KeyType key, bool pressed);
 
+    virtual RBShader* CreateShader() { return nullptr; }
     virtual void CreateContent() {}
 
 public:
@@ -63,7 +64,8 @@ protected:
 
 private:
     RBVector2 m_gameSize;
-    std::vector<RBGameObject*> *m_gameObjects;
+    std::vector<RBGameObject*> *m_gameObjects = nullptr;
     std::array<bool, 8> m_keyState;
+    RBRender* m_render = nullptr;
 };
 

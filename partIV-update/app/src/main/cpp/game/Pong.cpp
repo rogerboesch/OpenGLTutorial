@@ -30,7 +30,10 @@
 // Always define the global gGame in the derived game class
 RBGame* gGame = new Pong();
 
-// -----------------------------------------------------------------------------
+RBShader* Pong::CreateShader() {
+    return new RBShader2D();
+}
+
 #pragma mark - Render loop
 
 void Pong::CreateContent() {
