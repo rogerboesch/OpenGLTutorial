@@ -71,7 +71,8 @@ void RBRender::RenderFrame() {
 
         // Set width and height
         RBVector2 size = gGame->GetGamesSize();
-        m_shader->MapSize(size.width, size.height);
+
+        m_shader->MapScreenSize(size.width, size.height);
     }
 
     gGame->OnUpdate(1.0/60.0);
@@ -235,6 +236,9 @@ void RBRender::UpdateRenderArea() {
 }
 
 void RBRender::CreateShader() {
+    auto test = new RBShader2D();
+    RBShader* test2 = new RBShader2D();
+
     m_shader = new RBShader2D();
 }
 

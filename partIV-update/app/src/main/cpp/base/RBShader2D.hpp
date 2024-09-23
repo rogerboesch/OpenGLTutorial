@@ -23,11 +23,4 @@ class RBShader2D : public RBShader {
 public:
     RBShader2D();
     ~RBShader2D() {}
-
-    void MapSize(int width, int height);
-
-private:
-    GLint m_gl_position;
-    GLint m_gl_width;
-    GLint m_gl_height;
 };

@@ -39,15 +39,6 @@ auto gFragmentShader =
         "  gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);\n"
         "}\n";
 
-RBShader2D::RBShader2D() : m_gl_position(-1), m_gl_width(-1), m_gl_height(-1) {
-    if (Create(gVertexShader, gFragmentShader)) {
-        m_gl_position = AssignAttribute("vPosition");
-        m_gl_width = AssignUniform("fWidth");
-        m_gl_height = AssignUniform("fHeight");
-    }
-}
-
-void RBShader2D::MapSize(int width, int height) {
-    MapUniform(m_gl_width, width);
-    MapUniform(m_gl_height, height);
+RBShader2D::RBShader2D()  {
+    Create(gVertexShader, gFragmentShader);
 }

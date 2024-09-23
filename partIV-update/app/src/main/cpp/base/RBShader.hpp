@@ -28,6 +28,8 @@ public:
     bool Create(const char* pVertexSource, const char* pFragmentSource);
     bool Activate();
 
+    void MapScreenSize(int width, int height);
+
 protected:
     GLint AssignAttribute(char* name);
     GLint AssignUniform(char* name);
@@ -39,4 +41,7 @@ private:
 
 private:
     GLuint m_gl_program = -1;
+    GLint m_gl_position = -1;
+    GLint m_gl_width = -1;
+    GLint m_gl_height = -1;
 };

@@ -106,12 +106,21 @@ void RBShader::MapUniform(GLint parameter, int value) {
     glUniform1f(parameter, value);
 }
 
+void RBShader::MapScreenSize(int width, int height) {
+    MapUniform(m_gl_width, width);
+    MapUniform(m_gl_height, height);
+}
+
 bool RBShader::Create(const char* pVertexSource, const char* pFragmentSource) {
     m_gl_program = CreateProgram(pVertexSource, pFragmentSource);
 
     if (!m_gl_program) {
         return false;
     }
+
+    m_gl_position = AssignAttribute("vPosition");
+    m_gl_width = AssignUniform("fWidth");
+    m_gl_height = AssignUniform("fHeight");
 
     return true;
 }

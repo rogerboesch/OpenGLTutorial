@@ -21,6 +21,7 @@
 #include <array>
 
 #include <RBGameObject.hpp>
+#include <RBShader2D.hpp>
 
 #define kFRAMES_PER_SECOND 60
 
@@ -34,6 +35,8 @@ enum KeyType {
     keyS,
     keyD,
 };
+
+class RBRender;
 
 class RBGame {
 public:

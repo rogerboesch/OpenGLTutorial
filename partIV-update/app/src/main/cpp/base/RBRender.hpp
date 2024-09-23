@@ -17,7 +17,7 @@
 
 #include <EGL/egl.h>
 #include <GLES3/gl3.h>
-#include <RBShader2D.hpp>
+#include <RBShader.hpp>
 
 #pragma once
 
@@ -42,13 +42,13 @@ private:
     GLuint CreateProgram(const char* pVertexSource, const char* pFragmentSource);
 
 private:
-    android_app *m_app;
+    android_app *m_app = nullptr;
     EGLDisplay m_display;
     EGLSurface m_surface;
     EGLContext m_context;
-    EGLint m_width;
-    EGLint m_height;
-    bool m_updateProjectionMatrix;
+    EGLint m_width = 0;
+    EGLint m_height = 0;
+    bool m_updateProjectionMatrix = false;
 
-    RBShader2D* m_shader = nullptr;
+    RBShader* m_shader = nullptr;
 };
