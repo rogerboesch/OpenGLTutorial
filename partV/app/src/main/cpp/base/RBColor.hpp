@@ -17,24 +17,9 @@
 
 #pragma once
 
-#include <cstring>
-#include <assert.h>
+#include "RBMath.hpp"
 
-class RBColor {
-public:
-    union {
-        float value[4];
-        struct { float r, g, b, a; };
-    };
-    
-    float& operator [](const size_t i) { assert(i < 2); return value[i]; }
-    const float& operator [](const size_t i) const { assert(i < 2); return value[i]; }
-    
-public:
-    explicit RBColor() : r(0), g(0), b(0), a(1) { }
-    explicit RBColor(const float& n) : r(n), g(n), b(n), a(1) { }
-    explicit RBColor(const float& r, const float& g, const float& b, const float& a) : r(r), g(g), b(b), a(a) { }
-};
+using RBColor = RBVec3D;
 
 extern RBColor RBColorBlack;
 extern RBColor RBColorWhite;

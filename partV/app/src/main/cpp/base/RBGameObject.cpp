@@ -28,7 +28,7 @@ bool RBGameObject::Collide(RBGameObject* object) {
 RBGameObject::RBGameObject() {
     m_speed.x = 0;
     m_speed.y = 0;
-    m_color = RBColor(1);
+    m_color = RBColorBlack;
 }
 
 RBGameObject::RBGameObject(RBVec2D position, RBVec2D size) {

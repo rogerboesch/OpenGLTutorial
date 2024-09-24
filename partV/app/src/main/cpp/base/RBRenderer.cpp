@@ -20,6 +20,7 @@
 
 #include <game-activity/native_app_glue/android_native_app_glue.h>
 #include <math.h>
+#include <cassert>
 
 #define BACKGROUND_COLOR 0.0f / 255.f, 0.0f / 255.f, 0.0f / 255.f, 1
 
@@ -31,7 +32,7 @@ RBRenderer::RBRenderer(android_app *app) {
     g_renderer = this;
 
     InitOpenGL();
-    CreateShader();
+
     g_game->OnInit(this);
 }
 
@@ -212,10 +213,6 @@ void RBRenderer::UpdateRenderArea() {
         // make sure that we lazily recreate the projection matrix before we render
         m_updateProjectionMatrix = true;
     }
-}
-
-void RBRenderer::CreateShader() {
-    g_game->CreateShader(this);
 }
 
 // Input handling

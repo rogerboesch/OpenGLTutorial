@@ -40,7 +40,6 @@ public:
 private:
     void InitOpenGL();
     void ClearOpenGL();
-    void CreateShader();
     void UpdateRenderArea();
     GLuint LoadShader(GLenum shaderType, const char* pSource);
     GLuint CreateProgram(const char* pVertexSource, const char* pFragmentSource);

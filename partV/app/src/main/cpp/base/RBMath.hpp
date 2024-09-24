@@ -31,6 +31,7 @@ struct RBVec3D {
     union {
         float value[4];
         struct { float x, y, z, w; };
+        struct { float r, g, b, a; };
     };
 };
 
