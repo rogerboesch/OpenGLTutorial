@@ -21,24 +21,9 @@
 #include <RBGame.hpp>
 #include <RBRender.hpp>
 
-#include "AndroidOut.h"
-
-#define PRINT_GL_STRING(s) {aout << #s": "<< glGetString(s) << std::endl;}
-#define PRINT_GL_STRING_AS_LIST(s) { \
-std::istringstream extensionStream((const char *) glGetString(s));\
-std::vector<std::string> extensionList(\
-        std::istream_iterator<std::string>{extensionStream},\
-        std::istream_iterator<std::string>());\
-aout << #s":\n";\
-for (auto& extension: extensionList) {\
-    aout << extension << "\n";\
-}\
-aout << std::endl;\
-}
-
 #define BACKGROUND_COLOR 0.0f / 255.f, 0.0f / 255.f, 0.0f / 255.f, 1
 
-extern RBGame *gGame;
+extern RBGame *g_game;
 RBRender* g_renderer = nullptr;
 
 RBRender::RBRender(android_app *app) {
@@ -47,7 +32,7 @@ RBRender::RBRender(android_app *app) {
 
     InitOpenGL();
     CreateShader();
-    gGame->OnInit(this);
+    g_game->OnInit(this);
 }
 
 RBRender::~RBRender() {
@@ -72,33 +57,33 @@ void RBRender::RenderFrame() {
         m_updateProjectionMatrix = false;
 
         // TODO: Update projection matrix
-        RBVec2D size = gGame->GetGamesSize();
+        RBVec2D size = g_game->GetGamesSize();
     }
 
-    gGame->OnUpdate(1.0/60.0);
-    gGame->OnRender();
+    g_game->OnUpdate(1.0 / 60.0);
+    g_game->OnRender();
 
     eglSwapBuffers(m_display, m_surface);
 }
 
 void RBRender::UserInput(int tag, int down, int x, int y) {
-    RBVec2D size = gGame->GetGamesSize();
+    RBVec2D size = g_game->GetGamesSize();
 
     if (tag == 1) {
         // Left
         if (down == 1) {
             if (y <= size.h/2) {
                 // Top
-                gGame->OnKey(keyW, true);
+                g_game->OnKey(keyW, true);
             }
             else {
                 // Bottom
-                gGame->OnKey(keyS, true);
+                g_game->OnKey(keyS, true);
             }
         }
         else {
-            gGame->OnKey(keyW, false);
-            gGame->OnKey(keyS, false);
+            g_game->OnKey(keyW, false);
+            g_game->OnKey(keyS, false);
         }
     }
     else if (tag == 2) {
@@ -106,16 +91,16 @@ void RBRender::UserInput(int tag, int down, int x, int y) {
         if (down == 1) {
             if (y <= size.h/2) {
                 // Top
-                gGame->OnKey(keyUp, true);
+                g_game->OnKey(keyUp, true);
             }
             else {
                 // Bottom
-                gGame->OnKey(keyDown, true);
+                g_game->OnKey(keyDown, true);
             }
         }
         else {
-            gGame->OnKey(keyUp, false);
-            gGame->OnKey(keyDown, false);
+            g_game->OnKey(keyUp, false);
+            g_game->OnKey(keyDown, false);
         }
     }
 }
@@ -175,15 +160,14 @@ void RBRender::InitOpenGL() {
                     && eglGetConfigAttrib(display, config, EGL_BLUE_SIZE, &blue)
                     && eglGetConfigAttrib(display, config, EGL_DEPTH_SIZE, &depth)) {
 
-                    aout << "Found config with " << red << ", " << green << ", " << blue << ", "
-                         << depth << std::endl;
+                    // aout << "Found config with " << red << ", " << green << ", " << blue << ", " << depth << std::endl;
                     return red == 8 && green == 8 && blue == 8 && depth == 24;
                 }
                 return false;
             });
 
-    aout << "Found " << numConfigs << " configs" << std::endl;
-    aout << "Chose " << config << std::endl;
+    //aout << "Found " << numConfigs << " configs" << std::endl;
+    //aout << "Chose " << config << std::endl;
 
     // create the proper window surface
     EGLint format;
@@ -205,11 +189,6 @@ void RBRender::InitOpenGL() {
     // make width and height invalid so it gets updated in the first frame
     m_width = -1;
     m_height = -1;
-
-    PRINT_GL_STRING(GL_VENDOR);
-    PRINT_GL_STRING(GL_RENDERER);
-    PRINT_GL_STRING(GL_VERSION);
-    PRINT_GL_STRING_AS_LIST(GL_EXTENSIONS);
 }
 
 void RBRender::UpdateRenderArea() {
@@ -222,8 +201,8 @@ void RBRender::UpdateRenderArea() {
     if (width != m_width || height != m_height) {
         if (m_width == -1 && m_height == -1) {
             // First time
-            gGame->SetGameSize(width, height);
-            gGame->CreateContent();
+            g_game->SetGameSize(width, height);
+            g_game->CreateContent();
         }
 
         m_width = width;
@@ -236,7 +215,7 @@ void RBRender::UpdateRenderArea() {
 }
 
 void RBRender::CreateShader() {
-    auto shader = gGame->CreateShader();
+    auto shader = g_game->CreateShader();
     m_shader = shader;
 }
 
@@ -254,13 +233,13 @@ void RBRender::HandleInput() {
         // Find the pointer index, mask and bitshift to turn it into a readable value
         auto pointerIndex = (action & AMOTION_EVENT_ACTION_POINTER_INDEX_MASK)
                 >> AMOTION_EVENT_ACTION_POINTER_INDEX_SHIFT;
-        aout << "Pointer " << pointerIndex << ":";
+        //aout << "Pointer " << pointerIndex << ":";
 
         // get the x and y position of this event
         auto &pointer = motionEvent.pointers[pointerIndex];
         auto x = GameActivityPointerAxes_getX(&pointer);
         auto y = GameActivityPointerAxes_getY(&pointer);
-        aout << "(" << x << ", " << y << ") ";
+        //aout << "(" << x << ", " << y << ") ";
 
         // Only consider touchscreen events, like touches
         auto actionMasked = action & AINPUT_SOURCE_TOUCHSCREEN;
@@ -269,19 +248,20 @@ void RBRender::HandleInput() {
         switch (actionMasked) {
             case AMOTION_EVENT_ACTION_DOWN:
             case AMOTION_EVENT_ACTION_POINTER_DOWN:
-                aout << "Pointer Down";
+                //aout << "Pointer Down";
                 break;
 
             case AMOTION_EVENT_ACTION_UP:
             case AMOTION_EVENT_ACTION_POINTER_UP:
-                aout << "Pointer Up";
+                //aout << "Pointer Up";
                 break;
 
             default:
-                aout << "Pointer Move";
+                break;
+                //aout << "Pointer Move";
         }
 
-        aout << std::endl;
+        //aout << std::endl;
     }
 
     // clear inputs, be careful as this will clear it for anyone listening to these events

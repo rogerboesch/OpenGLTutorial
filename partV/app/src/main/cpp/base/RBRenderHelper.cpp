@@ -234,21 +234,3 @@ void RBDrawRect(float x, float y, float width, float height, RBColor color) {
 
     g_renderer->GetShader()->DrawRectangle(x, y, width, height, color);
 }
-
-void RBEnable2D(float width, float height) {
-    glViewport(0, 0, width, height);
-}
-
-void RBEnable2D(RBVec2D size) {
-    RBEnable2D(size.w, size.h);
-}
-
-void RBEnableBlending() {
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-}
-
-void RBClearScreen(RBColor color) {
-    glClearColor(color.r, color.g, color.b, color.a);
-    glClear(GL_COLOR_BUFFER_BIT);
-}

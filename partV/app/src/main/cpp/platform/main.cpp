@@ -1,6 +1,5 @@
 #include <jni.h>
 
-#include "AndroidOut.h"
 #include "RBRender.hpp"
 
 #include <game-activity/GameActivity.cpp>
@@ -46,7 +45,7 @@ void handle_cmd(android_app *pApp, int32_t cmd) {
  */
 void android_main(struct android_app *pApp) {
     // Can be removed, useful to ensure your code is running
-    aout << "Welcome to android_main" << std::endl;
+    //aout << "Welcome to android_main" << std::endl;
 
     // register an event handler for Android events
     pApp->onAppCmd = handle_cmd;
@@ -54,6 +53,7 @@ void android_main(struct android_app *pApp) {
     // This sets up a typical game/event loop. It will run until the app is destroyed.
     int events;
     android_poll_source *pSource;
+
     do {
         // Process all pending events before running game logic.
         if (ALooper_pollAll(0, nullptr, &events, (void **) &pSource) >= 0) {
@@ -77,4 +77,5 @@ void android_main(struct android_app *pApp) {
         }
     } while (!pApp->destroyRequested);
 }
+
 }

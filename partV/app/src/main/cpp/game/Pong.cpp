@@ -27,8 +27,8 @@
 #define kPADDLE_HEIGHT 50.0f
 #define kPADDLE_SPEED 600.0f
 
-// Always define the global gGame in the derived game class
-RBGame* gGame = new Pong();
+// Always define the global g_game in the derived game class
+RBGame* g_game = new Pong();
 
 RBShader* Pong::CreateShader() {
     return new RBShader2D();

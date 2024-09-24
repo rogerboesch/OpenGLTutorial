@@ -146,3 +146,17 @@ void RBShader::DrawRectangle(float x, float y, float width, float height, RBColo
     glEnableVertexAttribArray(m_gl_position);
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
+
+void RBShader::Enable2D(float width, float height) {
+    glViewport(0, 0, width, height);
+}
+
+void RBShader::EnableBlending() {
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+}
+
+void RBShader::ClearScreen(RBColor color) {
+    glClearColor(color.r, color.g, color.b, color.a);
+    glClear(GL_COLOR_BUFFER_BIT);
+}

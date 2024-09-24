@@ -32,6 +32,10 @@ public:
     bool Activate();
     void DrawRectangle(float x, float y, float width, float height, RBColor color);
 
+    static void Enable2D(float width, float height);
+    static void EnableBlending();
+    static void ClearScreen(RBColor color);
+
     void MapProjectionMatrix(RBMat4x4 matrix);
 
 protected:

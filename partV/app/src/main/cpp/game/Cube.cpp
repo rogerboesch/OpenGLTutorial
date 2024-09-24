@@ -21,8 +21,8 @@
 #include "RBShader3D.hpp"
 #include "stdio.h"
 
-// Always define the global gGame in the derived game class
-RBGame* gGame = new Cube();
+// Always define the global g_game in the derived game class
+RBGame* g_game = new Cube();
 
 RBShader* Cube::CreateShader() {
     return new RBShader3D();
@@ -37,6 +37,6 @@ void Cube::Update(float delay) {
 }
 
 void Cube::Render() {
-    RBClearScreen(RBColorWhite);
-    RBEnableBlending();
+    RBShader::ClearScreen(RBColorWhite);
+    RBShader::EnableBlending();
 }
