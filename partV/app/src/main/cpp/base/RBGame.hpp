@@ -37,13 +37,13 @@ enum KeyType {
     keyD,
 };
 
-class RBRender;
+class RBRenderer;
 
 class RBGame {
 public:
     RBGame();
 
-    void OnInit(RBRender* render);
+    void OnInit(RBRenderer* render);
     void OnUpdate(float delay);
     void OnRender();
     void OnKey(KeyType key, bool pressed);
@@ -67,6 +67,6 @@ private:
     RBVec2D m_gameSize;
     std::vector<RBGameObject*> *m_gameObjects = nullptr;
     std::array<bool, 8> m_keyState;
-    RBRender* m_render = nullptr;
+    RBRenderer* m_render = nullptr;
 };
 

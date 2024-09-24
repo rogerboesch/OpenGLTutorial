@@ -23,10 +23,10 @@
 
 struct android_app;
 
-class RBRender {
+class RBRenderer {
 public:
-    RBRender(android_app *app);
-    ~RBRender();
+    RBRenderer(android_app *app);
+    ~RBRenderer();
 
 public:
     void RenderFrame();

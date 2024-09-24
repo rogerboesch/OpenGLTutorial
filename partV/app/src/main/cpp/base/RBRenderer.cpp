@@ -19,14 +19,14 @@
 #include <math.h>
 
 #include <RBGame.hpp>
-#include <RBRender.hpp>
+#include <RBRenderer.hpp>
 
 #define BACKGROUND_COLOR 0.0f / 255.f, 0.0f / 255.f, 0.0f / 255.f, 1
 
 extern RBGame *g_game;
-RBRender* g_renderer = nullptr;
+RBRenderer* g_renderer = nullptr;
 
-RBRender::RBRender(android_app *app) {
+RBRenderer::RBRenderer(android_app *app) {
     m_app = app;
     g_renderer = this;
 
@@ -35,13 +35,13 @@ RBRender::RBRender(android_app *app) {
     g_game->OnInit(this);
 }
 
-RBRender::~RBRender() {
+RBRenderer::~RBRenderer() {
     ClearOpenGL();
 }
 
 // Game loop
 
-void RBRender::RenderFrame() {
+void RBRenderer::RenderFrame() {
     m_shader->Activate();
 
     glClearColor(BACKGROUND_COLOR);
@@ -66,7 +66,7 @@ void RBRender::RenderFrame() {
     eglSwapBuffers(m_display, m_surface);
 }
 
-void RBRender::UserInput(int tag, int down, int x, int y) {
+void RBRenderer::UserInput(int tag, int down, int x, int y) {
     RBVec2D size = g_game->GetGamesSize();
 
     if (tag == 1) {
@@ -107,7 +107,7 @@ void RBRender::UserInput(int tag, int down, int x, int y) {
 
 // OpenGL stuff
 
-void RBRender::ClearOpenGL() {
+void RBRenderer::ClearOpenGL() {
     if (m_display != EGL_NO_DISPLAY) {
         eglMakeCurrent(m_display, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT);
         if (m_context != EGL_NO_CONTEXT) {
@@ -123,7 +123,7 @@ void RBRender::ClearOpenGL() {
     }
 }
 
-void RBRender::InitOpenGL() {
+void RBRenderer::InitOpenGL() {
     // Choose your render attributes
     constexpr EGLint attribs[] = {
             EGL_RENDERABLE_TYPE, EGL_OPENGL_ES3_BIT,
@@ -191,7 +191,7 @@ void RBRender::InitOpenGL() {
     m_height = -1;
 }
 
-void RBRender::UpdateRenderArea() {
+void RBRenderer::UpdateRenderArea() {
     EGLint width;
     eglQuerySurface(m_display, m_surface, EGL_WIDTH, &width);
 
@@ -214,13 +214,13 @@ void RBRender::UpdateRenderArea() {
     }
 }
 
-void RBRender::CreateShader() {
+void RBRenderer::CreateShader() {
     auto shader = g_game->CreateShader();
     m_shader = shader;
 }
 
 // Input handling
-void RBRender::HandleInput() {
+void RBRenderer::HandleInput() {
     // handle all queued inputs
     for (auto i = 0; i < m_app->motionEventsCount; i++) {
 

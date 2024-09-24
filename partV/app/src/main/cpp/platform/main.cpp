@@ -1,6 +1,6 @@
 #include <jni.h>
 
-#include "RBRender.hpp"
+#include "RBRenderer.hpp"
 
 #include <game-activity/GameActivity.cpp>
 #include <game-text-input/gametextinput.cpp>
@@ -21,7 +21,7 @@ void handle_cmd(android_app *pApp, int32_t cmd) {
             // "game" class if that suits your needs. Remember to change all instances of userData
             // if you change the class here as a reinterpret_cast is dangerous this in the
             // android_main function and the APP_CMD_TERM_WINDOW handler case.
-            pApp->userData = new RBRender(pApp);
+            pApp->userData = new RBRenderer(pApp);
             break;
         case APP_CMD_TERM_WINDOW:
             // The window is being destroyed. Use this to clean up your userData to avoid leaking
@@ -30,7 +30,7 @@ void handle_cmd(android_app *pApp, int32_t cmd) {
             // We have to check if userData is assigned just in case this comes in really quickly
             if (pApp->userData) {
                 //
-                auto *pRenderer = reinterpret_cast<RBRender *>(pApp->userData);
+                auto *pRenderer = reinterpret_cast<RBRenderer *>(pApp->userData);
                 pApp->userData = nullptr;
                 delete pRenderer;
             }
@@ -67,7 +67,7 @@ void android_main(struct android_app *pApp) {
 
             // We know that our user data is a Renderer, so reinterpret cast it. If you change your
             // user data remember to change it here
-            auto *pRenderer = reinterpret_cast<RBRender *>(pApp->userData);
+            auto *pRenderer = reinterpret_cast<RBRenderer *>(pApp->userData);
 
             // Process game input
             pRenderer->HandleInput();

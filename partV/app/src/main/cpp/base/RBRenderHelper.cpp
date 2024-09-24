@@ -16,14 +16,14 @@
 //
 
 #include <RBRenderHelper.hpp>
-#include <RBRender.hpp>
+#include <RBRenderer.hpp>
 
 #include <ctype.h>
 #include <EGL/egl.h>
 #include <GLES/gl.h>
 #include <GLES2/gl2.h>
 
-extern RBRender* g_renderer;
+extern RBRenderer* g_renderer;
 
 // -----------------------------------------------------------------------------
 #pragma mark - Render (colored) rectangles
