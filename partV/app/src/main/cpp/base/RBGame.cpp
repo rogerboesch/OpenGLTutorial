@@ -15,9 +15,9 @@
 //  Feel free to use the code in the way you want :)
 //
 
-#include <RBGame.hpp>
-#include <RBGameObject.hpp>
-#include <RBRenderHelper.hpp>
+#include "RBGame.hpp"
+#include "RBGameObject.hpp"
+#include "RBRenderHelper.hpp"
 
 void RBGame::AddGameObject(RBGameObject *object) {
     m_gameObjects->push_back(object);

@@ -1,3 +1,4 @@
+//
 //  Pong.hpp
 //
 //  The OpenGL Tutorial
@@ -16,7 +17,7 @@
 
 #pragma once
 
-#include <RBGame.hpp>
+#include "RBGame.hpp"
 
 class Pong : public RBGame {
 private:
@@ -29,7 +30,7 @@ private:
 
 public:
     virtual void CreateContent();
-    virtual RBShader* CreateShader() ;
+    virtual void CreateShader(RBRenderer* renderer) ;
 
 private:
     void Reset(int direction);

@@ -1,5 +1,5 @@
 //
-//  RBRender.hpp
+//  RBRenderer.hpp
 //
 //  The OpenGL Tutorial
 //  This code was written as part of a tutorial at https://medium.com/@rogerboesch/
@@ -15,11 +15,12 @@
 //  Feel free to use the code in the way you want :)
 //
 
+#pragma once
+
+#include "RBShader.hpp"
+
 #include <EGL/egl.h>
 #include <GLES3/gl3.h>
-#include <RBShader.hpp>
-
-#pragma once
 
 struct android_app;
 

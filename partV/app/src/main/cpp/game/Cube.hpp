@@ -1,3 +1,4 @@
+//
 //  Cube.hpp
 //
 //  The OpenGL Tutorial
@@ -16,14 +17,12 @@
 
 #pragma once
 
-#include <RBGame.hpp>
+#include "RBGame.hpp"
 
 class Cube : public RBGame {
-private:
-
 public:
     virtual void CreateContent();
-    virtual RBShader* CreateShader() ;
+    virtual void CreateShader(RBRenderer* renderer) ;
 
 protected:
     virtual void Update(float delay);

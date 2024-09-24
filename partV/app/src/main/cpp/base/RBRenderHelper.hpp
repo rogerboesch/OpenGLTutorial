@@ -17,9 +17,10 @@
 
 #pragma once
 
+#include "RBMath.hpp"
+#include "RBColor.hpp"
+
 #include <string>
-#include <RBMath.hpp>
-#include <RBColor.hpp>
 
 void RBDrawRect(RBVec2D position, RBVec2D size, RBColor color);
 void RBDrawRect(float x, float y, float width, float height, RBColor color);

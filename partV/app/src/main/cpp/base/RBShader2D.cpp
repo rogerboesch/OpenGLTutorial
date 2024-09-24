@@ -15,10 +15,11 @@
 //  Feel free to use the code in the way you want :)
 //
 
-#include <RBShader2D.hpp>
+#include "RBShader2D.hpp"
+
 #include <cstdlib>
 
-auto gVertexShader2D =
+auto vertexShader2D =
         "attribute vec4 coordinate;\n"
         "uniform mat4 projection;\n"
 
@@ -26,12 +27,12 @@ auto gVertexShader2D =
         "  gl_Position = projection * vec4(coordinate, 1);\n"
         "}\n";
 
-auto gFragmentShader2D =
+auto fragmentShader2D =
         "precision mediump float;\n"
         "void main() {\n"
         "  gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);\n"
         "}\n";
 
 RBShader2D::RBShader2D()  {
-    Create(gVertexShader2D, gFragmentShader2D);
+    Create(vertexShader2D, fragmentShader2D);
 }

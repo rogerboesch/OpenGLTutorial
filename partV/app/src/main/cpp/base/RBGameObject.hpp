@@ -17,8 +17,8 @@
 
 #pragma once
 
-#include <RBMath.hpp>
-#include <RBColor.hpp>
+#include "RBMath.hpp"
+#include "RBColor.hpp"
 
 class RBGameObject {
 public:

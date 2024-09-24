@@ -15,10 +15,11 @@
 //  Feel free to use the code in the way you want :)
 //
 
-#include <RBShader3D.hpp>
+#include "RBShader3D.hpp"
+
 #include <cstdlib>
 
-auto gVertexShader3D =
+auto vertexShader =
     "attribute vec4 vertexPosition;\n"
     "attribute vec3 vertexColor;\n"
     "uniform mat4 projectionMatrix;\n"
@@ -29,7 +30,7 @@ auto gVertexShader3D =
     " color = vertexColor;\n"
     "}\n";
 
-auto gFragmentShader3D =
+auto fragmentShader =
 "varying lowp vec3 color;\n"
 
 "void main() {\n"
@@ -37,5 +38,5 @@ auto gFragmentShader3D =
 "}\n";
 
 RBShader3D::RBShader3D()  {
-    Create(gVertexShader3D, gFragmentShader3D);
+    Create(vertexShader, fragmentShader);
 }

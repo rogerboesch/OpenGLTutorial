@@ -15,7 +15,7 @@
 //  Feel free to use the code in the way you want :)
 //
 
-#include <RBColor.hpp>
+#include "RBColor.hpp"
 
 RBColor RBColorBlack(0,0,0,1);
 RBColor RBColorWhite(1,1,1,1);

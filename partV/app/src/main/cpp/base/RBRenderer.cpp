@@ -1,5 +1,5 @@
 //
-//  RBRender.cpp
+//  RBRenderer.cpp
 //
 //  The OpenGL Tutorial
 //  This code was written as part of a tutorial at https://medium.com/@rogerboesch/
@@ -15,11 +15,11 @@
 //  Feel free to use the code in the way you want :)
 //
 
+#include "RBGame.hpp"
+#include "RBRenderer.hpp"
+
 #include <game-activity/native_app_glue/android_native_app_glue.h>
 #include <math.h>
-
-#include <RBGame.hpp>
-#include <RBRenderer.hpp>
 
 #define BACKGROUND_COLOR 0.0f / 255.f, 0.0f / 255.f, 0.0f / 255.f, 1
 
@@ -215,8 +215,7 @@ void RBRenderer::UpdateRenderArea() {
 }
 
 void RBRenderer::CreateShader() {
-    auto shader = g_game->CreateShader();
-    m_shader = shader;
+    g_game->CreateShader(this);
 }
 
 // Input handling

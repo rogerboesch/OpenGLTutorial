@@ -15,8 +15,8 @@
 //  Feel free to use the code in the way you want :)
 //
 
-#include <RBRenderHelper.hpp>
-#include <RBRenderer.hpp>
+#include "RBRenderHelper.hpp"
+#include "RBRenderer.hpp"
 
 #include <ctype.h>
 #include <EGL/egl.h>
@@ -25,21 +25,9 @@
 
 extern RBRenderer* g_renderer;
 
-// -----------------------------------------------------------------------------
-#pragma mark - Render (colored) rectangles
-
 void RBDrawRect(RBVec2D position, RBVec2D size, RBColor color) {
     RBDrawRect(position.x, position.y, size.w, size.h, color);
 }
-
-// -----------------------------------------------------------------------------
-#pragma mark - Render characters
-    
-//  -     0
-// | |   1 2
-//  -     3
-// | |   4 5
-//  -     6
 
 void RBDrawSegments(int s0, int s1, int s2, int s3, int s4, int s5, int s6, float x, float y, RBColor color) {
     //  -     0
@@ -206,9 +194,6 @@ void RBDrawCharacter(float x ,float y ,char c, RBColor color) {
     }
 }
 
-// -----------------------------    ------------------------------------------------
-#pragma mark - Render string
-
 void RBDrawString(float x , float y , std::string str, RBColor color) {
     for (unsigned i=0; i<str.length(); ++i) {
         char ch = str.at(i);
@@ -224,9 +209,6 @@ void RBDrawString(float x , float y , std::string str, RBColor color) {
         x += 40;
     }
 }
-
-// -----------------------------------------------------------------------------
-#pragma mark - OpenGL Helper method
 
 void RBDrawRect(float x, float y, float width, float height, RBColor color) {
     if (g_renderer == nullptr) return;

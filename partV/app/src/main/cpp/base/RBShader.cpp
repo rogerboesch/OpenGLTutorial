@@ -15,8 +15,9 @@
 //  Feel free to use the code in the way you want :)
 //
 
-#include <RBShader.hpp>
+#include "RBShader.hpp"
 #include <cstdlib>
+
 RBShader::RBShader() {}
 
 RBShader::~RBShader() {}

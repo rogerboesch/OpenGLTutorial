@@ -15,8 +15,8 @@
 //  Feel free to use the code in the way you want :)
 //
 
-#include <RBGameObject.hpp>
-#include <RBRenderHelper.hpp>
+#include "RBGameObject.hpp"
+#include "RBRenderHelper.hpp"
 
 bool RBGameObject::Collide(RBGameObject* object) {
     return object->GetPosition().x + object->GetSize().w > m_position.x &&

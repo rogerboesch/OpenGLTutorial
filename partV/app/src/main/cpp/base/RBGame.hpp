@@ -17,12 +17,12 @@
 
 #pragma once
 
+#include "RBGameObject.hpp"
+#include "RBShader2D.hpp"
+#include "RBMath.hpp"
+
 #include <vector>
 #include <array>
-
-#include <RBGameObject.hpp>
-#include <RBShader2D.hpp>
-#include <RBMath.hpp>
 
 #define kFRAMES_PER_SECOND 60
 
@@ -48,7 +48,7 @@ public:
     void OnRender();
     void OnKey(KeyType key, bool pressed);
 
-    virtual RBShader* CreateShader() { return nullptr; }
+    virtual void CreateShader(RBRenderer* renderer) { }
     virtual void CreateContent() {}
 
 public:

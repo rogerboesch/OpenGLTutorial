@@ -15,9 +15,9 @@
 //  Feel free to use the code in the way you want :)
 //
 
-#include <RBShader.hpp>
-
 #pragma once
+
+#include "RBShader.hpp"
 
 class RBShader2D : public RBShader {
 public:

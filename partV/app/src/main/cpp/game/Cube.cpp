@@ -16,16 +16,19 @@
 //
 
 #include "Cube.hpp"
-#include "RBRenderHelper.hpp"
 #include "RBGame.hpp"
-#include "RBShader3D.hpp"
-#include "stdio.h"
+#include "RBRenderer.hpp"
+#include "RBRenderHelper.hpp"
+
+#include <stdio.h>
 
 // Always define the global g_game in the derived game class
 RBGame* g_game = new Cube();
 
-RBShader* Cube::CreateShader() {
-    return new RBShader3D();
+// Choose a shader here
+void Cube::CreateShader(RBRenderer* renderer) {
+    auto shader = new RBShader2D();
+    renderer->SetShader(shader);
 }
 
 #pragma mark - Render loop

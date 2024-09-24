@@ -17,11 +17,11 @@
 
 #pragma once
 
-#include <RBColor.hpp>
+#include "RBColor.hpp"
+#include "RBMath.hpp"
 
 #include <EGL/egl.h>
 #include <GLES3/gl3.h>
-#include <RBMath.hpp>
 
 class RBShader {
 public:

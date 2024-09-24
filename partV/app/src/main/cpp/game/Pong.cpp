@@ -16,9 +16,11 @@
 //
 
 #include "Pong.hpp"
-#include "RBRenderHelper.hpp"
 #include "RBGame.hpp"
-#include "stdio.h"
+#include "RBRenderer.hpp"
+#include "RBRenderHelper.hpp"
+
+#include <stdio.h>
 
 #define kBALL_SIZE 8.0f
 #define kBALL_SPEED 300.0f
@@ -30,8 +32,10 @@
 // Always define the global g_game in the derived game class
 RBGame* g_game = new Pong();
 
-RBShader* Pong::CreateShader() {
-    return new RBShader2D();
+// Choose a shader here
+void Pong::CreateShader(RBRenderer* renderer) {
+    auto shader = new RBShader2D();
+    renderer->SetShader(shader);
 }
 
 #pragma mark - Render loop
