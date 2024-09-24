@@ -16,16 +16,14 @@
 //
 
 #include <RBRenderHelper.hpp>
+#include <RBRender.hpp>
 
 #include <ctype.h>
-
 #include <EGL/egl.h>
 #include <GLES/gl.h>
 #include <GLES2/gl2.h>
 
-// TODO: Must be part of shader later
-// extern GLuint gPosition;
-GLuint gPosition;
+extern RBRender* gRender;
 
 // -----------------------------------------------------------------------------
 #pragma mark - Render (colored) rectangles
@@ -231,16 +229,10 @@ void RBDrawString(float x , float y , std::string str, RBColor color) {
 #pragma mark - OpenGL Helper method
 
 void RBDrawRect(float x, float y, float width, float height, RBColor color) {
-    GLfloat vertices[] = {
-        x,       y+height, 0.0f, // Upper left
-        x+width, y+height, 0.0f, // Upper right
-        x,       y,        0.0f, // Lower left
-        x+width, y,        0.0f, // Lower right
-    };
+    if (gRender == nullptr) return;
+    if (gRender->GetShader() == nullptr) return;
 
-    glVertexAttribPointer(gPosition, 3, GL_FLOAT, GL_FALSE, 0, vertices);
-    glEnableVertexAttribArray(gPosition);
-    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+    gRender->GetShader()->DrawRectangle(x, y, width, height, color);
 }
 
 void RBEnable2D(float width, float height) {

@@ -15,10 +15,12 @@
 //  Feel free to use the code in the way you want :)
 //
 
+#pragma once
+
+#include <RBColor.hpp>
+
 #include <EGL/egl.h>
 #include <GLES3/gl3.h>
-
-#pragma once
 
 class RBShader {
 public:
@@ -29,6 +31,7 @@ public:
     bool Activate();
 
     void MapScreenSize(int width, int height);
+    void DrawRectangle(float x, float y, float width, float height, RBColor color);
 
 protected:
     GLint AssignAttribute(char* name);

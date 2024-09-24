@@ -32,6 +32,7 @@ public:
     void RenderFrame();
     void HandleInput();
     void UserInput(int tag, int down, int x, int y);
+
     RBShader* GetShader() { return m_shader; }
     void SetShader(RBShader* shader) { m_shader = shader; }
 

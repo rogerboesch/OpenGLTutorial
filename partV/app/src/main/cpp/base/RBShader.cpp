@@ -106,11 +106,6 @@ void RBShader::MapUniform(GLint parameter, int value) {
     glUniform1f(parameter, value);
 }
 
-void RBShader::MapScreenSize(int width, int height) {
-    MapUniform(m_gl_width, width);
-    MapUniform(m_gl_height, height);
-}
-
 void RBShader::MapProjectionMatrix(RBMat4x4 matrix) {
     glUniformMatrix4fv(m_gl_projection, 1, GL_FALSE, (GLfloat*)&matrix.m[0]);
 }
@@ -122,10 +117,9 @@ bool RBShader::Create(const char* pVertexSource, const char* pFragmentSource) {
         return false;
     }
 
-    m_gl_position = AssignAttribute("vPosition");
-    m_gl_width = AssignUniform("fWidth");
-    m_gl_height = AssignUniform("fHeight");
-    m_gl_projection = AssignUniform("projection");
+    m_gl_position = AssignAttribute("vertexPosition");
+    m_gl_color = AssignAttribute("vertexColor");
+    m_gl_projection = AssignUniform("projectionMatrix");
 
     return true;
 }
@@ -138,4 +132,17 @@ bool RBShader::Activate() {
     glUseProgram(m_gl_program);
 
     return true;
+}
+
+void RBShader::DrawRectangle(float x, float y, float width, float height, RBColor color) {
+    GLfloat vertices[] = {
+            x,       y+height, 0.0f, // Upper left
+            x+width, y+height, 0.0f, // Upper right
+            x,       y,        0.0f, // Lower left
+            x+width, y,        0.0f, // Lower right
+    };
+
+    glVertexAttribPointer(m_gl_position, 3, GL_FLOAT, GL_FALSE, 0, vertices);
+    glEnableVertexAttribArray(m_gl_position);
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }

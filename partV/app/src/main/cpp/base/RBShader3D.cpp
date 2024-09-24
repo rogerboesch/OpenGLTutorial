@@ -19,19 +19,22 @@
 #include <cstdlib>
 
 auto gVertexShader3D =
-        "attribute vec3 coordinate;\n"
-        "uniform mat4 projection;\n"
-        "uniform vec4 color;\n"
+    "attribute vec4 vertexPosition;\n"
+    "attribute vec3 vertexColor;\n"
+    "uniform mat4 projectionMatrix;\n"
+    "varying highp vec3 color;\n"
 
-        "void main(void) {\n"
-        "  gl_Position =  projection * vec4(coordinate, 1);\n"
-        "}\n";
+    "void main() {\n"
+    " gl_Position = projectionMatrix * vertexPosition;\n"
+    " color = vertexColor;\n"
+    "}\n";
 
 auto gFragmentShader3D =
-        "precision mediump float;\n"
-        "void main() {\n"
-        "  gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);\n"
-        "}\n";
+"varying lowp vec3 color;\n"
+
+"void main() {\n"
+" gl_FragColor = vec4(color, 1);\n"
+"}\n";
 
 RBShader3D::RBShader3D()  {
     Create(gVertexShader3D, gFragmentShader3D);

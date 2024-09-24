@@ -39,9 +39,11 @@ aout << std::endl;\
 #define BACKGROUND_COLOR 0.0f / 255.f, 0.0f / 255.f, 0.0f / 255.f, 1
 
 extern RBGame *gGame;
+RBRender* g_renderer = nullptr;
 
 RBRender::RBRender(android_app *app) {
     m_app = app;
+    g_renderer = this;
 
     InitOpenGL();
     CreateShader();
@@ -69,10 +71,8 @@ void RBRender::RenderFrame() {
     if (m_updateProjectionMatrix) {
         m_updateProjectionMatrix = false;
 
-        // Set width and height
+        // TODO: Update projection matrix
         RBVec2D size = gGame->GetGamesSize();
-
-        m_shader->MapScreenSize(size.w, size.h);
     }
 
     gGame->OnUpdate(1.0/60.0);

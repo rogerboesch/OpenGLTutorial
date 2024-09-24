@@ -134,3 +134,16 @@ bool RBShader::Activate() {
 
     return true;
 }
+
+void RBShader::DrawRectangle(float x, float y, float width, float height, RBColor color) {
+    GLfloat vertices[] = {
+            x,       y+height, 0.0f, // Upper left
+            x+width, y+height, 0.0f, // Upper right
+            x,       y,        0.0f, // Lower left
+            x+width, y,        0.0f, // Lower right
+    };
+
+    glVertexAttribPointer(m_gl_position, 3, GL_FLOAT, GL_FALSE, 0, vertices);
+    glEnableVertexAttribArray(m_gl_position);
+    glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+}

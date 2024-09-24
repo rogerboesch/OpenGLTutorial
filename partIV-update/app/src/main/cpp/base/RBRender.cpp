@@ -39,9 +39,11 @@ aout << std::endl;\
 #define BACKGROUND_COLOR 0.0f / 255.f, 0.0f / 255.f, 0.0f / 255.f, 1
 
 extern RBGame *gGame;
+RBRender* gRender = nullptr;
 
 RBRender::RBRender(android_app *app) {
     m_app = app;
+    gRender = this;
 
     InitOpenGL();
     CreateShader();
