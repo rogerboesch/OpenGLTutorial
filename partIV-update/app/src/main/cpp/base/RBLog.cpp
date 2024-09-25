@@ -20,17 +20,17 @@
 #include <android/log.h>
 
 void rb_message(const char* msg, int severity) {
-	__android_log_print(severity == 1 ? ANDROID_LOG_ERROR : ANDROID_LOG_INFO, (const char*)"rblog", "%s", msg);
+	__android_log_print(severity == 1 ? ANDROID_LOG_ERROR : ANDROID_LOG_DEBUG, (const char*)"rblog", "%s", msg);
 }
 
 void rb_message_str1(const char* msg, const char* str1, int severity) {
-	__android_log_print(severity == 1 ? ANDROID_LOG_ERROR : ANDROID_LOG_INFO,  (const char*)"rblog", "%s: %s", msg, str1);
+	__android_log_print(severity == 1 ? ANDROID_LOG_ERROR : ANDROID_LOG_DEBUG,  (const char*)"rblog", "%s: %s", msg, str1);
 }
 
 void rb_message_num1(const char* msg, int num1, int severity) {
-	__android_log_print(severity == 1 ? ANDROID_LOG_ERROR : ANDROID_LOG_INFO, (const char*)"rblog", "%s: %d", msg, num1);
+	__android_log_print(severity == 1 ? ANDROID_LOG_ERROR : ANDROID_LOG_DEBUG, (const char*)"rblog", "%s: %d", msg, num1);
 }
 
 void rb_message_trace(const char* clazz, const char* function, int severity) {
-    __android_log_print(severity == 1 ? ANDROID_LOG_ERROR : ANDROID_LOG_INFO, (const char*)"rblog", "%s::%s()", clazz, function);
+    __android_log_print(severity == 1 ? ANDROID_LOG_ERROR : ANDROID_LOG_DEBUG, (const char*)"rblog", "%s::%s()", clazz, function);
 }

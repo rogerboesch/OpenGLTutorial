@@ -24,14 +24,20 @@
 static auto gVertexShader =
         "attribute vec4 vertexPosition;\n"
         "uniform mat4 projectionMatrix;\n"
+        "attribute vec4 vertexColor;\n"
+        "varying vec4 v_color;\n"
 
         "void main() {\n"
+        "  v_color = vertexColor;"
         "  gl_Position = vertexPosition * projectionMatrix;\n"
         "}\n";
 
 static auto gFragmentShader =
+        "precision mediump float;\n"
+        "varying vec4 v_color;\n"
+
         "void main() {\n"
-        "  gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);\n"
+        "  gl_FragColor = v_color;\n"
         "}\n";
 
 GLuint RBShader::LoadShader(GLenum shaderType, const char* pSource) {
@@ -66,7 +72,6 @@ GLuint RBShader::LoadShader(GLenum shaderType, const char* pSource) {
         }
     }
 
-    RBLOG("Shader loaded");
     return shader;
 }
 
@@ -77,12 +82,18 @@ GLuint RBShader::CreateProgram(const char* pVertexSource, const char* pFragmentS
         RBERROR("Error loading VERTEX shader");
         return 0;
     }
+    else {
+        RBLOG("VERTEX shader loaded");
+    }
 
     GLuint fragmentShader = LoadShader(GL_FRAGMENT_SHADER, pFragmentSource);
 
     if (!fragmentShader) {
         RBERROR("Error loading FRAGMENT shader");
         return 0;
+    }
+    else {
+        RBLOG("FRAGMENT shader loaded");
     }
 
     GLuint program = glCreateProgram();
@@ -155,9 +166,14 @@ bool RBShader::Create() {
 
     m_gl_position = AssignAttribute("vertexPosition");
     m_gl_color = AssignAttribute("vertexColor");
-    m_gl_width = AssignUniform("fWidth");
-    m_gl_height = AssignUniform("fHeight");
     m_gl_projection = AssignUniform("projectionMatrix");
+
+    if (m_gl_color == -1 || m_gl_position == -1 || m_gl_projection == -1) {
+        RBERROR("Not all attributes/uniforms mapped");
+    }
+    else {
+        RBLOG("All attributes/uniforms mapped");
+    }
 
     return true;
 }
@@ -173,8 +189,6 @@ bool RBShader::Activate() {
 }
 
 void RBShader::DrawRectangle(float x, float y, float width, float height, RBColor color) {
-    MapColor(color);
-
     GLfloat vertices[] = {
             x,       y+height, 0.0f, // Upper left
             x+width, y+height, 0.0f, // Upper right
