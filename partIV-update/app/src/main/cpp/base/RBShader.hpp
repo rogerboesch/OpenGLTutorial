@@ -33,13 +33,13 @@ public:
 
     void MapScreenSize(int width, int height);
     void MapProjectionMatrix(RBMat4x4 matrix);
+    void MapColor(RBColor color);
 
     void DrawRectangle(float x, float y, float width, float height, RBColor color);
 
 protected:
     GLint AssignAttribute(char* name);
     GLint AssignUniform(char* name);
-    void MapUniform(GLint parameter, int value);
 
 private:
     GLuint CreateProgram(const char* pVertexSource, const char* pFragmentSource);
@@ -49,6 +49,7 @@ private:
     GLuint m_gl_program = -1;
     GLint m_gl_position = -1;
     GLint m_gl_projection = -1;
+    GLint m_gl_color = -1;
     GLint m_gl_width = -1;
     GLint m_gl_height = -1;
 };

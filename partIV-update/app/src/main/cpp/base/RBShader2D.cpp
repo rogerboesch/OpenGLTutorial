@@ -15,13 +15,12 @@
 //  Feel free to use the code in the way you want :)
 //
 
-#include <RBShader2D.hpp>
+#include "RBShader2D.hpp"
+
 #include <cstdlib>
 
 auto gVertexShader =
         "attribute vec4 vertexPosition;\n"
-        "uniform float fWidth;\n"
-        "uniform float fHeight;\n"
         "uniform mat4 projectionMatrix;\n"
 
         "void main() {\n"
@@ -29,7 +28,6 @@ auto gVertexShader =
         "}\n";
 
 auto gFragmentShader =
-        "precision mediump float;\n"
         "void main() {\n"
         "  gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);\n"
         "}\n";

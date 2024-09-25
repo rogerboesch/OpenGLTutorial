@@ -15,26 +15,12 @@
 //  Feel free to use the code in the way you want :)
 //
 
+#include "RBGame.hpp"
+#include "RBRenderer.hpp"
+#include "RBLog.hpp"
+
 #include <game-activity/native_app_glue/android_native_app_glue.h>
 #include <math.h>
-
-#include <RBGame.hpp>
-#include <RBRenderer.hpp>
-
-#include "AndroidOut.h"
-
-#define PRINT_GL_STRING(s) {aout << #s": "<< glGetString(s) << std::endl;}
-#define PRINT_GL_STRING_AS_LIST(s) { \
-std::istringstream extensionStream((const char *) glGetString(s));\
-std::vector<std::string> extensionList(\
-        std::istream_iterator<std::string>{extensionStream},\
-        std::istream_iterator<std::string>());\
-aout << #s":\n";\
-for (auto& extension: extensionList) {\
-    aout << extension << "\n";\
-}\
-aout << std::endl;\
-}
 
 #define BACKGROUND_COLOR 0.0f / 255.f, 0.0f / 255.f, 0.0f / 255.f, 1
 
@@ -126,14 +112,17 @@ void RBRenderer::UserInput(int tag, int down, int x, int y) {
 void RBRenderer::ClearOpenGL() {
     if (m_display != EGL_NO_DISPLAY) {
         eglMakeCurrent(m_display, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT);
+
         if (m_context != EGL_NO_CONTEXT) {
             eglDestroyContext(m_display, m_context);
             m_context = EGL_NO_CONTEXT;
         }
+
         if (m_surface != EGL_NO_SURFACE) {
             eglDestroySurface(m_display, m_surface);
             m_surface = EGL_NO_SURFACE;
         }
+
         eglTerminate(m_display);
         m_display = EGL_NO_DISPLAY;
     }
@@ -176,15 +165,20 @@ void RBRenderer::InitOpenGL() {
                     && eglGetConfigAttrib(display, config, EGL_BLUE_SIZE, &blue)
                     && eglGetConfigAttrib(display, config, EGL_DEPTH_SIZE, &depth)) {
 
-                    aout << "Found config with " << red << ", " << green << ", " << blue << ", "
-                         << depth << std::endl;
+                    char msg[1024];
+                    sprintf(msg, "Found config with %d,%d,%d (%d)", red, blue, green, depth);
+                    RBLOG(msg);
+
                     return red == 8 && green == 8 && blue == 8 && depth == 24;
                 }
+
+                RBERROR("Error getting display config");
                 return false;
             });
 
-    aout << "Found " << numConfigs << " configs" << std::endl;
-    aout << "Chose " << config << std::endl;
+    char msg[1024];
+    sprintf(msg, "Found %d configs", numConfigs);
+    RBLOG(msg);
 
     // create the proper window surface
     EGLint format;
@@ -206,11 +200,6 @@ void RBRenderer::InitOpenGL() {
     // make width and height invalid so it gets updated in the first frame
     m_width = -1;
     m_height = -1;
-
-    PRINT_GL_STRING(GL_VENDOR);
-    PRINT_GL_STRING(GL_RENDERER);
-    PRINT_GL_STRING(GL_VERSION);
-    PRINT_GL_STRING_AS_LIST(GL_EXTENSIONS);
 }
 
 void RBRenderer::UpdateRenderArea() {
@@ -233,6 +222,10 @@ void RBRenderer::UpdateRenderArea() {
 
         // make sure that we lazily recreate the projection matrix before we render
         m_updateProjectionMatrix = true;
+
+        char msg[1024];
+        sprintf(msg, "Screen changed to %d x %d", width, height);
+        RBLOG(msg)
     }
 }
 
@@ -255,13 +248,11 @@ void RBRenderer::HandleInput() {
         // Find the pointer index, mask and bitshift to turn it into a readable value
         auto pointerIndex = (action & AMOTION_EVENT_ACTION_POINTER_INDEX_MASK)
                 >> AMOTION_EVENT_ACTION_POINTER_INDEX_SHIFT;
-        aout << "Pointer " << pointerIndex << ":";
 
         // get the x and y position of this event
         auto &pointer = motionEvent.pointers[pointerIndex];
         auto x = GameActivityPointerAxes_getX(&pointer);
         auto y = GameActivityPointerAxes_getY(&pointer);
-        aout << "(" << x << ", " << y << ") ";
 
         // Only consider touchscreen events, like touches
         auto actionMasked = action & AINPUT_SOURCE_TOUCHSCREEN;
@@ -270,19 +261,18 @@ void RBRenderer::HandleInput() {
         switch (actionMasked) {
             case AMOTION_EVENT_ACTION_DOWN:
             case AMOTION_EVENT_ACTION_POINTER_DOWN:
-                aout << "Pointer Down";
+                RBLOG("Pointer down");
                 break;
 
             case AMOTION_EVENT_ACTION_UP:
             case AMOTION_EVENT_ACTION_POINTER_UP:
-                aout << "Pointer Up";
+                RBLOG("Pointer up");
                 break;
 
             default:
-                aout << "Pointer Move";
+                RBLOG("Pointer move");
+                break;
         }
-
-        aout << std::endl;
     }
 
     // clear inputs, be careful as this will clear it for anyone listening to these events

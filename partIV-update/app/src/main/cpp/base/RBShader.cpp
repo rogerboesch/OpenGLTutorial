@@ -17,6 +17,7 @@
 
 #include "RBShader.hpp"
 #include "RBMath.hpp"
+#include "RBLog.hpp"
 
 #include <cstdlib>
 
@@ -38,15 +39,21 @@ GLuint RBShader::LoadShader(GLenum shaderType, const char* pSource) {
 
                 if (buf) {
                     glGetShaderInfoLog(shader, infoLen, NULL, buf);
+
+                    RBERROR(buf);
+
                     free(buf);
                 }
 
                 glDeleteShader(shader);
                 shader = 0;
+
+                return 0;
             }
         }
     }
 
+    RBLOG("Shader loaded");
     return shader;
 }
 
@@ -54,12 +61,14 @@ GLuint RBShader::CreateProgram(const char* pVertexSource, const char* pFragmentS
     GLuint vertexShader = LoadShader(GL_VERTEX_SHADER, pVertexSource);
 
     if (!vertexShader) {
+        RBERROR("Error loading VERTEX shader");
         return 0;
     }
 
-    GLuint pixelShader = LoadShader(GL_FRAGMENT_SHADER, pFragmentSource);
+    GLuint fragmentShader = LoadShader(GL_FRAGMENT_SHADER, pFragmentSource);
 
-    if (!pixelShader) {
+    if (!fragmentShader) {
+        RBERROR("Error loading FRAGMENT shader");
         return 0;
     }
 
@@ -67,7 +76,7 @@ GLuint RBShader::CreateProgram(const char* pVertexSource, const char* pFragmentS
 
     if (program) {
         glAttachShader(program, vertexShader);
-        glAttachShader(program, pixelShader);
+        glAttachShader(program, fragmentShader);
         glLinkProgram(program);
         GLint linkStatus = GL_FALSE;
         glGetProgramiv(program, GL_LINK_STATUS, &linkStatus);
@@ -81,14 +90,19 @@ GLuint RBShader::CreateProgram(const char* pVertexSource, const char* pFragmentS
 
                 if (buf) {
                     glGetProgramInfoLog(program, bufLength, NULL, buf);
+                    RBERROR(buf);
+
                     free(buf);
                 }
             }
 
             glDeleteProgram(program);
             program = 0;
+            return 0;
         }
     }
+
+    RBLOG("Program compiled");
 
     return program;
 }
@@ -101,10 +115,6 @@ GLint RBShader::AssignUniform(char* name) {
     return glGetUniformLocation(m_gl_program, name);
 }
 
-void RBShader::MapUniform(GLint parameter, int value) {
-    glUniform1f(parameter, value);
-}
-
 void RBShader::MapScreenSize(int width, int height) {
     RBMat4x4 mat = {2.0f/width, 0.0f, 0.0f, -1.0f,
                     0.0f, 2.0f/height, 0.0f, -1.0f,
@@ -114,7 +124,13 @@ void RBShader::MapScreenSize(int width, int height) {
 }
 
 void RBShader::MapProjectionMatrix(RBMat4x4 matrix) {
+    if (m_gl_projection == -1) return;
     glUniformMatrix4fv(m_gl_projection, 1, GL_FALSE, (GLfloat*)&matrix.m[0]);
+}
+
+void RBShader::MapColor(RBColor color) {
+    if (m_gl_color == -1) return;
+    glUniform4f(m_gl_color, color.r, color.g, color.b, color.a);
 }
 
 bool RBShader::Create(const char* pVertexSource, const char* pFragmentSource) {
@@ -124,8 +140,8 @@ bool RBShader::Create(const char* pVertexSource, const char* pFragmentSource) {
         return false;
     }
 
-
     m_gl_position = AssignAttribute("vertexPosition");
+    m_gl_color = AssignAttribute("vertexColor");
     m_gl_width = AssignUniform("fWidth");
     m_gl_height = AssignUniform("fHeight");
     m_gl_projection = AssignUniform("projectionMatrix");
@@ -144,6 +160,8 @@ bool RBShader::Activate() {
 }
 
 void RBShader::DrawRectangle(float x, float y, float width, float height, RBColor color) {
+    MapColor(color);
+
     GLfloat vertices[] = {
             x,       y+height, 0.0f, // Upper left
             x+width, y+height, 0.0f, // Upper right
