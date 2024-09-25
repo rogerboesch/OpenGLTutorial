@@ -65,6 +65,6 @@ RBMat4x4 RBMatrixMakeTranslation(float x, float y, float z);
 RBMat4x4 RBMatrixMultiplyMatrix(RBMat4x4 &m1, RBMat4x4 &m2);
 RBMat4x4 RBMatrixQuickInverse(RBMat4x4 &m);
 
-RBMat4x4 MatrixPointAt(RBVec3D &pos, RBVec3D &target, RBVec3D &up);
-RBMat4x4 MatrixMakeProjection(float fFovDegrees, float fAspectRatio, float fNear, float fFar);
-RBMat4x4 MatrixMakeOrtho(float left, float right, float bottom, float top, float nearZ, float farZ);
+RBMat4x4 RBMatrixPointAt(RBVec3D &pos, RBVec3D &target, RBVec3D &up);
+RBMat4x4 RBMatrixMakeProjection(float fFovDegrees, float fAspectRatio, float fNear, float fFar);
+RBMat4x4 RBMatrixMakeOrtho(float left, float right, float bottom, float top, float nearZ, float farZ);

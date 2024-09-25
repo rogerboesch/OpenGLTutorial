@@ -27,7 +27,7 @@ public:
     RBGameActor(RBVec3D position, RBVec3D size);
 
     virtual void Update(float delay);
-    virtual void Render(RBShader* shader, RBMat4x4 projectionMatrix);
+    virtual void Render(RBShader* shader, RBMat4x4 projectionMatrix) {}
 
     virtual bool TestCollisionAABB(RBGameActor* actor);
 

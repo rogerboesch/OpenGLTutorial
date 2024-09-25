@@ -26,7 +26,6 @@ void RBGame::AddActor(RBGameActor *object) {
 
 RBGame::RBGame() {
     m_actors = new std::vector<RBGameActor*>();
-    m_projectionMatrix = RBMatrixMakeIdentity();
 }
 
 void RBGame::OnKey(KeyType key, bool pressed) {
@@ -55,9 +54,9 @@ void RBGame::OnRender() {
     auto shader = m_renderer->GetShader();
     if (shader == nullptr) return;
 
-    Render(shader, m_projectionMatrix);
+    Render(shader, m_renderer->GetProjectionMatrix());
     
     for (auto i: *m_actors) {
-        i->Render(shader, m_projectionMatrix);
+        i->Render(shader, m_renderer->GetProjectionMatrix());
     }
 }

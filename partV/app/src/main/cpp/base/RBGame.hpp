@@ -68,6 +68,5 @@ private:
     std::vector<RBGameActor*> *m_actors = nullptr;
     std::array<bool, 8> m_keyState;
     RBRenderer* m_renderer = nullptr;
-    RBMat4x4 m_projectionMatrix;
 };
 

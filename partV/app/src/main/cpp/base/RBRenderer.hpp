@@ -18,6 +18,7 @@
 #pragma once
 
 #include "RBShader.hpp"
+#include "RBMath.hpp"
 
 #include <EGL/egl.h>
 #include <GLES3/gl3.h>
@@ -36,7 +37,8 @@ public:
 
     RBShader* GetShader() { return m_shader; }
     void SetShader(RBShader* shader) { m_shader = shader; }
-
+    RBMat4x4 GetProjectionMatrix() { return m_projectionMatrix; }
+    
 private:
     void InitOpenGL();
     void ClearOpenGL();
@@ -54,4 +56,5 @@ private:
     bool m_updateProjectionMatrix = false;
 
     RBShader* m_shader = nullptr;
+    RBMat4x4 m_projectionMatrix;
 };

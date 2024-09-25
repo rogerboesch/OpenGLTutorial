@@ -30,6 +30,7 @@ RBRenderer* g_renderer = nullptr;
 RBRenderer::RBRenderer(android_app *app) {
     m_app = app;
     g_renderer = this;
+    m_projectionMatrix = RBMatrixMakeIdentity();
 
     InitOpenGL();
 
@@ -57,8 +58,8 @@ void RBRenderer::RenderFrame() {
     if (m_updateProjectionMatrix) {
         m_updateProjectionMatrix = false;
 
-        // TODO: Update projection matrix
         RBVec2D size = g_game->GetGamesSize();
+        m_projectionMatrix = RBMatrixMakeOrtho(0, size.w, 0, size.h, 0.0f, 1.0f);
     }
 
     g_game->OnUpdate(1.0 / 60.0);

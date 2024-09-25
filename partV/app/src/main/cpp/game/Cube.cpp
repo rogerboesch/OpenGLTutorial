@@ -45,4 +45,6 @@ void Cube::Update(float delay) {
 void Cube::Render(RBShader* shader, RBMat4x4 projectionMatrix) {
     RBShader::ClearScreen(RBColorWhite);
     RBShader::EnableBlending();
+
+    shader->DrawRectangle(0, 0, 100, 100, RBColorBlack);
 }

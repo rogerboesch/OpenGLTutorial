@@ -49,10 +49,6 @@ void RBGameActor::Update(float delay) {
     m_rotation.z += m_rotationSpeed.z * delay;
 }
 
-void RBGameActor::Render(RBShader* shader, RBMat4x4 projectionMatrix) {
-    // TODO: Render cube later: shader->DrawRectangle(m_transform, m_scale, m_color);
-}
-
 bool RBGameActor::TestCollisionAABB(RBGameActor* actor) {
     RBVec3D myPosition = GetPosition();
     RBVec3D otherPosition = actor->GetPosition();
