@@ -1,5 +1,5 @@
 //
-//  RBRender.hpp
+//  RBRenderer.hpp
 //
 //  The OpenGL Tutorial
 //  This code was written as part of a tutorial at https://medium.com/@rogerboesch/
@@ -23,10 +23,10 @@
 
 struct android_app;
 
-class RBRender {
+class RBRenderer {
 public:
-    RBRender(android_app *app);
-    ~RBRender();
+    RBRenderer(android_app *app);
+    ~RBRenderer();
 
 public:
     void RenderFrame();
