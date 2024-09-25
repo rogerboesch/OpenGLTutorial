@@ -60,8 +60,8 @@ public:
     void AddActor(RBGameActor *object);
 
 protected:
-    virtual void Update(float delay) {}
-    virtual void Render(RBShader* shader, RBMat4x4 projectionMatrix) {}
+    virtual void Update(float delay) = 0;
+    virtual void Render(RBShader* shader, RBMat4x4 projectionMatrix) = 0;
 
 private:
     RBVec2D m_gameSize;

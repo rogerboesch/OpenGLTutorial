@@ -27,7 +27,7 @@ public:
 
 protected:
     virtual void Update(float delay);
-    virtual void Render();
+    virtual void Render(RBShader* shader, RBMat4x4 projectionMatrix);
 
 private:
     RBPrimitive* m_cube;

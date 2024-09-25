@@ -19,7 +19,7 @@
 #include "RBGame.hpp"
 #include "RBRenderer.hpp"
 #include "RBRenderHelper.hpp"
-#include "RBShader2D.hpp"
+#include "RBShader3D.hpp"
 
 #include <stdio.h>
 
@@ -28,7 +28,7 @@ RBGame* g_game = new Cube();
 
 // Choose a shader here
 void Cube::CreateShader(RBRenderer* renderer) {
-    auto shader = new RBShader2D();
+    auto shader = new RBShader3D();
     renderer->SetShader(shader);
 }
 
@@ -42,7 +42,7 @@ void Cube::CreateContent() {
 void Cube::Update(float delay) {
 }
 
-void Cube::Render() {
+void Cube::Render(RBShader* shader, RBMat4x4 projectionMatrix) {
     RBShader::ClearScreen(RBColorWhite);
     RBShader::EnableBlending();
 }
