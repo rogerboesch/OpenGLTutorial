@@ -44,7 +44,7 @@ RBRenderer::~RBRenderer() {
 // Game loop
 
 void RBRenderer::RenderFrame() {
-    m_shader->Activate();
+    m_shader->Activate(true);
 
     glClearColor(BACKGROUND_COLOR);
     glClear(GL_COLOR_BUFFER_BIT);
@@ -58,7 +58,13 @@ void RBRenderer::RenderFrame() {
     if (m_updateProjectionMatrix) {
         m_updateProjectionMatrix = false;
 
+        // TODO: Check
         RBVec2D size = g_game->GetGamesSize();
+        float aspectRatio = size.w / std::max(1.0f, size.h);
+        RBMat4x4 transform = RBMatrixMakeIdentity();
+        RBMat4x4 perspective = RBMatrixMakeProjection(45.0, aspectRatio, 0.0f, 1.0f);
+        m_projectionMatrix = RBMatrixMultiplyMatrix(transform, perspective);
+
         m_projectionMatrix = RBMatrixMakeOrtho(0, size.w, 0, size.h, 0.0f, 1.0f);
     }
 

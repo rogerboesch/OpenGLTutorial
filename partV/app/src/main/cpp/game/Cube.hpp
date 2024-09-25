@@ -18,7 +18,7 @@
 #pragma once
 
 #include "RBGame.hpp"
-#include "RBPrimitive.hpp"
+#include "RBCube.hpp"
 
 class Cube : public RBGame {
 public:
@@ -30,5 +30,5 @@ protected:
     virtual void Render(RBShader* shader, RBMat4x4 projectionMatrix);
 
 private:
-    RBPrimitive* m_cube;
+    RBCube* m_cube;
 };

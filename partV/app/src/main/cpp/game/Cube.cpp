@@ -35,7 +35,8 @@ void Cube::CreateShader(RBRenderer* renderer) {
 #pragma mark - Render loop
 
 void Cube::CreateContent() {
-    m_cube = new RBPrimitive();
+    m_cube = new RBCube();
+    m_cube->SetSpeed({1.0, 1.0, 0.0});
     AddActor(m_cube);
 }
 
@@ -44,7 +45,4 @@ void Cube::Update(float delay) {
 
 void Cube::Render(RBShader* shader, RBMat4x4 projectionMatrix) {
     RBShader::ClearScreen(RBColorWhite);
-    RBShader::EnableBlending();
-
-    shader->DrawRectangle(0, 0, 100, 100, RBColorBlack);
 }

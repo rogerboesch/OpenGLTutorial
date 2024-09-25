@@ -1,5 +1,5 @@
 //
-//  RBPrimitive.hpp
+//  RBCube.hpp
 //
 //  The OpenGL Tutorial
 //  This code was written as part of a tutorial at https://medium.com/@rogerboesch/
@@ -21,29 +21,18 @@
 #include "RBShader.hpp"
 #include "RBMath.hpp"
 
-class RBPrimitive : public RBGameActor {
-
-// Types
+class RBCube : public RBGameActor {
 public:
-	typedef enum {
-		Cube = 0,
-	} Shape3D;
-
-public:
-	RBPrimitive();
+	RBCube();
 	
 	virtual void Render(RBShader* shader, RBMat4x4 projectionMatrix);
 
 private:
+	void CreateVAO();
 	void RenderInternal(RBShader*, RBMat4x4 projectionMatrix);
-	GLint CreateVAO(RBShader* shader, GLfloat* vertices, int size);
-	void CreateAllVAOs(RBShader* shader);
 
 // Internal OpenGL related data
 private:
-	static GLint s_cubeVaoID;
-
-private:
-	Shape3D m_shape;
+	static GLuint s_cubeVaoID;
 };
 

@@ -129,7 +129,12 @@ bool RBShader::Create(const char* pVertexSource, const char* pFragmentSource) {
     return true;
 }
 
-bool RBShader::Activate() {
+bool RBShader::Activate(bool activate) {
+    if (!activate) {
+        glUseProgram(0);
+        return true;
+    }
+
     if (m_gl_program == -1) {
         return false;
     }
@@ -152,26 +157,11 @@ void RBShader::DrawRectangle(float x, float y, float width, float height, RBColo
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
 
-void RBShader::DrawVBO(GLint vbo, int count, bool useLines) {
+void RBShader::DrawVAO(GLint vbo, int count) {
+    const unsigned int triangles = 6 * 2;   // Number of triangles rendered
+
     glBindVertexArray(vbo);
-
-    if (useLines) {
-        glDrawArrays(GL_LINES, 0, count);
-    }
-    else {
-        glDrawArrays(GL_TRIANGLE_STRIP, 0, count);
-    }
-
-    glBindVertexArray(0);
-}
-
-void RBShader::Enable2D(float width, float height) {
-    glViewport(0, 0, width, height);
-}
-
-void RBShader::EnableBlending() {
-    glEnable(GL_BLEND);
-    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+    glDrawElements(GL_TRIANGLES, triangles * 1, GL_UNSIGNED_SHORT, NULL);
 }
 
 void RBShader::ClearScreen(RBColor color) {

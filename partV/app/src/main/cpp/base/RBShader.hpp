@@ -29,12 +29,10 @@ public:
     ~RBShader();
 
     bool Create(const char* pVertexSource, const char* pFragmentSource);
-    bool Activate();
+    bool Activate(bool activate);
     void DrawRectangle(float x, float y, float width, float height, RBColor color);
-    void DrawVBO(GLint vbo, int count, bool useLines = false);
+    void DrawVAO(GLint vao, int count);
 
-    static void Enable2D(float width, float height);
-    static void EnableBlending();
     static void ClearScreen(RBColor color);
 
     void ApplyProjectionMatrix(RBMat4x4 matrix);

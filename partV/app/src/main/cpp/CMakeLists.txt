@@ -35,7 +35,7 @@ add_library( # Sets the name of the library.
         base/RBShader.cpp
         base/RBShader2D.cpp
         base/RBShader3D.cpp
-        base/RBPrimitive.cpp
+        base/RBCube.cpp
         base/RBMath.cpp
 
         # Platform files
