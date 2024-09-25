@@ -21,6 +21,19 @@
 
 #include <cstdlib>
 
+static auto gVertexShader =
+        "attribute vec4 vertexPosition;\n"
+        "uniform mat4 projectionMatrix;\n"
+
+        "void main() {\n"
+        "  gl_Position = vertexPosition * projectionMatrix;\n"
+        "}\n";
+
+static auto gFragmentShader =
+        "void main() {\n"
+        "  gl_FragColor = vec4(0.0, 0.0, 0.0, 1.0);\n"
+        "}\n";
+
 GLuint RBShader::LoadShader(GLenum shaderType, const char* pSource) {
     GLuint shader = glCreateShader(shaderType);
 
@@ -133,8 +146,8 @@ void RBShader::MapColor(RBColor color) {
     glUniform4f(m_gl_color, color.r, color.g, color.b, color.a);
 }
 
-bool RBShader::Create(const char* pVertexSource, const char* pFragmentSource) {
-    m_gl_program = CreateProgram(pVertexSource, pFragmentSource);
+bool RBShader::Create() {
+    m_gl_program = CreateProgram(gVertexShader, gFragmentShader);
 
     if (!m_gl_program) {
         return false;

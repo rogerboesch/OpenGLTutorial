@@ -32,14 +32,6 @@
 // Always define the global gGame in the derived game class
 RBGame* gGame = new Pong();
 
-// Test only
-RBShader* s_shader = nullptr;
-
-RBShader* Pong::CreateShader() {
-   s_shader = new RBShader2D();
-   return s_shader;
-}
-
 #pragma mark - Render loop
 
 void Pong::CreateContent() {

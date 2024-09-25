@@ -32,7 +32,6 @@ add_library( # Sets the name of the library.
         base/RBRenderHelper.cpp
         base/RBRenderer.cpp
         base/RBShader.cpp
-        base/RBShader2D.cpp
         base/RBMath.cpp
         base/RBLog.cpp
 

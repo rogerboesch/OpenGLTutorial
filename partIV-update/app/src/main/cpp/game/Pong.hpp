@@ -29,7 +29,6 @@ private:
 
 public:
     virtual void CreateContent();
-    virtual RBShader* CreateShader() ;
 
 private:
     void Reset(int direction);

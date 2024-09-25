@@ -18,7 +18,6 @@
 #pragma once
 
 #include "RBGameObject.hpp"
-#include "RBShader2D.hpp"
 
 #include <vector>
 #include <array>
@@ -47,7 +46,6 @@ public:
     void OnRender();
     void OnKey(KeyType key, bool pressed);
 
-    virtual RBShader* CreateShader() { return nullptr; }
     virtual void CreateContent() {}
 
 public:

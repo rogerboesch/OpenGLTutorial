@@ -230,7 +230,8 @@ void RBRenderer::UpdateRenderArea() {
 }
 
 void RBRenderer::CreateShader() {
-    auto shader = gGame->CreateShader();
+    auto shader = new RBShader();
+    shader->Create();
     m_shader = shader;
 }
 
