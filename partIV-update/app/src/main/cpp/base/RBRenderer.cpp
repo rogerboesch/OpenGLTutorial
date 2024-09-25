@@ -109,6 +109,15 @@ void RBRenderer::UserInput(int tag, int down, int x, int y) {
 
 // OpenGL stuff
 
+void RBRenderer::TestOpenGL() {
+    GLenum err;
+    char msg[1024];
+    while (( err = glGetError()) != GL_NO_ERROR) {
+        sprintf(msg, "OpenGL error: %d", err);
+        RBERROR(msg);
+    }
+}
+
 void RBRenderer::ClearOpenGL() {
     if (m_display != EGL_NO_DISPLAY) {
         eglMakeCurrent(m_display, EGL_NO_SURFACE, EGL_NO_SURFACE, EGL_NO_CONTEXT);

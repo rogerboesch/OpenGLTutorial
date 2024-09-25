@@ -35,6 +35,9 @@ public:
     RBShader* GetShader() { return m_shader; }
     void SetShader(RBShader* shader) { m_shader = shader; }
 
+public:
+    static void TestOpenGL();
+
 private:
     void InitOpenGL();
     void ClearOpenGL();

@@ -155,13 +155,6 @@ void RBShader::MapProjectionMatrix(RBMat4x4 matrix) {
 void RBShader::MapColor(RBColor color) {
     if (m_gl_color == -1) return;
     glUniform4f(m_gl_color, color.r, color.g, color.b, color.a);
-
-    GLenum err;
-    char msg[1024];
-    while (( err = glGetError()) != GL_NO_ERROR) {
-        sprintf(msg, "OpenGL error: %d", err);
-        RBERROR(msg);
-    }
 }
 
 bool RBShader::Create() {
