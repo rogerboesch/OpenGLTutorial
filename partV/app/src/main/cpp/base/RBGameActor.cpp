@@ -22,7 +22,7 @@ RBGameActor::RBGameActor() {
     m_position = { 0 };
     m_rotation = { 0 };
     m_rotationSpeed = { 0 };
-    m_scale = { 1 };
+    m_scale = { 1, 1, 1 };
     m_speed = { 0 };
     m_color = RBColorBlack;
 }

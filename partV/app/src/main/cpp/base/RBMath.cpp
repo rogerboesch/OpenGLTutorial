@@ -100,7 +100,7 @@ RBMat4x4 RBMatrixMakeIdentity() {
 }
 
 RBMat4x4 RBMatrixMakeRotationX(float fAngleRad) {
-    RBMat4x4 matrix = {0 };
+    RBMat4x4 matrix = { 0 };
     matrix.m[0][0] = 1.0f;
     matrix.m[1][1] = cosf(fAngleRad);
     matrix.m[1][2] = sinf(fAngleRad);
@@ -112,7 +112,7 @@ RBMat4x4 RBMatrixMakeRotationX(float fAngleRad) {
 }
 
 RBMat4x4 RBMatrixMakeRotationY(float fAngleRad) {
-    RBMat4x4 matrix = {0 };
+    RBMat4x4 matrix = { 0 };
     matrix.m[0][0] = cosf(fAngleRad);
     matrix.m[0][2] = sinf(fAngleRad);
     matrix.m[2][0] = -sinf(fAngleRad);
@@ -124,7 +124,7 @@ RBMat4x4 RBMatrixMakeRotationY(float fAngleRad) {
 }
 
 RBMat4x4 RBMatrixMakeRotationZ(float fAngleRad) {
-    RBMat4x4 matrix = {0 };
+    RBMat4x4 matrix = { 0 };
     matrix.m[0][0] = cosf(fAngleRad);
     matrix.m[0][1] = sinf(fAngleRad);
     matrix.m[1][0] = -sinf(fAngleRad);
