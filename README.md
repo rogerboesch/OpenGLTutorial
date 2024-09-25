@@ -1,4 +1,4 @@
-# The OpenGL Tutorial
+# The (Multiplaform-) OpenGL Tutorial
 
 ### Introduction
 This tutorial is not about how to create another game engine, but more on how to create simple games on different platforms with almost no changes using OpenGL and C++.
