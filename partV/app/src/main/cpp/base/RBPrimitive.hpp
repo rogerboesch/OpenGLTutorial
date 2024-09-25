@@ -1,5 +1,5 @@
 //
-//  Pong.hpp
+//  RBPrimitive.hpp
 //
 //  The OpenGL Tutorial
 //  This code was written as part of a tutorial at https://medium.com/@rogerboesch/
@@ -17,26 +17,33 @@
 
 #pragma once
 
-#include "RBGame.hpp"
+#include "RBGameActor.hpp"
+#include "RBShader.hpp"
+#include "RBMath.hpp"
 
-class Pong : public RBGame {
-private:
-    RBGameObject* m_ball;
-    RBGameObject* m_paddle1;
-    RBGameObject* m_paddle2;
+class RBPrimitive : public RBGameActor {
 
-    int m_score1;
-    int m_score2;
+// Types
+public:
+	typedef enum {
+		Cube = 0,
+	} Shape3D;
 
 public:
-    virtual void CreateContent();
-    virtual void CreateShader(RBRenderer* renderer) ;
+	RBPrimitive();
+	
+	virtual void Render(RBShader* shader, RBMat4x4 projectionMatrix);
 
 private:
-    void Reset(int direction);
-    void LimitBallSpeed();
+	void RenderInternal(RBShader*, RBMat4x4 projectionMatrix);
+	GLint CreateVAO(RBShader* shader, GLfloat* vertices, int size);
+	void CreateAllVAOs(RBShader* shader);
 
-protected:
-    virtual void Update(float delay);
-    virtual void Render();
+// Internal OpenGL related data
+private:
+	static GLint s_cubeVaoID;
+
+private:
+	Shape3D m_shape;
 };
+

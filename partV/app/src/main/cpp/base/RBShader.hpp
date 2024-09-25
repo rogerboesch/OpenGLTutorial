@@ -31,17 +31,19 @@ public:
     bool Create(const char* pVertexSource, const char* pFragmentSource);
     bool Activate();
     void DrawRectangle(float x, float y, float width, float height, RBColor color);
+    void DrawVBO(GLint vbo, int count, bool useLines = false);
 
     static void Enable2D(float width, float height);
     static void EnableBlending();
     static void ClearScreen(RBColor color);
 
-    void MapProjectionMatrix(RBMat4x4 matrix);
+    void ApplyProjectionMatrix(RBMat4x4 matrix);
+    void ApplyColor(RBColor color);
 
-protected:
-    GLint AssignAttribute(char* name);
-    GLint AssignUniform(char* name);
-    void MapUniform(GLint parameter, int value);
+public:
+    GLint GetAttribute(char* name);
+    GLint GetUniform(char* name);
+    void ApplyUniform(GLint parameter, int value);
 
 private:
     GLuint CreateProgram(const char* pVertexSource, const char* pFragmentSource);

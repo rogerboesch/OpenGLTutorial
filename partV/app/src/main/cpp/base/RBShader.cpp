@@ -95,20 +95,24 @@ GLuint RBShader::CreateProgram(const char* pVertexSource, const char* pFragmentS
     return program;
 }
 
-GLint RBShader::AssignAttribute(char* name) {
+GLint RBShader::GetAttribute(char* name) {
     return glGetAttribLocation(m_gl_program, name);
 }
 
-GLint RBShader::AssignUniform(char* name) {
+GLint RBShader::GetUniform(char* name) {
     return glGetUniformLocation(m_gl_program, name);
 }
 
-void RBShader::MapUniform(GLint parameter, int value) {
+void RBShader::ApplyUniform(GLint parameter, int value) {
     glUniform1f(parameter, value);
 }
 
-void RBShader::MapProjectionMatrix(RBMat4x4 matrix) {
+void RBShader::ApplyProjectionMatrix(RBMat4x4 matrix) {
     glUniformMatrix4fv(m_gl_projection, 1, GL_FALSE, (GLfloat*)&matrix.m[0]);
+}
+
+void RBShader::ApplyColor(RBColor color) {
+    glUniform4f(m_gl_color, color.r, color.g, color.b, color.a);
 }
 
 bool RBShader::Create(const char* pVertexSource, const char* pFragmentSource) {
@@ -118,9 +122,9 @@ bool RBShader::Create(const char* pVertexSource, const char* pFragmentSource) {
         return false;
     }
 
-    m_gl_position = AssignAttribute("vertexPosition");
-    m_gl_color = AssignAttribute("vertexColor");
-    m_gl_projection = AssignUniform("projectionMatrix");
+    m_gl_position = GetAttribute("vertexPosition");
+    m_gl_color = GetAttribute("vertexColor");
+    m_gl_projection = GetUniform("projectionMatrix");
 
     return true;
 }
@@ -146,6 +150,19 @@ void RBShader::DrawRectangle(float x, float y, float width, float height, RBColo
     glVertexAttribPointer(m_gl_position, 3, GL_FLOAT, GL_FALSE, 0, vertices);
     glEnableVertexAttribArray(m_gl_position);
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+}
+
+void RBShader::DrawVBO(GLint vbo, int count, bool useLines) {
+    glBindVertexArray(vbo);
+
+    if (useLines) {
+        glDrawArrays(GL_LINES, 0, count);
+    }
+    else {
+        glDrawArrays(GL_TRIANGLE_STRIP, 0, count);
+    }
+
+    glBindVertexArray(0);
 }
 
 void RBShader::Enable2D(float width, float height) {

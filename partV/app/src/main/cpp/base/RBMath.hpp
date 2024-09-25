@@ -19,6 +19,10 @@
 
 #include <math.h>
 
+#define P_PI 3.14159265358979323846264338327950288
+#define DEG_TO_RAD(angleInDegrees) ((angleInDegrees) * P_PI / 180.0)
+#define RAD_TO_DEG(angleInRadians) ((angleInRadians) * 180.0 / P_PI)
+
 struct RBVec2D {
     union {
         float value[2];

@@ -18,13 +18,17 @@
 #pragma once
 
 #include "RBGame.hpp"
+#include "RBPrimitive.hpp"
 
 class Cube : public RBGame {
 public:
     virtual void CreateContent();
-    virtual void CreateShader(RBRenderer* renderer) ;
+    virtual void CreateShader(RBRenderer* renderer);
 
 protected:
     virtual void Update(float delay);
     virtual void Render();
+
+private:
+    RBPrimitive* m_cube;
 };

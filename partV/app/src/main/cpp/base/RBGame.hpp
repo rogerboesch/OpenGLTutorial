@@ -17,8 +17,8 @@
 
 #pragma once
 
-#include "RBGameObject.hpp"
-#include "RBShader2D.hpp"
+#include "RBGameActor.hpp"
+#include "RBShader.hpp"
 #include "RBMath.hpp"
 
 #include <vector>
@@ -57,16 +57,17 @@ public:
     void SetGameSize(int w, int h) { m_gameSize.w = w; m_gameSize.h = h; }
 
 public:
-    void AddGameObject(RBGameObject *object);
+    void AddActor(RBGameActor *object);
 
 protected:
     virtual void Update(float delay) {}
-    virtual void Render() {}
+    virtual void Render(RBShader* shader, RBMat4x4 projectionMatrix) {}
 
 private:
     RBVec2D m_gameSize;
-    std::vector<RBGameObject*> *m_gameObjects = nullptr;
+    std::vector<RBGameActor*> *m_actors = nullptr;
     std::array<bool, 8> m_keyState;
     RBRenderer* m_renderer = nullptr;
+    RBMat4x4 m_projectionMatrix;
 };
 

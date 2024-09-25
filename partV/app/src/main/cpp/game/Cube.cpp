@@ -19,6 +19,7 @@
 #include "RBGame.hpp"
 #include "RBRenderer.hpp"
 #include "RBRenderHelper.hpp"
+#include "RBShader2D.hpp"
 
 #include <stdio.h>
 
@@ -34,6 +35,8 @@ void Cube::CreateShader(RBRenderer* renderer) {
 #pragma mark - Render loop
 
 void Cube::CreateContent() {
+    m_cube = new RBPrimitive();
+    AddActor(m_cube);
 }
 
 void Cube::Update(float delay) {

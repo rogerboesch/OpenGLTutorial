@@ -16,15 +16,17 @@
 //
 
 #include "RBGame.hpp"
-#include "RBGameObject.hpp"
+#include "RBGameActor.hpp"
 #include "RBRenderHelper.hpp"
+#include "RBRenderer.hpp"
 
-void RBGame::AddGameObject(RBGameObject *object) {
-    m_gameObjects->push_back(object);
+void RBGame::AddActor(RBGameActor *object) {
+    m_actors->push_back(object);
 }
 
 RBGame::RBGame() {
-    m_gameObjects = new std::vector<RBGameObject*>();
+    m_actors = new std::vector<RBGameActor*>();
+    m_projectionMatrix = RBMatrixMakeIdentity();
 }
 
 void RBGame::OnKey(KeyType key, bool pressed) {
@@ -44,15 +46,18 @@ void RBGame::OnInit(RBRenderer* renderer) {
 void RBGame::OnUpdate(float delay) {
     Update(delay);
     
-    for (auto i: *m_gameObjects) {
+    for (auto i: *m_actors) {
         i->Update(delay);
     }
 }
 
 void RBGame::OnRender() {
-    Render();
+    auto shader = m_renderer->GetShader();
+    if (shader == nullptr) return;
+
+    Render(shader, m_projectionMatrix);
     
-    for (auto i: *m_gameObjects) {
-        i->Render();
+    for (auto i: *m_actors) {
+        i->Render(shader, m_projectionMatrix);
     }
 }
