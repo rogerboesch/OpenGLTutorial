@@ -18,7 +18,9 @@
 #include "Pong.hpp"
 #include "RBRenderHelper.hpp"
 #include "RBGame.hpp"
-#include "stdio.h"
+#include "RBMath.hpp"
+
+#include <stdio.h>
 
 #define kBALL_SIZE 8.0f
 #define kBALL_SPEED 300.0f
@@ -30,14 +32,18 @@
 // Always define the global gGame in the derived game class
 RBGame* gGame = new Pong();
 
+// Test only
+RBShader* s_shader = nullptr;
+
 RBShader* Pong::CreateShader() {
-    return new RBShader2D();
+   s_shader = new RBShader2D();
+   return s_shader;
 }
 
 #pragma mark - Render loop
 
 void Pong::CreateContent() {
-    RBVector2 size = GetGamesSize();
+    RBVec2D size = GetGamesSize();
 
     m_score1 = 0;
     m_score2 = 0;
@@ -57,7 +63,7 @@ void Pong::CreateContent() {
 }
 
 void Pong::Update(float delay) {
-    RBVector2 size = GetGamesSize();
+    RBVec2D size = GetGamesSize();
 
     // Paddle 1 control
     if (KeyPressed(keyW)) {
@@ -83,7 +89,7 @@ void Pong::Update(float delay) {
 
     // Ball control
     if (m_paddle1->Collide(m_ball)) {
-        RBVector2 speed = m_ball->GetSpeed();
+        RBVec2D speed = m_ball->GetSpeed();
         speed.x *= -1.1;
         
         float diff = (m_ball->GetCenter().y - m_paddle1->GetCenter().y)*2;
@@ -92,7 +98,7 @@ void Pong::Update(float delay) {
         m_ball->SetSpeed(speed);
     }
     else if (m_paddle2->Collide(m_ball)) {
-        RBVector2 speed = m_ball->GetSpeed();
+        RBVec2D speed = m_ball->GetSpeed();
         speed.x *= -1.1;
 
         float diff = (m_ball->GetCenter().y - m_paddle2->GetCenter().y)*2;
@@ -102,7 +108,7 @@ void Pong::Update(float delay) {
     }
     
     if (m_ball->GetPosition().y <= 0 || m_ball->GetPosition().y >= size.height-m_ball->GetSize().height) {
-        RBVector2 speed = m_ball->GetSpeed();
+        RBVec2D speed = m_ball->GetSpeed();
         speed.y *= -1.1;
         m_ball->SetSpeed(speed);
     }
@@ -124,8 +130,8 @@ void Pong::Update(float delay) {
 void Pong::Render() {
     RBClearScreen(RBColorWhite);
     RBEnableBlending();
-    
-    RBVector2 size = GetGamesSize();
+
+    RBVec2D size = GetGamesSize();
 
     // Draw center
     RBDrawRect(size.width/2-2, 0, 4, size.height, RBColorGrayLight);
@@ -139,7 +145,7 @@ void Pong::Render() {
 #pragma mark - Helper methods
 
 void Pong::Reset(int direction) {
-    RBVector2 size = GetGamesSize();
+    RBVec2D size = GetGamesSize();
 
     m_ball->SetPosition(size.width/2-5, size.height/2-5);
     m_ball->SetSpeed(kBALL_SPEED*direction, 0);
@@ -151,7 +157,7 @@ void Pong::Reset(int direction) {
 }
 
 void Pong::LimitBallSpeed() {
-    RBVector2 speed = m_ball->GetSpeed();
+    RBVec2D speed = m_ball->GetSpeed();
 
     if (speed.x > kBALL_SPEED_MAX) {
         speed.x = kBALL_SPEED_MAX;

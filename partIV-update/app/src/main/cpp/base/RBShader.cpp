@@ -15,11 +15,10 @@
 //  Feel free to use the code in the way you want :)
 //
 
-#include <RBShader.hpp>
-#include <cstdlib>
-RBShader::RBShader() : m_gl_program(-1) {}
+#include "RBShader.hpp"
+#include "RBMath.hpp"
 
-RBShader::~RBShader() {}
+#include <cstdlib>
 
 GLuint RBShader::LoadShader(GLenum shaderType, const char* pSource) {
     GLuint shader = glCreateShader(shaderType);
@@ -107,8 +106,15 @@ void RBShader::MapUniform(GLint parameter, int value) {
 }
 
 void RBShader::MapScreenSize(int width, int height) {
-    MapUniform(m_gl_width, width);
-    MapUniform(m_gl_height, height);
+    RBMat4x4 mat = {2.0f/width, 0.0f, 0.0f, -1.0f,
+                    0.0f, 2.0f/height, 0.0f, -1.0f,
+                    0.0f, 0.0f, -1.0f, 0.0f,
+                    0.0f, 0.0f, 0.0f, 1.0f};
+    MapProjectionMatrix(mat);
+}
+
+void RBShader::MapProjectionMatrix(RBMat4x4 matrix) {
+    glUniformMatrix4fv(m_gl_projection, 1, GL_FALSE, (GLfloat*)&matrix.m[0]);
 }
 
 bool RBShader::Create(const char* pVertexSource, const char* pFragmentSource) {
@@ -118,9 +124,11 @@ bool RBShader::Create(const char* pVertexSource, const char* pFragmentSource) {
         return false;
     }
 
-    m_gl_position = AssignAttribute("vPosition");
+
+    m_gl_position = AssignAttribute("vertexPosition");
     m_gl_width = AssignUniform("fWidth");
     m_gl_height = AssignUniform("fHeight");
+    m_gl_projection = AssignUniform("projectionMatrix");
 
     return true;
 }

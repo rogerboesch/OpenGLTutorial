@@ -15,8 +15,8 @@
 //  Feel free to use the code in the way you want :)
 //
 
-#include <RBRenderHelper.hpp>
-#include <RBRender.hpp>
+#include "RBRenderHelper.hpp"
+#include "RBRender.hpp"
 
 #include <ctype.h>
 #include <EGL/egl.h>
@@ -25,16 +25,12 @@
 
 extern RBRender* gRender;
 
-// -----------------------------------------------------------------------------
-#pragma mark - Render (colored) rectangles
-
-void RBDrawRect(RBVector2 position, RBVector2 size, RBColor color) {
+void RBDrawRect(RBVec2D position, RBVec2D size, RBColor color) {
     RBDrawRect(position.x, position.y, size.width, size.height, color);
 }
 
-// -----------------------------------------------------------------------------
-#pragma mark - Render characters
-    
+// Render characters
+
 //  -     0
 // | |   1 2
 //  -     3
@@ -206,9 +202,6 @@ void RBDrawCharacter(float x ,float y ,char c, RBColor color) {
     }
 }
 
-// -----------------------------    ------------------------------------------------
-#pragma mark - Render string
-
 void RBDrawString(float x , float y , std::string str, RBColor color) {
     for (unsigned i=0; i<str.length(); ++i) {
         char ch = str.at(i);
@@ -225,8 +218,7 @@ void RBDrawString(float x , float y , std::string str, RBColor color) {
     }
 }
 
-// -----------------------------------------------------------------------------
-#pragma mark - OpenGL Helper method
+// OpenGL Helper method
 
 void RBDrawRect(float x, float y, float width, float height, RBColor color) {
     if (gRender == nullptr) return;
@@ -239,7 +231,7 @@ void RBEnable2D(float width, float height) {
     glViewport(0, 0, width, height);
 }
 
-void RBEnable2D(RBVector2 size) {
+void RBEnable2D(RBVec2D size) {
     RBEnable2D(size.width, size.height);
 }
 

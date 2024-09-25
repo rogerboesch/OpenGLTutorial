@@ -27,7 +27,7 @@ struct RBVec2D {
     union {
         float value[2];
         struct { float x, y; };
-        struct { float w, h; };
+        struct { float width, height; };
     };
 };
 

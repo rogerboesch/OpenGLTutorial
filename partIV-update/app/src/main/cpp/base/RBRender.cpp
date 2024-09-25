@@ -72,8 +72,7 @@ void RBRender::RenderFrame() {
         m_updateProjectionMatrix = false;
 
         // Set width and height
-        RBVector2 size = gGame->GetGamesSize();
-
+        RBVec2D size = gGame->GetGamesSize();
         m_shader->MapScreenSize(size.width, size.height);
     }
 
@@ -84,7 +83,7 @@ void RBRender::RenderFrame() {
 }
 
 void RBRender::UserInput(int tag, int down, int x, int y) {
-    RBVector2 size = gGame->GetGamesSize();
+    RBVec2D size = gGame->GetGamesSize();
 
     if (tag == 1) {
         // Left

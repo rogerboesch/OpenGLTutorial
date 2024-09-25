@@ -19,18 +19,13 @@
 #include <cstdlib>
 
 auto gVertexShader =
-        "attribute vec4 vPosition;\n"
+        "attribute vec4 vertexPosition;\n"
         "uniform float fWidth;\n"
         "uniform float fHeight;\n"
+        "uniform mat4 projectionMatrix;\n"
 
         "void main() {\n"
-        "  mat4 projectionMatrix = mat4(2.0/fWidth, 0.0, 0.0, -1.0,\n"
-        "                              0.0, 2.0/fHeight, 0.0, -1.0,\n"
-        "                              0.0, 0.0, -1.0, 0.0,\n"
-        "                              0.0, 0.0, 0.0, 1.0);\n"
-
-        "  gl_Position = vPosition;\n"
-        "  gl_Position *= projectionMatrix;\n"
+        "  gl_Position = vertexPosition * projectionMatrix;\n"
         "}\n";
 
 auto gFragmentShader =

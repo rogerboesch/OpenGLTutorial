@@ -31,7 +31,7 @@ RBGameObject::RBGameObject() {
     m_color = RBColor(1);
 }
 
-RBGameObject::RBGameObject(RBVector2 position, RBVector2 size) {
+RBGameObject::RBGameObject(RBVec2D position, RBVec2D size) {
     m_position = position;
     m_size = size;
 }

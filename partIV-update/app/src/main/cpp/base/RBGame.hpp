@@ -17,11 +17,11 @@
 
 #pragma once
 
+#include "RBGameObject.hpp"
+#include "RBShader2D.hpp"
+
 #include <vector>
 #include <array>
-
-#include <RBGameObject.hpp>
-#include <RBShader2D.hpp>
 
 #define kFRAMES_PER_SECOND 60
 
@@ -52,18 +52,18 @@ public:
 
 public:
     bool KeyPressed(KeyType key) { return m_keyState[key]; }
-    RBVector2& GetGamesSize() { return m_gameSize; }
+    RBVec2D& GetGamesSize() { return m_gameSize; }
     void SetGameSize(int w, int h) { m_gameSize.width = w;m_gameSize.height = h; }
 
 public:
     void AddGameObject(RBGameObject *object);
 
 protected:
-    virtual void Update(float delay) {}
-    virtual void Render() {}
+    virtual void Update(float delay) = 0;
+    virtual void Render() = 0;
 
 private:
-    RBVector2 m_gameSize;
+    RBVec2D m_gameSize;
     std::vector<RBGameObject*> *m_gameObjects = nullptr;
     std::array<bool, 8> m_keyState;
     RBRender* m_render = nullptr;
