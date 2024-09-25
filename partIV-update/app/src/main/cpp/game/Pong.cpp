@@ -134,7 +134,7 @@ void Pong::Render() {
     RBVec2D size = GetGamesSize();
 
     // Draw center
-    RBDrawRect(size.width/2-2, 0, 4, size.height, RBColorGrayLight);
+    RBDrawRect(size.width/2-2, 0, 4, size.height, RBColorBlack);
 
     // Draw HUD
     RBDrawNumber(size.width/2-160, size.height-80, m_score1, RBColorBlack);
