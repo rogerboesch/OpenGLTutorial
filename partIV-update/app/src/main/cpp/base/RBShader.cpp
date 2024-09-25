@@ -24,7 +24,7 @@
 static auto gVertexShader =
         "attribute vec4 vertexPosition;\n"
         "uniform mat4 projectionMatrix;\n"
-        "attribute vec4 vertexColor;\n"
+        "uniform vec4 vertexColor;\n"
         "varying vec4 v_color;\n"
 
         "void main() {\n"
@@ -155,6 +155,13 @@ void RBShader::MapProjectionMatrix(RBMat4x4 matrix) {
 void RBShader::MapColor(RBColor color) {
     if (m_gl_color == -1) return;
     glUniform4f(m_gl_color, color.r, color.g, color.b, color.a);
+
+    GLenum err;
+    char msg[1024];
+    while (( err = glGetError()) != GL_NO_ERROR) {
+        sprintf(msg, "OpenGL error: %d", err);
+        RBERROR(msg);
+    }
 }
 
 bool RBShader::Create() {
@@ -165,7 +172,7 @@ bool RBShader::Create() {
     }
 
     m_gl_position = AssignAttribute("vertexPosition");
-    m_gl_color = AssignAttribute("vertexColor");
+    m_gl_color = AssignUniform("vertexColor");
     m_gl_projection = AssignUniform("projectionMatrix");
 
     if (m_gl_color == -1 || m_gl_position == -1 || m_gl_projection == -1) {
@@ -189,6 +196,8 @@ bool RBShader::Activate() {
 }
 
 void RBShader::DrawRectangle(float x, float y, float width, float height, RBColor color) {
+    MapColor(color);
+
     GLfloat vertices[] = {
             x,       y+height, 0.0f, // Upper left
             x+width, y+height, 0.0f, // Upper right

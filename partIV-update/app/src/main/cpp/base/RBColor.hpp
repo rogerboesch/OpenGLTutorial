@@ -27,3 +27,6 @@ using RBColor = RBVec3D;
 extern RBColor RBColorBlack;
 extern RBColor RBColorWhite;
 extern RBColor RBColorRed;
+extern RBColor RBColorGreen;
+extern RBColor RBColorGrey;
+

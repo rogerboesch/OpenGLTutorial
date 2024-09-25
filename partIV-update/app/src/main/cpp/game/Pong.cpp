@@ -42,7 +42,7 @@ void Pong::CreateContent() {
 
     m_ball = new RBGameObject(size.width/2-kBALL_SIZE/2, size.height/2-kBALL_SIZE/2, kBALL_SIZE, kBALL_SIZE);
     m_ball->SetSpeed(kBALL_SPEED, 0);
-    m_ball->SetColor(RBColorBlack);
+    m_ball->SetColor(RBColorRed);
     AddGameObject(m_ball);
 
     m_paddle1 = new RBGameObject(30, size.height/2-kPADDLE_HEIGHT/2, 10, kPADDLE_HEIGHT);
@@ -126,7 +126,7 @@ void Pong::Render() {
     RBVec2D size = GetGamesSize();
 
     // Draw center
-    RBDrawRect(size.width/2-2, 0, 4, size.height, RBColorBlack);
+    RBDrawRect(size.width/2-2, 0, 4, size.height, RBColorGrey);
 
     // Draw HUD
     RBDrawNumber(size.width/2-160, size.height-80, m_score1, RBColorBlack);

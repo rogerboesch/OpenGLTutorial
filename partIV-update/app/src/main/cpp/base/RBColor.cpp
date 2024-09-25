@@ -19,5 +19,6 @@
 
 RBColor RBColorBlack = {0.0f,0.0f,0.0f,1.0f};
 RBColor RBColorWhite = {1.0f,1.0f,1.0f,1.0f};
-RBColor RBColorGray =  {0.8f,0.8f,0.8f,1.0f};
+RBColor RBColorGrey =  {0.8f,0.8f,0.8f,1.0f};
 RBColor RBColorRed =   {1.0f,0.0f,0.0f,1.0f};
+RBColor RBColorGreen =   {0.0f,1.0f,0.0f,1.0f};
