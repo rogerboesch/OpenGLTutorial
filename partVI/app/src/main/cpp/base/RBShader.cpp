@@ -24,12 +24,13 @@
 static auto gVertexShader =
         "attribute vec4 vertexPosition;\n"
         "uniform mat4 projectionMatrix;\n"
+        "uniform mat4 modelMatrix;\n"
         "uniform vec4 vertexColor;\n"
         "varying vec4 v_color;\n"
 
         "void main() {\n"
         "  v_color = vertexColor;"
-        "  gl_Position = vertexPosition * projectionMatrix;\n"
+        "  gl_Position = projectionMatrix * modelMatrix * vertexPosition;\n"
         "}\n";
 
 static auto gFragmentShader =
@@ -152,6 +153,11 @@ void RBShader::MapProjectionMatrix(RBMat4x4 matrix) {
     glUniformMatrix4fv(m_gl_projection, 1, GL_FALSE, (GLfloat*)&matrix.m[0]);
 }
 
+void RBShader::MapModelMatrix(RBMat4x4 matrix) {
+    if (m_gl_model == -1) return;
+    glUniformMatrix4fv(m_gl_model, 1, GL_FALSE, (GLfloat*)&matrix.m[0]);
+}
+
 void RBShader::MapColor(RBColor color) {
     if (m_gl_color == -1) return;
     glUniform4f(m_gl_color, color.r, color.g, color.b, color.a);
@@ -167,6 +173,7 @@ bool RBShader::Create() {
     m_gl_position = AssignAttribute("vertexPosition");
     m_gl_color = AssignUniform("vertexColor");
     m_gl_projection = AssignUniform("projectionMatrix");
+    m_gl_model = AssignUniform("modelMatrix");
 
     if (m_gl_color == -1 || m_gl_position == -1 || m_gl_projection == -1) {
         RBERROR("Not all attributes/uniforms mapped");
@@ -201,4 +208,52 @@ void RBShader::DrawRectangle(float x, float y, float width, float height, RBColo
     glVertexAttribPointer(m_gl_position, 3, GL_FLOAT, GL_FALSE, 0, vertices);
     glEnableVertexAttribArray(m_gl_position);
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+}
+
+void RBShader::DrawCube(RBVec3D position, RBVec3D rotation, RBVec3D scale, RBColor color) {
+    static const GLfloat verticesCube[] = {
+            -0.5f, 0.5f, 0.5f,     //  0: Front-top-left
+            0.5f, 0.5f, 0.5f,      //  1: Front-top-right
+            -0.5f, -0.5f, 0.5f,    //  2: Front-bottom-left
+            0.5f, -0.5f, 0.5f,     //  3: Front-bottom-right
+            0.5f, -0.5f, -0.5f,    //  4: Back-bottom-right
+            0.5f, 0.5f, 0.5f,      //  5: Front-top-right
+            0.5f, 0.5f, -0.5f,     //  6: Back-top-right
+            -0.5f, 0.5f, 0.5f,     //  7: Front-top-left
+            -0.5f, 0.5f, -0.5f,    //  8: Back-top-left
+            -0.5f, -0.5f, 0.5f,    //  9: Front-bottom-left
+            -0.5f, -0.5f, -0.5f,   // 10: Back-bottom-left
+            0.5f, -0.5f, -0.5f,    // 11: Back-bottom-right
+            -0.5f, 0.5f, -0.5f,    // 12: Back-top-left
+            0.5f, 0.5f, -0.5f      // 13: Back-top-right
+    };
+
+    static const GLubyte indicesCube[] = {
+            2,3,3,1,1,0,0,2,
+            10,11,11,13,13,12,12,10,
+            0,12,2,10,
+            1,13,3,11
+    };
+
+    MapColor(color);
+
+    RBMat4x4 transform = RBMatrixMakeIdentity();
+
+    RBMat4x4 translation = RBMatrixMakeTranslation(position.x, position.y, position.z);
+    RBMat4x4 rotationX = RBMatrixMakeRotationX(rotation.x);
+    RBMat4x4 rotationY = RBMatrixMakeRotationY(rotation.y);
+    RBMat4x4 rotationZ = RBMatrixMakeRotationZ(rotation.z);
+
+    transform = RBMatrixMultiplyMatrix(transform, rotationX);
+    transform = RBMatrixMultiplyMatrix(transform, rotationY);
+    transform = RBMatrixMultiplyMatrix(transform, rotationZ);
+    transform = RBMatrixMultiplyMatrix(transform, translation);
+
+    // TODO: Add scaling
+    MapModelMatrix(transform);
+
+    glVertexAttribPointer(m_gl_position, 3, GL_FLOAT, GL_FALSE, 0, verticesCube);
+    glEnableVertexAttribArray(m_gl_position);
+
+    glDrawElements(GL_LINES, sizeof(indicesCube)/sizeof(GLubyte), GL_UNSIGNED_BYTE, indicesCube);
 }

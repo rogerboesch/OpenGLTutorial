@@ -54,6 +54,7 @@ public:
 public:
     void AddGameObject(RBGameObject *object);
     virtual void CreateContent() = 0;
+    virtual void SizeChanged() = 0;
 
 protected:
     virtual void Update(float delay) = 0;

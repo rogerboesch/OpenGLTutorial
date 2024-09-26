@@ -25,4 +25,9 @@ public:
 protected:
     void Update(float delay) override;
     void Render() override;
+    void SizeChanged() override ;
+
+private:
+    float m_offsetZ = 0.0f;
+    float m_totalTime = 0.0f;
 };
