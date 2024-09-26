@@ -18,15 +18,17 @@
 #pragma  once
 
 void rb_message(const char* msg, int severity);
-void rb_message_str1(const char* msg, int severity);
-void rb_message_num1(const char* msg, int severity);
+void rb_message_str1(const char* msg, char* str1, int severity);
+void rb_message_num1(const char* msg, int num1, int severity);
+void rb_message_2d(const char* msg, float x, float y, int severity);
 void rb_message_trace(const char* clazz, const char* function);
-
-#define RBTRACELOG(clazz, function) rb_message_trace(clazz, function);
 
 #define RBLOG(msg) rb_message(msg, 0);
 #define RBLOG_STR1(msg, str1) rb_message_str1(msg, str1, 0);
 #define RBLOG_NUM1(msg, num1) rb_message_num1(msg, num1, 0);
+
+#define RBLOG_2D(msg, x, y) rb_message_2d(msg, x, y, 0);
+#define RBTRACELOG(clazz, function) rb_message_trace(clazz, function);
 
 #define RBERROR(msg) rb_message(msg, 1);
 #define RBERROR_STR1(msg, str1) rb_message_str1(msg, str1, 1);

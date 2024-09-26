@@ -31,6 +31,10 @@ void rb_message_num1(const char* msg, int num1, int severity) {
 	__android_log_print(severity == 1 ? ANDROID_LOG_ERROR : ANDROID_LOG_DEBUG, (const char*)"rblog", "%s: %d", msg, num1);
 }
 
+void rb_message_2d(const char* msg, float x, float y, int severity) {
+	__android_log_print(severity == 1 ? ANDROID_LOG_ERROR : ANDROID_LOG_DEBUG, (const char*)"rblog", "%s: %f, %f", msg, x, y);
+}
+
 void rb_message_trace(const char* clazz, const char* function, int severity) {
     __android_log_print(severity == 1 ? ANDROID_LOG_ERROR : ANDROID_LOG_DEBUG, (const char*)"rblog", "%s::%s()", clazz, function);
 }

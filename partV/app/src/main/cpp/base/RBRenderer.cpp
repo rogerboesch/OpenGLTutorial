@@ -68,12 +68,12 @@ void RBRenderer::RenderFrame() {
     eglSwapBuffers(m_display, m_surface);
 }
 
-void RBRenderer::UserInput(int tag, int down, int x, int y) {
+void RBRenderer::UserInput(bool left, bool down, float x, float y) {
     RBVec2D size = gGame->GetGamesSize();
 
-    if (tag == 1) {
+    if (left) {
         // Left
-        if (down == 1) {
+        if (down) {
             if (y <= size.height/2) {
                 // Top
                 gGame->OnKey(keyW, true);
@@ -88,9 +88,9 @@ void RBRenderer::UserInput(int tag, int down, int x, int y) {
             gGame->OnKey(keyS, false);
         }
     }
-    else if (tag == 2) {
+    else {
         // Right
-        if (down == 1) {
+        if (down) {
             if (y <= size.height/2) {
                 // Top
                 gGame->OnKey(keyUp, true);
@@ -266,20 +266,24 @@ void RBRenderer::HandleInput() {
         // Only consider touchscreen events, like touches
         auto actionMasked = action & AINPUT_SOURCE_TOUCHSCREEN;
 
+        bool leftSide = x < gGame->GetGamesSize().width/2 ? true: false;
+
         // determine the kind of event it is
         switch (actionMasked) {
             case AMOTION_EVENT_ACTION_DOWN:
             case AMOTION_EVENT_ACTION_POINTER_DOWN:
-                RBLOG("Pointer down");
+                RBLOG_2D("Pointer down", x, y);
+                UserInput(leftSide, true, x, y);
                 break;
 
             case AMOTION_EVENT_ACTION_UP:
             case AMOTION_EVENT_ACTION_POINTER_UP:
-                RBLOG("Pointer up");
+                RBLOG_2D("Pointer up", x, y);
+                UserInput(leftSide, false, x, y);
                 break;
 
             default:
-                RBLOG("Pointer move");
+                RBLOG_2D("Pointer move", x, y);
                 break;
         }
     }
