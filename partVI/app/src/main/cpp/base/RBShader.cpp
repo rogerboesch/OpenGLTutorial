@@ -240,9 +240,9 @@ void RBShader::DrawCube(RBVec3D position, RBVec3D rotation, RBVec3D scale, RBCol
     RBMat4x4 transform = RBMatrixMakeIdentity();
 
     RBMat4x4 translation = RBMatrixMakeTranslation(position.x, position.y, position.z);
-    RBMat4x4 rotationX = RBMatrixMakeRotationX(rotation.x);
-    RBMat4x4 rotationY = RBMatrixMakeRotationY(rotation.y);
-    RBMat4x4 rotationZ = RBMatrixMakeRotationZ(rotation.z);
+    RBMat4x4 rotationX = RBMatrixMakeRotationX(RAD_TO_DEG(rotation.x));
+    RBMat4x4 rotationY = RBMatrixMakeRotationY(RAD_TO_DEG(rotation.y));
+    RBMat4x4 rotationZ = RBMatrixMakeRotationZ(RAD_TO_DEG(rotation.z));
 
     transform = RBMatrixMultiplyMatrix(transform, rotationX);
     transform = RBMatrixMultiplyMatrix(transform, rotationY);

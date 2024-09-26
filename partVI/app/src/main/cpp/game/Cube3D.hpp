@@ -28,6 +28,7 @@ protected:
     void SizeChanged() override ;
 
 private:
-    float m_offsetZ = 0.0f;
+    float m_offsetZ1 = 0.0f;
+    float m_offsetZ2 = 0.0f;
     float m_totalTime = 0.0f;
 };

@@ -54,10 +54,17 @@ void Cube3D::Update(float delay) {
     m_totalTime += delay;
 
     if (KeyPressed(keyW)) {
-        m_offsetZ += 0.15f;
+        m_offsetZ1 += 0.15f;
     }
     else if (KeyPressed(keyS)) {
-        m_offsetZ -= 0.15f;
+        m_offsetZ1 -= 0.15f;
+    }
+
+    if (KeyPressed(keyUp)) {
+        m_offsetZ2 += 0.15f;
+    }
+    else if (KeyPressed(keyDown)) {
+        m_offsetZ2 -= 0.15f;
     }
 }
 
@@ -67,5 +74,9 @@ void Cube3D::Render() {
 
     auto shader = gRender->GetShader();
     shader->Activate();
-    shader->DrawCube({0.0f, 0.0f, -(5.0f+m_offsetZ)}, {0.0f, m_totalTime, 0.0f}, {1.0f,1.0f,1.0f}, RBColorGreen);
+
+    float rotate = m_totalTime * 0.03f;
+
+    shader->DrawCube({-1.5f, 0.0f, -(5.0f+m_offsetZ1)}, {0.0f, -rotate, 0.0f}, {1.0f,1.0f,1.0f}, RBColorRed);
+    shader->DrawCube({1.5f, 0.0f, -(5.0f+m_offsetZ2)}, {0.0f, rotate, 0.0f}, {1.0f,1.0f,1.0f}, RBColorGreen);
 }
