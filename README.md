@@ -13,7 +13,7 @@ I hope you like the tutorial and it brings some light in the different OpenGL ve
 
 
 ### Source Code
-This repository contains the source code for the OpenGL Tutorial which is now on [Medium](https://rogerboesch.medium.com/part-1-opengl-is-apple-killing-it-3508fda24a58)
+This repository contains the source code for the OpenGL Tutorial which is now on [Medium](https://rogerboesch.medium.com/)
 
 
 ### Articles
