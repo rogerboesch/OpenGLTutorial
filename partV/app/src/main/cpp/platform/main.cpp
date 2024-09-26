@@ -29,14 +29,14 @@ extern "C" {
 void handle_cmd(android_app *pApp, int32_t cmd) {
     switch (cmd) {
         case APP_CMD_INIT_WINDOW:
-            pApp->userData = new RBRenderer(pApp);
+            pApp->userData = new RBRenderer(pApp);  // Create renderer
             break;
         case APP_CMD_TERM_WINDOW:
             if (pApp->userData) {
                 //
                 auto *pRenderer = reinterpret_cast<RBRenderer *>(pApp->userData);
                 pApp->userData = nullptr;
-                delete pRenderer;
+                delete pRenderer;   // Destroy renderer
             }
             break;
         default:
@@ -54,19 +54,21 @@ void android_main(struct android_app *pApp) {
     android_poll_source *pSource;
 
     do {
+        // Handle events
         if (ALooper_pollAll(0, nullptr, &events, (void **) &pSource) >= 0) {
             if (pSource) {
                 pSource->process(pApp, pSource);
             }
         }
 
+        // Call renderer
         if (pApp->userData) {
             auto *pRenderer = reinterpret_cast<RBRenderer *>(pApp->userData);
 
-            pRenderer->HandleInput();
-            pRenderer->RenderFrame();
+            pRenderer->HandleInput();   // Handle user input
+            pRenderer->RenderFrame();   // Render a frame
         }
-    } while (!pApp->destroyRequested);
+    } while (!pApp->destroyRequested);  // Quit if requested
 }
 
 }

@@ -248,7 +248,6 @@ void RBRenderer::CreateShader() {
 void RBRenderer::HandleInput() {
     // handle all queued inputs
     for (auto i = 0; i < m_app->motionEventsCount; i++) {
-
         // cache the current event
         auto &motionEvent = m_app->motionEvents[i];
 

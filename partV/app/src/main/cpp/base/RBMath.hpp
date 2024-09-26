@@ -43,6 +43,7 @@ struct RBMat4x4 {
     float m[4][4] = { 0 };
 };
 
+// Vector related functions
 RBVec3D RBVec3DMake(int x, int y, int z);
 RBVec3D RBVec3DAdd(RBVec3D &v1, RBVec3D &v2);
 RBVec3D RBVec3DSub(RBVec3D &v1, RBVec3D &v2);
@@ -55,6 +56,7 @@ RBVec3D RBVec3DCrossProduct(RBVec3D &v1, RBVec3D &v2);
 RBVec3D RBVec3DIntersectPlane(RBVec3D &plane_p, RBVec3D &plane_n, RBVec3D &lineStart, RBVec3D &lineEnd);
 float RBVec3DAngle(RBVec3D& vec1, RBVec3D& vec2);
 
+// Matrix related functions
 RBVec3D RBMatrixMultiplyVector(RBMat4x4 &m, RBVec3D &i);
 RBMat4x4 RBMatrixMakeIdentity();
 RBMat4x4 RBMatrixMakeRotationX(float fAngleRad);
@@ -65,6 +67,7 @@ RBMat4x4 RBMatrixMakeTranslation(float x, float y, float z);
 RBMat4x4 RBMatrixMultiplyMatrix(RBMat4x4 &m1, RBMat4x4 &m2);
 RBMat4x4 RBMatrixQuickInverse(RBMat4x4 &m);
 
+// Projection and Camera Matrix related functions
 RBMat4x4 RBMatrixPointAt(RBVec3D &pos, RBVec3D &target, RBVec3D &up);
 RBMat4x4 RBMatrixMakeProjection(float fFovDegrees, float fAspectRatio, float fNear, float fFar);
 RBMat4x4 RBMatrixMakeOrtho(float left, float right, float bottom, float top, float nearZ, float farZ);
