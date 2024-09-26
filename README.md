@@ -1,4 +1,4 @@
-# The (Multiplaform-) OpenGL Tutorial
+# The (Multiplatform-) OpenGL Tutorial
 
 ### Introduction
 This tutorial is not about how to create another game engine, but more on how to create simple games on different platforms with almost no changes using OpenGL and C++.
@@ -19,6 +19,7 @@ This repository contains the source code for the OpenGL Tutorial which is now on
 ### Articles
 
 - *Article on Medium: Part VI - A 3D game (coming soon)*
+
 - Article on Medium: [Part V - Refectoring: GameActivity and OpenGL ES 3 on Android](https://medium.com/@rogerboesch/the-opengl-tutorial-part-v-eae15f5bf5a0)
 - Article on Medium: [Part IV - Android version](https://rogerboesch.medium.com/the-opengl-tutorial-part-iv-b2e044a21eea)
 - Article on Medium: [Part III - iOS version](https://rogerboesch.medium.com/the-opengl-tutorial-part-iii-47adb24ec32e)
