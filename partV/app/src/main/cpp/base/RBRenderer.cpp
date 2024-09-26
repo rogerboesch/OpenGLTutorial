@@ -264,7 +264,9 @@ void RBRenderer::HandleInput() {
         auto y = GameActivityPointerAxes_getY(&pointer);
 
         // Only consider touchscreen events, like touches
-        auto actionMasked = action & AINPUT_SOURCE_TOUCHSCREEN;
+        // auto actionMasked = action & AINPUT_SOURCE_TOUCHSCREEN;
+        // We use this to also receive AMOTION_EVENT_ACTION_POINTER_UP
+        auto actionMasked = action;
 
         bool leftSide = x < gGame->GetGamesSize().width/2 ? true: false;
 
