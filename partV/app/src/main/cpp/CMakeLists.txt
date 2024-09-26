@@ -7,7 +7,7 @@ cmake_minimum_required(VERSION 3.18.1)
 
 # Declares and names the project.
 
-project("partv")
+project("opengltutorial")
 
 # Creates and names a library, sets it as either STATIC
 # or SHARED, and provides the relative paths to its source code.
@@ -15,7 +15,7 @@ project("partv")
 # Gradle automatically packages shared libraries with your APK.
 
 add_library( # Sets the name of the library.
-        partv
+        opengltutorial
 
         # Sets the library as a shared library.
         SHARED
@@ -61,7 +61,7 @@ find_package(game-activity REQUIRED CONFIG)
 # build script, prebuilt third-party libraries, or system libraries.
 
 target_link_libraries( # Specifies the target library.
-        partv
+        opengltutorial
 
         android
 
@@ -81,4 +81,4 @@ target_link_libraries( # Specifies the target library.
         # included in the NDK.
         ${log-lib})
 
-target_include_directories(partv PRIVATE game base platform)
+target_include_directories(opengltutorial PRIVATE game base platform)

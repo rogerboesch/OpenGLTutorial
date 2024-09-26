@@ -25,7 +25,7 @@ struct android_app;
 
 class RBRenderer {
 public:
-    RBRenderer(android_app *app);
+    explicit RBRenderer(android_app *app);
     ~RBRenderer();
 
 public:

@@ -246,10 +246,16 @@ void RBRenderer::CreateShader() {
 
 // Input handling
 void RBRenderer::HandleInput() {
+    auto *inputBuffer = android_app_swap_input_buffers(m_app);
+    if (!inputBuffer) {
+        // no inputs yet.
+        return;
+    }
+
     // handle all queued inputs
-    for (auto i = 0; i < m_app->motionEventsCount; i++) {
+    for (auto i = 0; i < inputBuffer->motionEventsCount; i++) {
         // cache the current event
-        auto &motionEvent = m_app->motionEvents[i];
+        auto &motionEvent = inputBuffer->motionEvents[i];
 
         // cache the current action
         auto action = motionEvent.action;
@@ -291,5 +297,5 @@ void RBRenderer::HandleInput() {
     }
 
     // clear inputs, be careful as this will clear it for anyone listening to these events
-    android_app_clear_motion_events(m_app);
+    android_app_clear_motion_events(inputBuffer);
 }
