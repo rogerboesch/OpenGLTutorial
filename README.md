@@ -1,7 +1,5 @@
 # The (Multiplatform-) OpenGL Tutorial
 
-### Content
-
 This tutorial is not about creating another game engine but rather about creating simple games on different platforms with almost no changes using OpenGL and C++.
 For that reason, the tutorial describes the boilerplate code needed on every platform and how to create a **2D Game** and, in later chapters, a **3D Game** that contains all the game logic.​​
 
