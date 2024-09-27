@@ -72,11 +72,8 @@ void Cube3D::Render() {
     RBClearScreen(RBColorBlack);
     RBEnableBlending();
 
-    auto shader = gRender->GetShader();
-    shader->Activate();
-
     float rotate = m_totalTime * 0.03f;
 
-    shader->DrawCube({-1.5f, 0.0f, -(5.0f+m_offsetZ1)}, {0.0f, -rotate, 0.0f}, {1.0f,1.0f,1.0f}, RBColorRed);
-    shader->DrawCube({1.5f, 0.0f, -(5.0f+m_offsetZ2)}, {0.0f, rotate, 0.0f}, {1.0f,1.0f,1.0f}, RBColorGreen);
+    RBDrawCube({-1.5f, 0.0f, -(5.0f+m_offsetZ1)}, {0.0f, -rotate, 0.0f}, {1.0f,1.0f,1.0f}, RBColorRed);
+    RBDrawCube({1.5f, 0.0f, -(5.0f+m_offsetZ2)}, {0.0f, rotate, 0.0f}, {1.0f,1.0f,1.0f}, RBColorGreen);
 }

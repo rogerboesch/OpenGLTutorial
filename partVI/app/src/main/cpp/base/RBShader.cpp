@@ -195,14 +195,14 @@ bool RBShader::Activate() {
     return true;
 }
 
-void RBShader::DrawRectangle(float x, float y, float width, float height, RBColor color) {
+void RBShader::DrawRectangle(RBVec2D position, RBVec2D size, RBColor color) {
     MapColor(color);
 
     GLfloat vertices[] = {
-            x,       y+height, 0.0f, // Upper left
-            x+width, y+height, 0.0f, // Upper right
-            x,       y,        0.0f, // Lower left
-            x+width, y,        0.0f, // Lower right
+            position.x,       position.y+size.height, 0.0f,         // Upper left
+            position.x+size.width, position.y+size.height, 0.0f,    // Upper right
+            position.x,       position.y,        0.0f,              // Lower left
+            position.x+size.width, position.y,        0.0f,        // Lower right
     };
 
     glVertexAttribPointer(m_gl_position, 3, GL_FLOAT, GL_FALSE, 0, vertices);

@@ -25,9 +25,9 @@
 
 extern RBRenderer* gRender;
 
-void RBDrawRect(RBVec2D position, RBVec2D size, RBColor color) {
-    RBDrawRect(position.x, position.y, size.width, size.height, color);
-}
+void RBDrawRect(float x, float y, float width, float height, RBColor color);
+void RBDrawNumber(float x , float y , int n, RBColor color);
+void RBDrawCharacter(float x , float y , char c, RBColor color);
 
 // Render characters
 
@@ -202,37 +202,53 @@ void RBDrawCharacter(float x ,float y ,char c, RBColor color) {
     }
 }
 
-void RBDrawString(float x , float y , std::string str, RBColor color) {
+// Draw a string
+
+void RBDrawString(RBVec2D position , std::string str, RBColor color) {
+    float x = position.x;
+
     for (unsigned i=0; i<str.length(); ++i) {
         char ch = str.at(i);
         int num = (int)ch;
         
         if (num >= 30 && num <= 39) {
-            RBDrawNumber(x, y, num, color);
+            RBDrawNumber(position.x, position.y, num, color);
+            RBDrawNumber(position.x, position.y, num, color);
         }
         else {
-            RBDrawCharacter(x, y, ch, color);
+            RBDrawCharacter(x, position.y, ch, color);
         }
         
         x += 40;
     }
 }
 
-// OpenGL Helper method
+// Draw a rectangle
 
-void RBDrawRect(float x, float y, float width, float height, RBColor color) {
+void RBDrawRect(RBVec2D position, RBVec2D size, RBColor color) {
     if (gRender == nullptr) return;
     if (gRender->GetShader() == nullptr) return;
 
-    gRender->GetShader()->DrawRectangle(x, y, width, height, color);
+    gRender->GetShader()->DrawRectangle(position, size, color);
 }
 
-void RBEnable2D(float width, float height) {
-    glViewport(0, 0, width, height);
+void RBDrawRect(float x, float y, float width, float height, RBColor color) {
+    RBDrawRect({x, y}, {width, height}, color);
 }
+
+// Draw a cube
+
+void RBDrawCube(RBVec3D position, RBVec3D rotation, RBVec3D scale, RBColor color) {
+    if (gRender == nullptr) return;
+    if (gRender->GetShader() == nullptr) return;
+
+    gRender->GetShader()->DrawCube(position, rotation, scale, color);
+}
+
+// Helper methods
 
 void RBEnable2D(RBVec2D size) {
-    RBEnable2D(size.width, size.height);
+    glViewport(0, 0, (int)size.width, (int)size.height);
 }
 
 void RBEnableBlending() {

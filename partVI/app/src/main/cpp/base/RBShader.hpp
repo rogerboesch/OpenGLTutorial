@@ -37,7 +37,7 @@ public:
     void MapColor(RBColor color);
 
 public:
-    void DrawRectangle(float x, float y, float width, float height, RBColor color);
+    void DrawRectangle(RBVec2D position, RBVec2D size, RBColor color);
     void DrawCube(RBVec3D position, RBVec3D rotation, RBVec3D scale, RBColor color);
 
 protected:
