@@ -195,6 +195,14 @@ bool RBShader::Activate() {
     return true;
 }
 
+void RBShader::DrawElements(const GLfloat* vertices, const GLubyte* indices, int count) {
+    glVertexAttribPointer(m_gl_position, 3, GL_FLOAT, GL_FALSE, 0, vertices);
+    glEnableVertexAttribArray(m_gl_position);
+
+    glDrawElements(GL_LINES, count, GL_UNSIGNED_BYTE, indices);
+
+}
+
 void RBShader::DrawRectangle(RBVec2D position, RBVec2D size, RBColor color) {
     MapColor(color);
 
@@ -210,50 +218,3 @@ void RBShader::DrawRectangle(RBVec2D position, RBVec2D size, RBColor color) {
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
 
-void RBShader::DrawCube(RBVec3D position, RBVec3D rotation, RBVec3D scale, RBColor color) {
-    static const GLfloat verticesCube[] = {
-            -0.5f, 0.5f, 0.5f,     //  0: Front-top-left
-            0.5f, 0.5f, 0.5f,      //  1: Front-top-right
-            -0.5f, -0.5f, 0.5f,    //  2: Front-bottom-left
-            0.5f, -0.5f, 0.5f,     //  3: Front-bottom-right
-            0.5f, -0.5f, -0.5f,    //  4: Back-bottom-right
-            0.5f, 0.5f, 0.5f,      //  5: Front-top-right
-            0.5f, 0.5f, -0.5f,     //  6: Back-top-right
-            -0.5f, 0.5f, 0.5f,     //  7: Front-top-left
-            -0.5f, 0.5f, -0.5f,    //  8: Back-top-left
-            -0.5f, -0.5f, 0.5f,    //  9: Front-bottom-left
-            -0.5f, -0.5f, -0.5f,   // 10: Back-bottom-left
-            0.5f, -0.5f, -0.5f,    // 11: Back-bottom-right
-            -0.5f, 0.5f, -0.5f,    // 12: Back-top-left
-            0.5f, 0.5f, -0.5f      // 13: Back-top-right
-    };
-
-    static const GLubyte indicesCube[] = {
-            2,3,3,1,1,0,0,2,
-            10,11,11,13,13,12,12,10,
-            0,12,2,10,
-            1,13,3,11
-    };
-
-    MapColor(color);
-
-    RBMat4x4 transform = RBMatrixMakeIdentity();
-
-    RBMat4x4 translation = RBMatrixMakeTranslation(position.x, position.y, position.z);
-    RBMat4x4 rotationX = RBMatrixMakeRotationX(RAD_TO_DEG(rotation.x));
-    RBMat4x4 rotationY = RBMatrixMakeRotationY(RAD_TO_DEG(rotation.y));
-    RBMat4x4 rotationZ = RBMatrixMakeRotationZ(RAD_TO_DEG(rotation.z));
-
-    transform = RBMatrixMultiplyMatrix(transform, rotationX);
-    transform = RBMatrixMultiplyMatrix(transform, rotationY);
-    transform = RBMatrixMultiplyMatrix(transform, rotationZ);
-    transform = RBMatrixMultiplyMatrix(transform, translation);
-
-    // TODO: Add scaling
-    MapModelMatrix(transform);
-
-    glVertexAttribPointer(m_gl_position, 3, GL_FLOAT, GL_FALSE, 0, verticesCube);
-    glEnableVertexAttribArray(m_gl_position);
-
-    glDrawElements(GL_LINES, sizeof(indicesCube)/sizeof(GLubyte), GL_UNSIGNED_BYTE, indicesCube);
-}

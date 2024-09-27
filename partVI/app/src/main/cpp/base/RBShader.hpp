@@ -38,7 +38,8 @@ public:
 
 public:
     void DrawRectangle(RBVec2D position, RBVec2D size, RBColor color);
-    void DrawCube(RBVec3D position, RBVec3D rotation, RBVec3D scale, RBColor color);
+
+    void DrawElements(const GLfloat* vertices, const GLubyte* indices, int count);
 
 protected:
     GLint AssignAttribute(char* name);

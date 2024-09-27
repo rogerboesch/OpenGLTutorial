@@ -236,7 +236,48 @@ void RBRenderHelper::DrawRect(float x, float y, float width, float height, RBCol
 // Draw a cube
 
 void RBRenderHelper::DrawCube(RBVec3D position, RBVec3D rotation, RBVec3D scale, RBColor color) {
-    s_renderer->GetShader()->DrawCube(position, rotation, scale, color);
+    static const GLfloat verticesCube[] = {
+            -0.5f, 0.5f, 0.5f,     //  0: Front-top-left
+            0.5f, 0.5f, 0.5f,      //  1: Front-top-right
+            -0.5f, -0.5f, 0.5f,    //  2: Front-bottom-left
+            0.5f, -0.5f, 0.5f,     //  3: Front-bottom-right
+            0.5f, -0.5f, -0.5f,    //  4: Back-bottom-right
+            0.5f, 0.5f, 0.5f,      //  5: Front-top-right
+            0.5f, 0.5f, -0.5f,     //  6: Back-top-right
+            -0.5f, 0.5f, 0.5f,     //  7: Front-top-left
+            -0.5f, 0.5f, -0.5f,    //  8: Back-top-left
+            -0.5f, -0.5f, 0.5f,    //  9: Front-bottom-left
+            -0.5f, -0.5f, -0.5f,   // 10: Back-bottom-left
+            0.5f, -0.5f, -0.5f,    // 11: Back-bottom-right
+            -0.5f, 0.5f, -0.5f,    // 12: Back-top-left
+            0.5f, 0.5f, -0.5f      // 13: Back-top-right
+    };
+
+    static const GLubyte indicesCube[] = {
+            2,3,3,1,1,0,0,2,
+            10,11,11,13,13,12,12,10,
+            0,12,2,10,
+            1,13,3,11
+    };
+
+    s_renderer->GetShader()->MapColor(color);
+
+    RBMat4x4 transform = RBMatrixMakeIdentity();
+
+    RBMat4x4 translation = RBMatrixMakeTranslation(position.x, position.y, position.z);
+    RBMat4x4 rotationX = RBMatrixMakeRotationX(RAD_TO_DEG(rotation.x));
+    RBMat4x4 rotationY = RBMatrixMakeRotationY(RAD_TO_DEG(rotation.y));
+    RBMat4x4 rotationZ = RBMatrixMakeRotationZ(RAD_TO_DEG(rotation.z));
+
+    transform = RBMatrixMultiplyMatrix(transform, rotationX);
+    transform = RBMatrixMultiplyMatrix(transform, rotationY);
+    transform = RBMatrixMultiplyMatrix(transform, rotationZ);
+    transform = RBMatrixMultiplyMatrix(transform, translation);
+
+    // TODO: Add scaling
+    s_renderer->GetShader()->MapModelMatrix(transform);
+
+    s_renderer->GetShader()->DrawElements(&verticesCube[0], &indicesCube[0], sizeof(indicesCube)/sizeof(GLubyte));
 }
 
 // Helper methods
