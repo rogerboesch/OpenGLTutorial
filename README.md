@@ -20,7 +20,14 @@ I hope you like the tutorial and it brings some light in the different OpenGL ve
 This repository contains the source code for the OpenGL Tutorial which is now on [Medium](https://rogerboesch.medium.com/)
 
 
-### Articles
+## The Articles on Medium
+
+### Coming soon
+
+- Part VII - Creating Battle Zone 3D (1)
+- Part VIII - Creating Battle Zone 3D (2) 
+
+### Ready to read
 
 - [Part VI - Entering the Third Dimension](https://rogerboesch.medium.com/the-opengl-tutorial-part-vi-25a30291b4ff)
 - [Part V - Refactoring: Using GameActivity and OpenGL ES 3 on Android](https://medium.com/@rogerboesch/the-opengl-tutorial-part-v-eae15f5bf5a0)
