@@ -6,11 +6,11 @@ This tutorial is not about creating another game engine but rather about creatin
 For that reason, the tutorial describes the boilerplate code needed on every platform and how to create a **2D Game** and, in later chapters, a **3D Game** that contains all the game logic.​​
 
 
-### The example 2D game: Pong
+### 2D example game: Pong
 I chose Pong as the example 2D game for this tutorial because it just needs rectangles to be created. In the following newsletters, I will extend this by creating more complex and fun games, even in 3D!
 
 
-### The example 3D game: Battle Zone
+### 3D example game: Battle Zone
 Battle Zone is one of my all-time favorites. It’s a vector game created by the legendary company Atari. With its use of three-dimensional vector graphics, it only needs wireframe graphics and no textures, lights, etc. A great game to start with in 3D.
 
 I hope you like the tutorial and it brings some light in the different OpenGL versions, how to use them and more importantly how to implement it to become platform independent.
@@ -20,12 +20,12 @@ I hope you like the tutorial and it brings some light in the different OpenGL ve
 This repository contains the source code for the OpenGL Tutorial which is now on [Medium](https://rogerboesch.medium.com/)
 
 
-## The Articles on Medium
+## Articles on Medium
 
 ### Coming soon
 
-- Part VII - Creating Battle Zone 3D (1)
 - Part VIII - Creating Battle Zone 3D (2) 
+- Part VII - Creating Battle Zone 3D (1)
 
 ### Ready to read
 
