@@ -18,7 +18,7 @@ This repository contains the source code for the OpenGL Tutorial which is now on
 
 ### Articles
 
-- *Article on Medium: Part VI - A 3D game (coming soon)*
+- *Article on Medium: Part VI - Entering the Third Dimension (coming soon)*
 
 - Article on Medium: [Part V - Refactoring: Using GameActivity and OpenGL ES 3 on Androidd](https://medium.com/@rogerboesch/the-opengl-tutorial-part-v-eae15f5bf5a0)
 - Article on Medium: [Part IV - Porting to Android](https://rogerboesch.medium.com/the-opengl-tutorial-part-iv-b2e044a21eea)

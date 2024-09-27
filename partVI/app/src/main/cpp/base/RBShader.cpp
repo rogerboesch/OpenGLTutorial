@@ -200,7 +200,6 @@ void RBShader::DrawElements(const GLfloat* vertices, const GLubyte* indices, int
     glEnableVertexAttribArray(m_gl_position);
 
     glDrawElements(GL_LINES, count, GL_UNSIGNED_BYTE, indices);
-
 }
 
 void RBShader::DrawRectangle(RBVec2D position, RBVec2D size, RBColor color) const {

@@ -25,7 +25,7 @@
 
 #include <EGL/egl.h>
 #include <GLES3/gl3.h>
-#include <stdio.h>
+#include <cstdio>
 
 void Cube3D::CreateContent() {
     RBLOG("Cube3D::CreateContent()");
@@ -62,7 +62,7 @@ void Cube3D::OnRender() {
     RBRenderHelper::ClearScreen(RBColorBlack);
     RBRenderHelper::EnableBlending();
 
-    RBRenderHelper::DrawCube({-1.5f, 0.0f, -(5.0f+m_offsetZ1)}, {0.0f, -m_rotation, 0.0f}, {1.0f,1.0f,1.0f}, RBColorRed);
+    RBRenderHelper::DrawCube({-1.5f, 0.0f, -(5.0f+m_offsetZ1)}, {0.0f, -m_rotation, 0.0f}, {1.0f,2.0f,1.0f}, RBColorRed);
     RBRenderHelper::DrawCube({1.5f, 0.0f, -(5.0f+m_offsetZ2)}, {0.0f, m_rotation, 0.0f}, {1.0f,1.0f,1.0f}, RBColorGreen);
 }
 
