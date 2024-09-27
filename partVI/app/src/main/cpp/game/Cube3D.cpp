@@ -31,8 +31,8 @@ void Cube3D::CreateContent() {
     RBLOG("Cube3D::CreateContent()");
 }
 
-void Cube3D::SizeChanged() {
-    RBLOG("Cube3D::SizeChanged()");
+void Cube3D::OnSizeChanged() {
+    RBLOG("Cube3D::OnSizeChanged()");
 
     auto size = GetGamesSize();
     float aspect = std::max(1.0f, size.width/size.height);
@@ -40,7 +40,7 @@ void Cube3D::SizeChanged() {
     GetShader()->MapProjectionMatrix(perspective);
 }
 
-void Cube3D::Update(float delta) {
+void Cube3D::OnUpdate(float delta) {
     m_rotation += 0.05 * delta;
 
     if (KeyPressed(keyW)) {
@@ -58,7 +58,7 @@ void Cube3D::Update(float delta) {
     }
 }
 
-void Cube3D::Render() {
+void Cube3D::OnRender() {
     RBRenderHelper::ClearScreen(RBColorBlack);
     RBRenderHelper::EnableBlending();
 

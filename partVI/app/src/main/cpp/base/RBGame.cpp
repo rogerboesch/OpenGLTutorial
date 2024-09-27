@@ -39,24 +39,23 @@ RBShader* RBGame::GetShader() {
     return m_renderer->GetShader();
 }
 
-void RBGame::OnKey(KeyType key, bool pressed) {
+void RBGame::ProcessKey(KeyType key, bool pressed) {
     m_keyState[key] = pressed;
 }
 
-void RBGame::OnInit(RBRenderer* renderer) {
+void RBGame::Initialize(RBRenderer* renderer) {
     m_renderer = renderer;
+    m_clock.Reset();
 }
 
-void RBGame::OnUpdate(float delta) {
-    Update(delta);
+void RBGame::Frame() {
+    OnUpdate(m_clock.Delta());
     
     for (auto i: *m_gameObjects) {
-        i->Update(delta);
+        i->Update(m_clock.Delta());
     }
-}
 
-void RBGame::OnRender() {
-    Render();
+    OnRender();
     
     for (auto i: *m_gameObjects) {
         i->Render();

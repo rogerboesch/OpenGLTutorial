@@ -1,4 +1,5 @@
-//  Cube3D.hpp
+//
+//  RBClock.hpp
 //
 //  The OpenGL Tutorial
 //  This code was written as part of a tutorial at https://medium.com/@rogerboesch/
@@ -16,19 +17,19 @@
 
 #pragma once
 
-#include <RBGame.hpp>
+#include <string>
+#include <chrono>
 
-class Cube3D : public RBGame {
+class RBClock {
 public:
-    void CreateContent() override;
+    RBClock();
 
-protected:
-    void OnUpdate(float delta) override;
-    void OnRender() override;
-    void OnSizeChanged() override ;
+    void Reset();
+    float Delta();
+    float Duration();
+    static long Current();
 
 private:
-    float m_offsetZ1 = 0.0f;
-    float m_offsetZ2 = 0.0f;
-    float m_rotation = 0.0f;
+    bool m_firstTime = false;
+    std::chrono::high_resolution_clock::time_point m_timestamp;
 };

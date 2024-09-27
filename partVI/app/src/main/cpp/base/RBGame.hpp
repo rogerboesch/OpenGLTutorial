@@ -18,6 +18,7 @@
 #pragma once
 
 #include "RBGameObject.hpp"
+#include "RBClock.hpp"
 
 #include <vector>
 #include <array>
@@ -42,11 +43,12 @@ class RBGame {
 public:
     RBGame();
 
-    void OnInit(RBRenderer* renderer);
-    void OnUpdate(float delta);
-    void OnRender();
-    void OnKey(KeyType key, bool pressed);
+    void Initialize(RBRenderer* renderer);
+    void ProcessKey(KeyType key, bool pressed);
+    void Frame();
+    virtual void CreateContent() = 0;
 
+    void AddGameObject(RBGameObject *object);
     RBShader* GetShader();
 
 public:
@@ -55,18 +57,17 @@ public:
     void SetGameSize(int w, int h) { m_gameSize.width = w; m_gameSize.height = h; }
 
 public:
-    void AddGameObject(RBGameObject *object);
-    virtual void CreateContent() = 0;
-    virtual void SizeChanged() = 0;
+    virtual void OnSizeChanged() = 0;
 
 protected:
-    virtual void Update(float delta) = 0;
-    virtual void Render() = 0;
+    virtual void OnUpdate(float delta) = 0;
+    virtual void OnRender() = 0;
 
 private:
     RBVec2D m_gameSize;
     std::vector<RBGameObject*> *m_gameObjects = nullptr;
     std::array<bool, 8> m_keyState;
     RBRenderer* m_renderer = nullptr;
+    RBClock m_clock;
 };
 

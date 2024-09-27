@@ -38,7 +38,7 @@ RBRenderer::RBRenderer(android_app *app) {
 
     // Initialize game
     m_game = game_main(this);
-    m_game->OnInit(this);
+    m_game->Initialize(this);
 }
 
 RBRenderer::~RBRenderer() {
@@ -67,11 +67,10 @@ void RBRenderer::RenderFrame() {
         m_shader->MapScreenSize(size);
 
         // Call game id it's needed to update something
-        m_game->SizeChanged();
+        m_game->OnSizeChanged();
     }
 
-    m_game->OnUpdate(1.0/60.0);
-    m_game->OnRender();
+    m_game->Frame();
 
     eglSwapBuffers(m_display, m_surface);
 }
@@ -84,16 +83,16 @@ void RBRenderer::UserInput(bool left, bool down, float x, float y) {
         if (down) {
             if (y <= size.height/2) {
                 // Top
-                m_game->OnKey(keyW, true);
+                m_game->ProcessKey(keyW, true);
             }
             else {
                 // Bottom
-                m_game->OnKey(keyS, true);
+                m_game->ProcessKey(keyS, true);
             }
         }
         else {
-            m_game->OnKey(keyW, false);
-            m_game->OnKey(keyS, false);
+            m_game->ProcessKey(keyW, false);
+            m_game->ProcessKey(keyS, false);
         }
     }
     else {
@@ -101,16 +100,16 @@ void RBRenderer::UserInput(bool left, bool down, float x, float y) {
         if (down) {
             if (y <= size.height/2) {
                 // Top
-                m_game->OnKey(keyUp, true);
+                m_game->ProcessKey(keyUp, true);
             }
             else {
                 // Bottom
-                m_game->OnKey(keyDown, true);
+                m_game->ProcessKey(keyDown, true);
             }
         }
         else {
-            m_game->OnKey(keyUp, false);
-            m_game->OnKey(keyDown, false);
+            m_game->ProcessKey(keyUp, false);
+            m_game->ProcessKey(keyDown, false);
         }
     }
 }
@@ -231,6 +230,9 @@ void RBRenderer::UpdateRenderArea() {
             // First time
             m_game->SetGameSize(width, height);
             m_game->CreateContent();
+        }
+        else {
+            m_game->SetGameSize(width, height);
         }
 
         m_width = width;
