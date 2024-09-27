@@ -23,11 +23,11 @@
 #include <GLES/gl.h>
 #include <GLES2/gl2.h>
 
-extern RBRenderer* gRender;
+RBRenderer* RBRenderHelper::s_renderer = nullptr;
 
-void RBDrawRect(float x, float y, float width, float height, RBColor color);
-void RBDrawNumber(float x , float y , int n, RBColor color);
-void RBDrawCharacter(float x , float y , char c, RBColor color);
+void RBRenderHelper::SetRenderer(RBRenderer *renderer) {
+    s_renderer = renderer;
+}
 
 // Render characters
 
@@ -37,7 +37,7 @@ void RBDrawCharacter(float x , float y , char c, RBColor color);
 // | |   4 5
 //  -     6
 
-void RBDrawSegments(int s0, int s1, int s2, int s3, int s4, int s5, int s6, float x, float y, RBColor color) {
+void RBRenderHelper::DrawSegments(int s0, int s1, int s2, int s3, int s4, int s5, int s6, float x, float y, RBColor color) {
     //  -     0
     // | |   1 2
     //  -     3
@@ -45,144 +45,144 @@ void RBDrawSegments(int s0, int s1, int s2, int s3, int s4, int s5, int s6, floa
     //  -     6
     
     if (s0) {
-        RBDrawRect(x + 5, y + 50, 20, 5, color);
+        RBRenderHelper::DrawRect(x + 5, y + 50, 20, 5, color);
     }
 
     if (s1) {
-        RBDrawRect(x, y + 30 , 5, 20, color);
+        RBRenderHelper::DrawRect(x, y + 30 , 5, 20, color);
     }
 
     if (s2) {
-        RBDrawRect(x + 25, y + 30, 5, 20, color);
+        RBRenderHelper::DrawRect(x + 25, y + 30, 5, 20, color);
     }
 
     if (s3) {
-        RBDrawRect(x + 5, y + 25, 20, 5, color);
+        RBRenderHelper::DrawRect(x + 5, y + 25, 20, 5, color);
     }
 
     if (s4) {
-        RBDrawRect(x, y + 5, 5, 20, color);
+        RBRenderHelper::DrawRect(x, y + 5, 5, 20, color);
     }
 
     if (s5) {
-        RBDrawRect(x + 25, y + 5 ,5 , 20, color);
+        RBRenderHelper::DrawRect(x + 25, y + 5 ,5 , 20, color);
     }
 
     if (s6) {
-        RBDrawRect(x + 5, y, 20, 5, color);
+        RBRenderHelper::DrawRect(x + 5, y, 20, 5, color);
     }
 }
 
-void RBDrawNumber(float x ,float y ,int n, RBColor color) {
+void RBRenderHelper::DrawNumber(float x ,float y ,int n, RBColor color) {
     switch(n) {
         case 0:
-            RBDrawSegments(1,1,1,0,1,1,1, x, y, color);
+            RBRenderHelper::DrawSegments(1,1,1,0,1,1,1, x, y, color);
             break;
 
         case 1:
-            RBDrawSegments(0,0,1,0,0,1,0, x, y, color);
+            RBRenderHelper::DrawSegments(0,0,1,0,0,1,0, x, y, color);
             break;
         
         case 2:
-            RBDrawSegments(1,0,1,1,1,0,1, x, y, color);
+            RBRenderHelper::DrawSegments(1,0,1,1,1,0,1, x, y, color);
             break;
         
         case 3:
-            RBDrawSegments(1,0,1,1,0,1,1, x, y, color);
+            RBRenderHelper::DrawSegments(1,0,1,1,0,1,1, x, y, color);
             break;
         
         case 4:
-            RBDrawSegments(0,1,1,1,0,1,0, x, y, color);
+            RBRenderHelper::DrawSegments(0,1,1,1,0,1,0, x, y, color);
             break;
         
         case 5:
-            RBDrawSegments(1,1,0,1,0,1,1, x, y, color);
+            RBRenderHelper::DrawSegments(1,1,0,1,0,1,1, x, y, color);
             break;
         
         case 6:
-            RBDrawSegments(1,1,0,1,1,1,1, x, y, color);
+            RBRenderHelper::DrawSegments(1,1,0,1,1,1,1, x, y, color);
             break;
         
         case 7:
-            RBDrawSegments(1,0,1,0,0,1,0, x, y, color);
+            RBRenderHelper::DrawSegments(1,0,1,0,0,1,0, x, y, color);
             break;
         
         case 8:
-            RBDrawSegments(1,1,1,1,1,1,1, x, y, color);
+            RBRenderHelper::DrawSegments(1,1,1,1,1,1,1, x, y, color);
             break;
         
         case 9:
-            RBDrawSegments(1,1,1,1,0,1,1, x, y, color);
+            RBRenderHelper::DrawSegments(1,1,1,1,0,1,1, x, y, color);
             break;
     }
 }
 
-void RBDrawCharacter(float x ,float y ,char c, RBColor color) {
+void RBRenderHelper::DrawCharacter(float x ,float y ,char c, RBColor color) {
     c = toupper(c);
     
     switch (c) {
         case 'A':
-            RBDrawSegments(1,1,1,1,1,1,0, x, y, color);
+            RBRenderHelper::DrawSegments(1,1,1,1,1,1,0, x, y, color);
             break;
         case 'B':
-            RBDrawSegments(0,1,0,1,1,1,1, x, y, color);
+            RBRenderHelper::DrawSegments(0,1,0,1,1,1,1, x, y, color);
             break;
         case 'C':
-            RBDrawSegments(1,1,0,0,1,0,1, x, y, color);
+            RBRenderHelper::DrawSegments(1,1,0,0,1,0,1, x, y, color);
             break;
         case 'D':
-            RBDrawSegments(0,0,1,1,1,1,1, x, y, color);
+            RBRenderHelper::DrawSegments(0,0,1,1,1,1,1, x, y, color);
             break;
         case 'E':
-            RBDrawSegments(1,1,0,1,1,0,1, x, y, color);
+            RBRenderHelper::DrawSegments(1,1,0,1,1,0,1, x, y, color);
             break;
         case 'F':
-            RBDrawSegments(1,1,0,1,1,0,0, x, y, color);
+            RBRenderHelper::DrawSegments(1,1,0,1,1,0,0, x, y, color);
             break;
         case 'G':
             // Not possible
             break;
         case 'H':
-            RBDrawSegments(0,1,1,1,1,1,0, x, y, color);
+            RBRenderHelper::DrawSegments(0,1,1,1,1,1,0, x, y, color);
             break;
         case 'I':
-            RBDrawSegments(0,0,1,0,0,1,0, x, y, color);
+            RBRenderHelper::DrawSegments(0,0,1,0,0,1,0, x, y, color);
             break;
         case 'J':
-            RBDrawSegments(0,0,1,0,0,1,1, x, y, color);
+            RBRenderHelper::DrawSegments(0,0,1,0,0,1,1, x, y, color);
             break;
         case 'K':
             // Not possible
             break;
         case 'L':
-            RBDrawSegments(0,1,0,0,1,0,1, x, y, color);
+            RBRenderHelper::DrawSegments(0,1,0,0,1,0,1, x, y, color);
             break;
         case 'M':
             // Not possible
             break;
         case 'N':
-            RBDrawSegments(0,0,0,1,1,1,0, x, y, color);
+            RBRenderHelper::DrawSegments(0,0,0,1,1,1,0, x, y, color);
             break;
         case 'O':
-            RBDrawSegments(0,0,0,1,1,1,1, x, y, color);
+            RBRenderHelper::DrawSegments(0,0,0,1,1,1,1, x, y, color);
             break;
         case 'P':
-            RBDrawSegments(1,1,1,1,1,0,0, x, y, color);
+            RBRenderHelper::DrawSegments(1,1,1,1,1,0,0, x, y, color);
             break;
         case 'Q':
             // Not possible
             break;
         case 'R':
-            RBDrawSegments(0,0,0,1,1,0,0, x, y, color);
+            RBRenderHelper::DrawSegments(0,0,0,1,1,0,0, x, y, color);
             break;
         case 'S':
-            RBDrawSegments(1,1,0,1,0,1,1, x, y, color);
+            RBRenderHelper::DrawSegments(1,1,0,1,0,1,1, x, y, color);
             break;
         case 'T':
             // Not possible
             break;
         case 'U':
-            RBDrawSegments(0,1,1,0,1,1,1, x, y, color);
+            RBRenderHelper::DrawSegments(0,1,1,0,1,1,1, x, y, color);
             break;
         case 'V':
             // Not possible
@@ -194,17 +194,17 @@ void RBDrawCharacter(float x ,float y ,char c, RBColor color) {
             // Not possible
             break;
         case 'Y':
-            RBDrawSegments(0,1,1,1,0,1,1, x, y, color);
+            RBRenderHelper::DrawSegments(0,1,1,1,0,1,1, x, y, color);
             break;
         case 'Z':
-            RBDrawSegments(1,0,1,1,1,0,1, x, y, color);
+            RBRenderHelper::DrawSegments(1,0,1,1,1,0,1, x, y, color);
             break;
     }
 }
 
 // Draw a string
 
-void RBDrawString(RBVec2D position , std::string str, RBColor color) {
+void RBRenderHelper::DrawString(RBVec2D position , std::string str, RBColor color) {
     float x = position.x;
 
     for (unsigned i=0; i<str.length(); ++i) {
@@ -212,11 +212,11 @@ void RBDrawString(RBVec2D position , std::string str, RBColor color) {
         int num = (int)ch;
         
         if (num >= 30 && num <= 39) {
-            RBDrawNumber(position.x, position.y, num, color);
-            RBDrawNumber(position.x, position.y, num, color);
+            RBRenderHelper::DrawNumber(position.x, position.y, num, color);
+            RBRenderHelper::DrawNumber(position.x, position.y, num, color);
         }
         else {
-            RBDrawCharacter(x, position.y, ch, color);
+            RBRenderHelper::DrawCharacter(x, position.y, ch, color);
         }
         
         x += 40;
@@ -225,38 +225,32 @@ void RBDrawString(RBVec2D position , std::string str, RBColor color) {
 
 // Draw a rectangle
 
-void RBDrawRect(RBVec2D position, RBVec2D size, RBColor color) {
-    if (gRender == nullptr) return;
-    if (gRender->GetShader() == nullptr) return;
-
-    gRender->GetShader()->DrawRectangle(position, size, color);
+void RBRenderHelper::DrawRect(RBVec2D position, RBVec2D size, RBColor color) {
+    s_renderer->GetShader()->DrawRectangle(position, size, color);
 }
 
-void RBDrawRect(float x, float y, float width, float height, RBColor color) {
-    RBDrawRect({x, y}, {width, height}, color);
+void RBRenderHelper::DrawRect(float x, float y, float width, float height, RBColor color) {
+    RBRenderHelper::DrawRect({x, y}, {width, height}, color);
 }
 
 // Draw a cube
 
-void RBDrawCube(RBVec3D position, RBVec3D rotation, RBVec3D scale, RBColor color) {
-    if (gRender == nullptr) return;
-    if (gRender->GetShader() == nullptr) return;
-
-    gRender->GetShader()->DrawCube(position, rotation, scale, color);
+void RBRenderHelper::DrawCube(RBVec3D position, RBVec3D rotation, RBVec3D scale, RBColor color) {
+    s_renderer->GetShader()->DrawCube(position, rotation, scale, color);
 }
 
 // Helper methods
 
-void RBEnable2D(RBVec2D size) {
+void RBRenderHelper::Enable2D(RBVec2D size) {
     glViewport(0, 0, (int)size.width, (int)size.height);
 }
 
-void RBEnableBlending() {
+void RBRenderHelper::EnableBlending() {
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 }
 
-void RBClearScreen(RBColor color) {
+void RBRenderHelper::ClearScreen(RBColor color) {
     glClearColor(color.r, color.g, color.b, color.a);
     glClear(GL_COLOR_BUFFER_BIT);
 }

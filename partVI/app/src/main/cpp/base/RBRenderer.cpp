@@ -17,23 +17,28 @@
 
 #include "RBGame.hpp"
 #include "RBRenderer.hpp"
+#include "RBRenderHelper.hpp"
 #include "RBLog.hpp"
 
 #include <game-activity/native_app_glue/android_native_app_glue.h>
 #include <math.h>
 
-#define BACKGROUND_COLOR 0.0f / 255.f, 0.0f / 255.f, 0.0f / 255.f, 1
+extern RBGame* game_main(RBRenderer* renderer);
 
-extern RBGame *gGame;
-RBRenderer* gRender = nullptr;
+#define BACKGROUND_COLOR 0.0f / 255.f, 0.0f / 255.f, 0.0f / 255.f, 1
 
 RBRenderer::RBRenderer(android_app *app) {
     m_app = app;
-    gRender = this;
 
     InitOpenGL();
     CreateShader();
-    gGame->OnInit(this);
+
+    // Initialize helper
+    RBRenderHelper::SetRenderer(this);
+
+    // Initialize game
+    m_game = game_main(this);
+    m_game->OnInit(this);
 }
 
 RBRenderer::~RBRenderer() {
@@ -58,37 +63,37 @@ void RBRenderer::RenderFrame() {
         m_updateProjectionMatrix = false;
 
         // Set width and height
-        RBVec2D size = gGame->GetGamesSize();
+        RBVec2D size = m_game->GetGamesSize();
         m_shader->MapScreenSize(size.width, size.height);
 
         // Call game id it's needed to update something
-        gGame->SizeChanged();
+        m_game->SizeChanged();
     }
 
-    gGame->OnUpdate(1.0/60.0);
-    gGame->OnRender();
+    m_game->OnUpdate(1.0/60.0);
+    m_game->OnRender();
 
     eglSwapBuffers(m_display, m_surface);
 }
 
 void RBRenderer::UserInput(bool left, bool down, float x, float y) {
-    RBVec2D size = gGame->GetGamesSize();
+    RBVec2D size = m_game->GetGamesSize();
 
     if (left) {
         // Left
         if (down) {
             if (y <= size.height/2) {
                 // Top
-                gGame->OnKey(keyW, true);
+                m_game->OnKey(keyW, true);
             }
             else {
                 // Bottom
-                gGame->OnKey(keyS, true);
+                m_game->OnKey(keyS, true);
             }
         }
         else {
-            gGame->OnKey(keyW, false);
-            gGame->OnKey(keyS, false);
+            m_game->OnKey(keyW, false);
+            m_game->OnKey(keyS, false);
         }
     }
     else {
@@ -96,16 +101,16 @@ void RBRenderer::UserInput(bool left, bool down, float x, float y) {
         if (down) {
             if (y <= size.height/2) {
                 // Top
-                gGame->OnKey(keyUp, true);
+                m_game->OnKey(keyUp, true);
             }
             else {
                 // Bottom
-                gGame->OnKey(keyDown, true);
+                m_game->OnKey(keyDown, true);
             }
         }
         else {
-            gGame->OnKey(keyUp, false);
-            gGame->OnKey(keyDown, false);
+            m_game->OnKey(keyUp, false);
+            m_game->OnKey(keyDown, false);
         }
     }
 }
@@ -224,8 +229,8 @@ void RBRenderer::UpdateRenderArea() {
     if (width != m_width || height != m_height) {
         if (m_width == -1 && m_height == -1) {
             // First time
-            gGame->SetGameSize(width, height);
-            gGame->CreateContent();
+            m_game->SetGameSize(width, height);
+            m_game->CreateContent();
         }
 
         m_width = width;
@@ -277,7 +282,7 @@ void RBRenderer::HandleInput() {
         // We use this to also receive AMOTION_EVENT_ACTION_POINTER_UP
         auto actionMasked = action;
 
-        bool leftSide = x < gGame->GetGamesSize().width/2 ? true: false;
+        bool leftSide = x < m_game->GetGamesSize().width/2 ? true: false;
 
         // determine the kind of event it is
         switch (actionMasked) {

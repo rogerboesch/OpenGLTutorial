@@ -23,6 +23,8 @@
 
 struct android_app;
 
+class RBGame;
+
 class RBRenderer {
 public:
     explicit RBRenderer(android_app *app);
@@ -56,4 +58,5 @@ private:
     bool m_updateProjectionMatrix = false;
 
     RBShader* m_shader = nullptr;
+    RBGame* m_game = nullptr;
 };

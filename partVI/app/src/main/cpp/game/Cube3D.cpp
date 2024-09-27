@@ -27,13 +27,6 @@
 #include <GLES3/gl3.h>
 #include <stdio.h>
 
-extern GLint s_gl_position;
-
-// Always define the global gGame in the derived game class
-RBGame* gGame = new Cube3D();
-
-extern RBRenderer* gRender;
-
 void Cube3D::CreateContent() {
     RBLOG("Cube3D::CreateContent()");
 }
@@ -41,13 +34,10 @@ void Cube3D::CreateContent() {
 void Cube3D::SizeChanged() {
     RBLOG("Cube3D::SizeChanged()");
 
-    auto shader = gRender->GetShader();
-    shader->Activate();
-
-    auto size = gGame->GetGamesSize();
+    auto size = GetGamesSize();
     float aspect = std::max(1.0f, size.width/size.height);
     RBMat4x4 perspective = RBMatrixMakeProjection3D(45.0f, aspect, 0.1f, 200.0f);
-    shader->MapProjectionMatrix(perspective);
+    GetShader()->MapProjectionMatrix(perspective);
 }
 
 void Cube3D::Update(float delay) {
@@ -69,11 +59,17 @@ void Cube3D::Update(float delay) {
 }
 
 void Cube3D::Render() {
-    RBClearScreen(RBColorBlack);
-    RBEnableBlending();
+    RBRenderHelper::ClearScreen(RBColorBlack);
+    RBRenderHelper::EnableBlending();
 
     float rotate = m_totalTime * 0.03f;
 
-    RBDrawCube({-1.5f, 0.0f, -(5.0f+m_offsetZ1)}, {0.0f, -rotate, 0.0f}, {1.0f,1.0f,1.0f}, RBColorRed);
-    RBDrawCube({1.5f, 0.0f, -(5.0f+m_offsetZ2)}, {0.0f, rotate, 0.0f}, {1.0f,1.0f,1.0f}, RBColorGreen);
+    RBRenderHelper::DrawCube({-1.5f, 0.0f, -(5.0f+m_offsetZ1)}, {0.0f, -rotate, 0.0f}, {1.0f,1.0f,1.0f}, RBColorRed);
+    RBRenderHelper::DrawCube({1.5f, 0.0f, -(5.0f+m_offsetZ2)}, {0.0f, rotate, 0.0f}, {1.0f,1.0f,1.0f}, RBColorGreen);
+}
+
+RBGame* game_main(RBRenderer* renderer) {
+    // Called to create game instance
+    RBGame* game = new Cube3D();
+    return game;
 }

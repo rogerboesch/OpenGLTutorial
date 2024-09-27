@@ -49,5 +49,5 @@ void RBGameObject::Update(float delay) {
 }
 
 void RBGameObject::Render() {
-    RBDrawRect(m_position, m_size, m_color);
+    RBRenderHelper::DrawRect(m_position, m_size, m_color);
 }

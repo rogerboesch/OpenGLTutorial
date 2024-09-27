@@ -17,27 +17,34 @@
 
 #include <RBGame.hpp>
 #include <RBGameObject.hpp>
+#include <RBRenderer.hpp>
 #include <RBRenderHelper.hpp>
+#include <RBShader.hpp>
 
 void RBGame::AddGameObject(RBGameObject *object) {
     m_gameObjects->push_back(object);
 }
 
 RBGame::RBGame() {
+    m_renderer = nullptr;
+
+    m_gameSize.width = 0;
+    m_gameSize.height = 0;
+    m_keyState.fill(false);
+
     m_gameObjects = new std::vector<RBGameObject*>();
+}
+
+RBShader* RBGame::GetShader() {
+    return m_renderer->GetShader();
 }
 
 void RBGame::OnKey(KeyType key, bool pressed) {
     m_keyState[key] = pressed;
 }
 
-void RBGame::OnInit(RBRenderer* render) {
-    m_render = render;
-
-    m_gameSize.width = 0;
-    m_gameSize.height = 0;
-    
-    m_keyState.fill(false);
+void RBGame::OnInit(RBRenderer* renderer) {
+    m_renderer = renderer;
 }
 
 void RBGame::OnUpdate(float delay) {

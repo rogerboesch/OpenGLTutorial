@@ -22,10 +22,26 @@
 
 #include <string>
 
-void RBDrawRect(RBVec2D position, RBVec2D size, RBColor color);
-void RBDrawString(RBVec2D position , std::string str, RBColor color);
-void RBDrawCube(RBVec3D position, RBVec3D rotation, RBVec3D scale, RBColor color);
+class RBRenderer;
 
-void RBEnable2D(RBVec2D size);
-void RBEnableBlending();
-void RBClearScreen(RBColor color);
+class RBRenderHelper {
+public:
+    static void DrawRect(RBVec2D position, RBVec2D size, RBColor color);
+    static void DrawString(RBVec2D position , std::string str, RBColor color);
+    static void DrawCube(RBVec3D position, RBVec3D rotation, RBVec3D scale, RBColor color);
+
+    static void Enable2D(RBVec2D size);
+    static void EnableBlending();
+    static void ClearScreen(RBColor color);
+
+    static void SetRenderer(RBRenderer* renderer);
+
+private:
+    static void DrawRect(float x, float y, float width, float height, RBColor color);
+    static void DrawNumber(float x , float y , int n, RBColor color);
+    static void DrawCharacter(float x , float y , char c, RBColor color);
+    static void DrawSegments(int s0, int s1, int s2, int s3, int s4, int s5, int s6, float x, float y, RBColor color);
+
+private:
+    static RBRenderer* s_renderer;
+};
