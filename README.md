@@ -1,13 +1,17 @@
 # The (Multiplatform-) OpenGL Tutorial
 
-### Introduction
-This tutorial is not about how to create another game engine, but more on how to create simple games on different platforms with almost no changes using OpenGL and C++.
-For that reason the tutorial describes the boilerplate code needed on every platform and how to create a simple **Game** class in C++ which contains all the game logic.
+### Content
+
+This tutorial is not about creating another game engine but rather about creating simple games on different platforms with almost no changes using OpenGL and C++.
+For that reason, the tutorial describes the boilerplate code needed on every platform and how to create a **2D Game** and, in later chapters, a **3D Game** that contains all the game logic.​​
 
 
-### The example game: Pong
-I choosed Pong as the the example game for this tutorial, because it just needs rectangles
-to create it. In the follwing newsletters I will extend this by creating more complex and fun games, even in 3D!
+### The example 2D game: Pong
+I chose Pong as the example 2D game for this tutorial because it just needs rectangles to be created. In the following newsletters, I will extend this by creating more complex and fun games, even in 3D!
+
+
+### The example 3D game: Battle Zone
+Battle Zone is one of my all-time favorites. It’s a vector game created by the legendary company Atari. With its use of three-dimensional vector graphics, it only needs wireframe graphics and no textures, lights, etc. A great game to start with in 3D.
 
 I hope you like the tutorial and it brings some light in the different OpenGL versions, how to use them and more importantly how to implement it to become platform independent.
 
