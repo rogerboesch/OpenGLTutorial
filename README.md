@@ -18,12 +18,12 @@ This repository contains the source code for the OpenGL Tutorial which is now on
 
 ### Articles
 
-- Article on Medium: [Part VI - Entering the Third Dimension](https://rogerboesch.medium.com/the-opengl-tutorial-part-vi-25a30291b4ff)
-- Article on Medium: [Part V - Refactoring: Using GameActivity and OpenGL ES 3 on Androidd](https://medium.com/@rogerboesch/the-opengl-tutorial-part-v-eae15f5bf5a0)
-- Article on Medium: [Part IV - Porting to Android](https://rogerboesch.medium.com/the-opengl-tutorial-part-iv-b2e044a21eea)
-- Article on Medium: [Part III - Creating a version for iOS](https://rogerboesch.medium.com/the-opengl-tutorial-part-iii-47adb24ec32e)
-- Article on Medium: [Part II - Create a 2D game](https://rogerboesch.medium.com/the-opengl-tutorial-part-ii-28e89600565e)
-- Article on Medium: [Part I - OpenGL Introduction](https://rogerboesch.medium.com/part-1-opengl-is-apple-killing-it-3508fda24a58)
+- [Part VI - Entering the Third Dimension](https://rogerboesch.medium.com/the-opengl-tutorial-part-vi-25a30291b4ff)
+- [Part V - Refactoring: Using GameActivity and OpenGL ES 3 on Androidd](https://medium.com/@rogerboesch/the-opengl-tutorial-part-v-eae15f5bf5a0)
+- [Part IV - Porting to Android](https://rogerboesch.medium.com/the-opengl-tutorial-part-iv-b2e044a21eea)
+- [Part III - Creating a version for iOS](https://rogerboesch.medium.com/the-opengl-tutorial-part-iii-47adb24ec32e)
+- [Part II - Create a 2D game](https://rogerboesch.medium.com/the-opengl-tutorial-part-ii-28e89600565e)
+- [Part I - OpenGL Introduction](https://rogerboesch.medium.com/part-1-opengl-is-apple-killing-it-3508fda24a58)
 
 
 ---
