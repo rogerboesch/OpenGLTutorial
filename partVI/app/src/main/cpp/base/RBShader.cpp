@@ -45,7 +45,7 @@ GLuint RBShader::LoadShader(GLenum shaderType, const char* pSource) {
     GLuint shader = glCreateShader(shaderType);
 
     if (shader) {
-        glShaderSource(shader, 1, &pSource, NULL);
+        glShaderSource(shader, 1, &pSource, nullptr);
         glCompileShader(shader);
         GLint compiled = 0;
         glGetShaderiv(shader, GL_COMPILE_STATUS, &compiled);
@@ -58,7 +58,7 @@ GLuint RBShader::LoadShader(GLenum shaderType, const char* pSource) {
                 char* buf = (char*)malloc(infoLen);
 
                 if (buf) {
-                    glGetShaderInfoLog(shader, infoLen, NULL, buf);
+                    glGetShaderInfoLog(shader, infoLen, nullptr, buf);
 
                     RBERROR(buf);
 
@@ -114,7 +114,7 @@ GLuint RBShader::CreateProgram(const char* pVertexSource, const char* pFragmentS
                 char* buf = (char*) malloc(bufLength);
 
                 if (buf) {
-                    glGetProgramInfoLog(program, bufLength, NULL, buf);
+                    glGetProgramInfoLog(program, bufLength, nullptr, buf);
                     RBERROR(buf);
 
                     free(buf);
@@ -132,33 +132,33 @@ GLuint RBShader::CreateProgram(const char* pVertexSource, const char* pFragmentS
     return program;
 }
 
-GLint RBShader::AssignAttribute(char* name) {
+GLint RBShader::AssignAttribute(char* name) const {
     return glGetAttribLocation(m_gl_program, name);
 }
 
-GLint RBShader::AssignUniform(char* name) {
+GLint RBShader::AssignUniform(char* name) const {
     return glGetUniformLocation(m_gl_program, name);
 }
 
-void RBShader::MapScreenSize(int width, int height) {
-    RBMat4x4 mat = {2.0f/width, 0.0f, 0.0f, -1.0f,
-                    0.0f, 2.0f/height, 0.0f, -1.0f,
+void RBShader::MapScreenSize(RBVec2D size) {
+    RBMat4x4 mat = {2.0f/size.width, 0.0f, 0.0f, -1.0f,
+                    0.0f, 2.0f/size.height, 0.0f, -1.0f,
                     0.0f, 0.0f, -1.0f, 0.0f,
                     0.0f, 0.0f, 0.0f, 1.0f};
     MapProjectionMatrix(mat);
 }
 
-void RBShader::MapProjectionMatrix(RBMat4x4 matrix) {
+void RBShader::MapProjectionMatrix(RBMat4x4 matrix) const {
     if (m_gl_projection == -1) return;
     glUniformMatrix4fv(m_gl_projection, 1, GL_FALSE, (GLfloat*)&matrix.m[0]);
 }
 
-void RBShader::MapModelMatrix(RBMat4x4 matrix) {
+void RBShader::MapModelMatrix(RBMat4x4 matrix) const {
     if (m_gl_model == -1) return;
     glUniformMatrix4fv(m_gl_model, 1, GL_FALSE, (GLfloat*)&matrix.m[0]);
 }
 
-void RBShader::MapColor(RBColor color) {
+void RBShader::MapColor(RBColor color) const {
     if (m_gl_color == -1) return;
     glUniform4f(m_gl_color, color.r, color.g, color.b, color.a);
 }
@@ -185,7 +185,7 @@ bool RBShader::Create() {
     return true;
 }
 
-bool RBShader::Activate() {
+bool RBShader::Activate() const {
     if (m_gl_program == -1) {
         return false;
     }
@@ -195,7 +195,7 @@ bool RBShader::Activate() {
     return true;
 }
 
-void RBShader::DrawElements(const GLfloat* vertices, const GLubyte* indices, int count) {
+void RBShader::DrawElements(const GLfloat* vertices, const GLubyte* indices, int count) const {
     glVertexAttribPointer(m_gl_position, 3, GL_FLOAT, GL_FALSE, 0, vertices);
     glEnableVertexAttribArray(m_gl_position);
 
@@ -203,7 +203,7 @@ void RBShader::DrawElements(const GLfloat* vertices, const GLubyte* indices, int
 
 }
 
-void RBShader::DrawRectangle(RBVec2D position, RBVec2D size, RBColor color) {
+void RBShader::DrawRectangle(RBVec2D position, RBVec2D size, RBColor color) const {
     MapColor(color);
 
     GLfloat vertices[] = {
@@ -217,4 +217,3 @@ void RBShader::DrawRectangle(RBVec2D position, RBVec2D size, RBColor color) {
     glEnableVertexAttribArray(m_gl_position);
     glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
 }
-

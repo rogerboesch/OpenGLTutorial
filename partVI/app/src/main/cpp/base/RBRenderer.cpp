@@ -64,7 +64,7 @@ void RBRenderer::RenderFrame() {
 
         // Set width and height
         RBVec2D size = m_game->GetGamesSize();
-        m_shader->MapScreenSize(size.width, size.height);
+        m_shader->MapScreenSize(size);
 
         // Call game id it's needed to update something
         m_game->SizeChanged();

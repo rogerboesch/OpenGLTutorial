@@ -47,11 +47,11 @@ void RBGame::OnInit(RBRenderer* renderer) {
     m_renderer = renderer;
 }
 
-void RBGame::OnUpdate(float delay) {
-    Update(delay);
+void RBGame::OnUpdate(float delta) {
+    Update(delta);
     
     for (auto i: *m_gameObjects) {
-        i->Update(delay);
+        i->Update(delta);
     }
 }
 

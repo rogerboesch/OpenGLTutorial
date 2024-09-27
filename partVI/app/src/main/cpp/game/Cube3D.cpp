@@ -40,8 +40,8 @@ void Cube3D::SizeChanged() {
     GetShader()->MapProjectionMatrix(perspective);
 }
 
-void Cube3D::Update(float delay) {
-    m_totalTime += delay;
+void Cube3D::Update(float delta) {
+    m_rotation += 0.05 * delta;
 
     if (KeyPressed(keyW)) {
         m_offsetZ1 += 0.15f;
@@ -62,10 +62,8 @@ void Cube3D::Render() {
     RBRenderHelper::ClearScreen(RBColorBlack);
     RBRenderHelper::EnableBlending();
 
-    float rotate = m_totalTime * 0.03f;
-
-    RBRenderHelper::DrawCube({-1.5f, 0.0f, -(5.0f+m_offsetZ1)}, {0.0f, -rotate, 0.0f}, {1.0f,1.0f,1.0f}, RBColorRed);
-    RBRenderHelper::DrawCube({1.5f, 0.0f, -(5.0f+m_offsetZ2)}, {0.0f, rotate, 0.0f}, {1.0f,1.0f,1.0f}, RBColorGreen);
+    RBRenderHelper::DrawCube({-1.5f, 0.0f, -(5.0f+m_offsetZ1)}, {0.0f, -m_rotation, 0.0f}, {1.0f,1.0f,1.0f}, RBColorRed);
+    RBRenderHelper::DrawCube({1.5f, 0.0f, -(5.0f+m_offsetZ2)}, {0.0f, m_rotation, 0.0f}, {1.0f,1.0f,1.0f}, RBColorGreen);
 }
 
 RBGame* game_main(RBRenderer* renderer) {

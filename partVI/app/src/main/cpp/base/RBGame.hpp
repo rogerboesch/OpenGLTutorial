@@ -43,7 +43,7 @@ public:
     RBGame();
 
     void OnInit(RBRenderer* renderer);
-    void OnUpdate(float delay);
+    void OnUpdate(float delta);
     void OnRender();
     void OnKey(KeyType key, bool pressed);
 
@@ -60,7 +60,7 @@ public:
     virtual void SizeChanged() = 0;
 
 protected:
-    virtual void Update(float delay) = 0;
+    virtual void Update(float delta) = 0;
     virtual void Render() = 0;
 
 private:

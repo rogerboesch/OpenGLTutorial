@@ -29,25 +29,25 @@ public:
     ~RBShader() {}
 
     bool Create();
-    bool Activate();
+    bool Activate() const;
 
-    void MapScreenSize(int width, int height);
-    void MapProjectionMatrix(RBMat4x4 matrix);
-    void MapModelMatrix(RBMat4x4 matrix);
-    void MapColor(RBColor color);
+    void MapScreenSize(RBVec2D size);
+    void MapProjectionMatrix(RBMat4x4 matrix) const;
+    void MapModelMatrix(RBMat4x4 matrix) const;
+    void MapColor(RBColor color) const;
 
 public:
-    void DrawRectangle(RBVec2D position, RBVec2D size, RBColor color);
+    void DrawRectangle(RBVec2D position, RBVec2D size, RBColor color) const;
 
-    void DrawElements(const GLfloat* vertices, const GLubyte* indices, int count);
+    void DrawElements(const GLfloat* vertices, const GLubyte* indices, int count) const;
 
 protected:
-    GLint AssignAttribute(char* name);
-    GLint AssignUniform(char* name);
+    GLint AssignAttribute(char* name) const;
+    GLint AssignUniform(char* name) const;
 
 private:
-    GLuint CreateProgram(const char* pVertexSource, const char* pFragmentSource);
-    GLuint LoadShader(GLenum shaderType, const char* pSource);
+    static GLuint CreateProgram(const char* pVertexSource, const char* pFragmentSource);
+    static GLuint LoadShader(GLenum shaderType, const char* pSource);
 
 private:
     GLuint m_gl_program = -1;

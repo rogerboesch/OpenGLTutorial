@@ -23,12 +23,12 @@ public:
     void CreateContent() override;
 
 protected:
-    void Update(float delay) override;
+    void Update(float delta) override;
     void Render() override;
     void SizeChanged() override ;
 
 private:
     float m_offsetZ1 = 0.0f;
     float m_offsetZ2 = 0.0f;
-    float m_totalTime = 0.0f;
+    float m_rotation = 0.0f;
 };
